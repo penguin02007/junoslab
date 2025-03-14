@@ -1,0 +1,2 @@
+ansible_user=lab
+ansible_ssh_pass=lab123

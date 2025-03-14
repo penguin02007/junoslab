@@ -1,0 +1,12 @@
+- name: Configure Junos SSB device
+  hosts: juniper_vmx
+  gather_facts: no
+  tasks:
+    - name: Apply configuration
+      juniper.device.config:
+        lines:
+          - "load override ch3-start.config"
+          - "delete event-options policy sylog_if_description"
+          - "delete event-options event-script"
+          - "delete system scripts"
+        commit: yes
