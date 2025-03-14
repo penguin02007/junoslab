@@ -1,7 +1,3 @@
-- name: Configure Junos SSB device
-  hosts: juniper_vmx
-  gather_facts: no
-  tasks:
     - name: Apply configuration
       juniper.device.config:
         lines:
