@@ -1,0 +1,74 @@
+---
+provider: clab
+defaults.device: vmx
+  #module: [ bgp,ospf ]
+nodes:
+  r1:
+    id: 1
+    name: r1
+    interfaces:
+    - ifindex: 1
+      ifname: ge-0/0/1
+      name: r1 -> r2
+      neighbors:
+      - ifname: ge-0/0/1
+        node: r2
+      type: p2p
+    - ifindex: 2
+      ifname: ge-0/0/2
+      name: r1 -> r2
+      neighbors:
+      - ifname: ge-0/0/2
+        node: r2
+      type: p2p
+    - ifindex: 4
+      ifname: ge-0/0/4
+      ipv4: 172.30.0.9/30
+      name: r1 -> r8
+      neighbors:
+      - ifname: ge-0/0/4
+        ipv4: 172.30.0.10/30
+        node: r8
+      type: p2p
+  r2:
+    id: 2
+  r8:
+    id: 8
+    interfaces:
+    - ifindex: 1
+      ifname: ge-0/0/1
+      name: r2 -> r1
+      neighbors:
+      - ifname: ge-0/0/1
+        node: r1
+      type: p2p
+    - ifindex: 2
+      ifname: ge-0/0/2
+      name: r2 -> r1
+      neighbors:
+      - ifname: ge-0/0/2
+        node: r1
+      type: p2p
+    - ifindex: 4
+      ifname: ge-0/0/4
+      ipv4: 172.30.0.10/30
+      name: r8 -> r1
+      neighbors:
+      - ifname: ge-0/0/4
+        ipv4: 172.30.0.9/30
+        node: r1
+      type: p2p
+links:
+  - r1:
+      ifindex: 4
+    r8:
+      ifindex: 4
+    disable: true
+  - r1:
+      ifindex: 1
+    r2:
+      ifindex: 1
+  - r1:
+      ifindex: 2
+    r2:
+      ifindex: 2
