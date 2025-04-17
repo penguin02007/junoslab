@@ -1,6 +1,7 @@
 ---
 provider: clab
 defaults.device: vmx
+module: vlan
   #module: [ bgp,ospf ]
 nodes:
   r1:
@@ -22,6 +23,14 @@ nodes:
   sw1:
     id: 9
 
+vlans:
+  vlan_123:
+    id: 123
+    mode: irb
+    prefix:
+      ipv4: 172.30.0.13/30
+    links: [ r2-sw1, r3-sw1 ]
+
 links:
   - r1:
       ifindex: 1
@@ -39,13 +48,17 @@ links:
       name: sw1->r1
   - r2:
       ifindex: 4
+      ipv4: 172.30.0.13/30
       name: r2->sw1
     sw1:
       ifindex: 2
       name: sw1->r2
+    vlan.trunk: [ vlan_123 ]
   - r3:
       ifindex: 4
+      ipv4: 172.30.0.14/30
       name: r3->sw1
+    vlan.trunk: [ vlan_123 ]
     sw1:
       ifindex: 5
       name: sw1->r4
