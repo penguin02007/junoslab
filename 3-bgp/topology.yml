@@ -5,6 +5,10 @@ defaults.device: vmx
 nodes:
   r1:
     id: 1
+    mgmt:
+      ipv4:
+        type: ipv4
+        use: id
   r2:
     id: 2
   r3:
