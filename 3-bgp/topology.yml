@@ -5,8 +5,6 @@ defaults.device: vmx
 nodes:
   r1:
     id: 1
-    mgmt:
-      ipv4: 10.10.1.1
   r2:
     id: 2
   r3:
@@ -97,4 +95,4 @@ addressing:
   mgmt:
     ipv4: 10.10.1.0/24
     prefix: 24
-    start: 100
+    start: 1
