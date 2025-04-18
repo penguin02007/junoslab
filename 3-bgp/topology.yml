@@ -8,7 +8,7 @@ nodes:
     mgmt:
       ipv4:
         type: ipv4
-        use: id
+        use: 1
   r2:
     id: 2
   r3:
