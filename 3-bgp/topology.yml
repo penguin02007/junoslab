@@ -93,8 +93,8 @@ links:
     sw1:
       ifindex: 10
       name: sw1->r8
-#addressing:
-#  mgmt:
-#    ipv4: 10.10.1.0/24
-#    prefix: 24
-#    start: 1
+addressing:
+  mgmt:
+    ipv4: 10.10.1.0/24
+    prefix: 24
+    start: 100
