@@ -5,8 +5,8 @@ defaults.device: vmx
 nodes:
   r1:
     id: 1
-    mgmt:
-      ipv4: 10.10.1.101
+    mgmt.ipv4: 10.10.1.1
+    mgmt.ifname: fxp0
   r2:
     id: 2
   r3:
