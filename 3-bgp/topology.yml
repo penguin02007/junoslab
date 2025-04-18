@@ -6,9 +6,7 @@ nodes:
   r1:
     id: 1
     mgmt:
-      ipv4:
-        type: ipv4
-        use: 10.10.1.1
+      ipv4: 10.10.1.1
   r2:
     id: 2
   r3:
