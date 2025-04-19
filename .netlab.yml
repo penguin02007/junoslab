@@ -1,0 +1,2 @@
+devices.vmx.clab.image: vrnetlab/juniper_vmx:21.4R3.15
+netlab_license_file: ~/netlab/vmx_license.txt
