@@ -2,6 +2,7 @@
 provider: clab
 defaults.device: vmx
   #module: [ bgp,ospf ]
+netlab_license_file: ~/netlab/vmx_license.txt
 nodes:
   r1:
     id: 1
