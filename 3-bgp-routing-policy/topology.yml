@@ -72,12 +72,12 @@ links:
     sw1:
       ifindex: 1
       name: sw1->r1
-  - r2:
-      ifindex: 4
-      name: r2->sw1
-    sw1:
-      ifindex: 2
-      name: sw1->r2
+#  - r2:
+#      ifindex: 4
+#      name: r2->sw1
+#    sw1:
+#      ifindex: 2
+#      name: sw1->r2
   - r3:
       ifindex: 4
       name: r3->sw1
