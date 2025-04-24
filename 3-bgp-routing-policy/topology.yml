@@ -70,11 +70,11 @@ links:
   - r2:
       ifindex: 4
       name: r2->sw1
-      vlan.trunk: [ r2vlan123 ]
+      vlan.trunk: [ vlan123, r2vlan123 ]
     sw1:
       ifindex: 2
       name: sw1->r2
-      vlan.trunk: [ vlan123 ]
+      vlan.trunk: [ vlan123, r2vlan123 ]
   - r3:
       ifindex: 4
       name: r3->sw1
