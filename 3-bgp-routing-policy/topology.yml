@@ -48,6 +48,9 @@ vlans:
   r3vlan123:
     id: 123
     mode: irb
+  sw1vlan123:
+    mode: access
+    id: 123
 
 links:
   - r1:
@@ -71,6 +74,7 @@ links:
     sw1:
       ifindex: 2
       name: sw1->r2
+      vlan.access: [ sw1vlan123]
   - r3:
       ifindex: 4
       name: r3->sw1
@@ -78,6 +82,7 @@ links:
     sw1:
       ifindex: 5
       name: sw1->r4
+      vlan.access: [ sw1vlan123]
   - r4:
       ifindex: 4
       name: r4->sw1
