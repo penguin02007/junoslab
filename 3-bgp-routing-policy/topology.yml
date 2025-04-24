@@ -45,6 +45,8 @@ vlans:
   r2vlan123:
     id: 123
     mode: irb
+    virtual_interface: True
+    type: svi
   r3vlan123:
     id: 123
     mode: bridge
