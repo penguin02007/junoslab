@@ -2,7 +2,7 @@
 provider: clab
 defaults.device: vmx
 module: [ vlan ]
-netlab_license_file: ~/netlab/vmx_license.txt
+
 nodes:
   r1:
     id: 1
