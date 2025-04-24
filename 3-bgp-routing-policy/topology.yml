@@ -1,7 +1,7 @@
 ---
 provider: clab
 defaults.device: vmx
-  #module: [ bgp,ospf ]
+module: [ vlan ]
 netlab_license_file: ~/netlab/vmx_license.txt
 nodes:
   r1:
@@ -41,6 +41,14 @@ nodes:
     mgmt.ipv4: 10.10.1.130
     mgmt.ifname: fxp0
 
+vlans:
+  r2vlan123:
+    id: 123
+    mode: irb
+  r3vlan123:
+    id: 123
+    mode: irb
+
 links:
   - r1:
       ifindex: 1
@@ -59,12 +67,14 @@ links:
   - r2:
       ifindex: 4
       name: r2->sw1
+      vlan.trunk: [ r2vlan123 ]
     sw1:
       ifindex: 2
       name: sw1->r2
   - r3:
       ifindex: 4
       name: r3->sw1
+      vlan.trunk: [ r3vlan123 ]
     sw1:
       ifindex: 5
       name: sw1->r4
