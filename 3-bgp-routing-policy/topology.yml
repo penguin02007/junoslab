@@ -76,6 +76,7 @@ links:
     sw1:
       ifindex: 2
       name: sw1->r2
+      vlan.trunk: [ vlan123 ]
   - r3:
       ifindex: 4
       name: r3->sw1
