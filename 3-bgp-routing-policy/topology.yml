@@ -45,8 +45,11 @@ vlans:
   r2vlan123:
     id: 123
     mode: irb
-    virtual_interface: True
-    type: svi
+    links:
+      - r2:
+          ifindex: 4
+        sw1:
+          ifindex: 2
   r3vlan123:
     id: 123
     mode: bridge
@@ -72,19 +75,15 @@ links:
   - r2:
       ifindex: 4
       name: r2->sw1
-      vlan.trunk: [ vlan123, r2vlan123 ]
     sw1:
       ifindex: 2
       name: sw1->r2
-      vlan.trunk: [ vlan123 ]
   - r3:
       ifindex: 4
       name: r3->sw1
-      vlan.trunk: [ vlan123 ]
     sw1:
       ifindex: 5
       name: sw1->r4
-      vlan.trunk: [ vlan123 ]
   - r4:
       ifindex: 4
       name: r4->sw1
