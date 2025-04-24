@@ -49,7 +49,7 @@ vlans:
     id: 123
     mode: irb
   sw1vlan123:
-    mode: access
+    mode: bridge
     id: 123
 
 links:
