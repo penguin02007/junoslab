@@ -48,7 +48,7 @@ vlans:
   r3vlan123:
     id: 123
     mode: bridge
-  sw1vlan123:
+  vlan123:
     mode: bridge
     id: 123
 
@@ -74,6 +74,7 @@ links:
     sw1:
       ifindex: 2
       name: sw1->r2
+      vlan.trunk: [ vlan123 ]
   - r3:
       ifindex: 4
       name: r3->sw1
@@ -81,6 +82,7 @@ links:
     sw1:
       ifindex: 5
       name: sw1->r4
+      vlan.trunk: [ vlan123 ]
   - r4:
       ifindex: 4
       name: r4->sw1
