@@ -35,8 +35,40 @@ nodes:
     id: 8
     mgmt.ipv4: 10.10.1.108
     mgmt.ifname: fxp0
+  p2-1:
+    id: 8
+    mgmt.ipv4: 10.10.1.121
+    mgmt.ifname: fxp0
+  p2-2:
+    id: 8
+    mgmt.ipv4: 10.10.1.122
+    mgmt.ifname: fxp0
 
 links:
+  - r1:
+    prefix: 172.16.0.1/32
+    type: loopback
+  - r2:
+    prefix: 172.16.0.2/32
+    type: loopback
+  - r3:
+    prefix: 172.16.0.3/32
+    type: loopback
+  - r4:
+    prefix: 172.16.0.4/32
+    type: loopback
+  - r5:
+    prefix: 172.16.0.5/32
+    type: loopback
+  - r6:
+    prefix: 172.16.0.6/32
+    type: loopback
+  - r7:
+    prefix: 172.16.0.7/32
+    type: loopback
+  - r8:
+    prefix: 172.16.0.8/32
+    type: loopback
   - r1:
       ifindex: 0
     r2:
