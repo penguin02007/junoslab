@@ -36,11 +36,11 @@ nodes:
     mgmt.ipv4: 10.10.1.108
     mgmt.ifname: fxp0
   p2-1:
-    id: 8
+    id: 9
     mgmt.ipv4: 10.10.1.121
     mgmt.ifname: fxp0
   p2-2:
-    id: 8
+    id: 10
     mgmt.ipv4: 10.10.1.122
     mgmt.ifname: fxp0
 
