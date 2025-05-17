@@ -48,6 +48,9 @@ vlans:
   vlan103:
     id: 103
     mode: bridge
+  vlan104:
+    id: 104
+    mode: bridge
 
 
 links:
@@ -121,18 +124,26 @@ links:
       ifindex: 2
       name: r3->p2-1
       vlan.trunk: [ vlan103 ]
+      ipv4: 192.168.2.0/31
+      type: p2_ptp
     p2-1:
       ifindex: 1
       name: p2-1->r3
       vlan.trunk: [ vlan103 ]
+      ipv4: 192.168.2.1/31
+      type: provider_ptp
   - r3:
       ifindex: 3
       name: r3->p2-1
-      vlan.trunk: [ vlan103 ]
+      vlan.trunk: [ vlan104 ]
+      ipv4: 192.168.3.0/31
+      type: p3_ptp
     p3-1:
       ifindex: 1
       name: p3-1->r3
-      vlan.trunk: [ vlan103 ]
+      vlan.trunk: [ vlan104 ]
+      ipv4: 192.168.3.3/31
+      type: p3_ptp
   - r3:
       ifindex: 5
       name: r3->r6
@@ -203,4 +214,10 @@ addressing:
     prefix: 32
   p2p:
     ipv4: 172.20.0.0/24
+    prefix: 31
+  p2_p2p:
+    ipv4: 192.168.2.0/24
+    prefix: 31
+  p3_p2p:
+    ipv4: 192.168.3.0/24
     prefix: 31
