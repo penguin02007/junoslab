@@ -36,96 +36,115 @@ nodes:
     id: 8
     mgmt.ipv4: 10.10.1.108
     mgmt.ifname: fxp0
-  sw1:
-    id: 30
-    mgmt.ipv4: 10.10.1.130
-    mgmt.ifname: fxp0
 
 vlans:
-  r2vlan123:
-    id: 123
-    mode: irb
-    links:
-      - r2:
-          ifindex: 4
-        sw1:
-          ifindex: 2
-  r3vlan123:
-    id: 123
+  vlan102:
+    id: 102
     mode: bridge
-  vlan123:
+  vlan103:
+    id: 103
     mode: bridge
-    id: 123
+  vlan107:
+    mode: bridge
+    id: 107
+  vlan108:
+    mode: bridge
+    id: 108
+  vlan117:
+    mode: bridge
+    id: 117
 
 links:
   - r1:
+      ifindex: 0
+    r2:
+      ifindex: 0
+  - r1:
       ifindex: 1
     r2:
       ifindex: 1
-  - r1:
-      ifindex: 2
-    r2:
-      ifindex: 2
-  - r1:
+  - r5:
+      ifindex: 0
+      name: r5->r6
+    r6:
+      ifindex: 0
+      name: r6->r5
+  - r5:
+      ifindex: 1
+      name: r5->r6
+    r6:
+      ifindex: 1
+      name: r6->r5
+  - r2:
       ifindex: 4
-      name: r1->sw1
-    sw1:
+      name: r2->r3
+      prefix.ipv4: 172.20.0.18/31
+    r3:
       ifindex: 1
-      name: sw1->r1
-#  - r2:
-#      ifindex: 4
-#      name: r2->sw1
-#    sw1:
-#      ifindex: 2
-#      name: sw1->r2
+      name: r3->r2
+  - r1:
+      ifindex: 1
+      name: r1->r4
+      prefix.ipv4: 172.20.0.25/31
+    r4:
+      ifindex: 1
+      name: r4->r1
+  - r2:
+      ifindex: 1
+      name: r2->r7
+      prefix.ipv4: 172.20.0.16/31
+    r7:
+      ifindex: 1
+      name: r7->r2
   - r3:
       ifindex: 4
-      name: r3->sw1
-    sw1:
-      ifindex: 5
-      name: sw1->r4
-  - r4:
-      ifindex: 4
-      name: r4->sw1
-    sw1:
-      ifindex: 6
-      name: sw1->r4
-  - r5:
-      ifindex: 4
-      name: r5->sw1
-    sw1:
-      ifindex: 7
-      name: sw1->r5
-  - r5:
+      name: r3->r4
+      prefix.ipv4: 172.20.0.21/31
+    r4:
       ifindex: 1
-      name: r5->r6
+      name: r4->r3
+  - r3:
+      ifindex: 5
+      name: r3->r6
+      prefix.ipv4: 172.20.0.23/31
     r6:
       ifindex: 1
       name: r6->r5
+  - r4:
+      ifindex: 3
+      name: r4->r5
+      prefix.ipv4: 172.20.0.26/31
+    r5:
+      ifindex: 3
+      name: r5->r4
   - r5:
       ifindex: 2
-      name: r5->r6
-    r6:
-      ifindex: 2
+      name: r5->r8
+      prefix.ipv4: 172.20.0.29/31
+    r8:
+      ifindex: 3
       name: r6->r5
   - r6:
-      ifindex: 4
-      name: r6->sw1
-    sw1:
-      ifindex: 8
-      name: sw1->r6
+      ifindex: 2
+      name: r6->r7
+      prefix.ipv4: 172.20.0.30/31
+    r7:
+      ifindex: 3
+      name: r7->r6
   - r7:
-      ifindex: 4
-      name: r7->sw1
-    sw1:
-      ifindex: 9
-      name: sw1->r7
+      ifindex: 1
+      name: r7->r8
+      prefix.ipv4: 172.20.0.33/31
+    r8:
+      ifindex: 1
+      name: r8->r7
   - r8:
-      ifindex: 4
-      name: r8->sw1
-    sw1:
-      ifindex: 10
-      name: sw1->r8
+      ifindex: 1
+      name: r8->r1
+      prefix.ipv4: 172.20.0.36/31
+    r1:
+      ifindex: 1
+      name: r1->r8
 addressing:
   mgmt:
     ipv4: 10.10.1.0/24
