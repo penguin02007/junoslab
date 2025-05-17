@@ -173,3 +173,6 @@ addressing:
   loopback:
     ipv4: 172.16.0.0/24
     prefix: 32
+  p2p:
+    ipv4: 172.20.0.0/24
+    prefix: 31
