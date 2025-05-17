@@ -16,6 +16,9 @@ nodes:
     id: 3
     mgmt.ipv4: 10.10.1.103
     mgmt.ifname: fxp0
+    vlans:
+      vlan103:
+        ipv4: 192.168.2.0/31
   r4:
     id: 4
     mgmt.ipv4: 10.10.1.104
@@ -41,6 +44,9 @@ nodes:
     id: 9
     mgmt.ipv4: 10.10.1.121
     mgmt.ifname: fxp0
+    vlans:
+      vlan103:
+        ipv4: 192.168.2.1/31
   p3-1:
     module: [ vlan ]
     id: 10
@@ -56,16 +62,10 @@ vlans:
           ifindex: 2
           name: r3->p2-1
           vlan.trunk: [ vlan103 ]
-          type: p2p
-          pool: p2_ptp
-          ipv4: 192.168.2.0/31
         p2-1:
           ifindex: 1
           name: p2-1->r3
           vlan.trunk: [ vlan103 ]
-          ipv4: 192.168.2.1/31
-          type: p2p
-          pool: p2_ptp
   vlan104:
     id: 104
     mode: irb
