@@ -50,7 +50,7 @@ nodes:
 vlans:
   vlan103:
     id: 103
-    mode: bridge
+    mode: irb
   links:
     - r3:
         ifindex: 2
@@ -68,7 +68,7 @@ vlans:
         pool: p2_ptp
   vlan104:
     id: 104
-    mode: bridge
+    mode: irb
   links:
     - r3:
         ifindex: 3
