@@ -48,7 +48,7 @@ links:
   - r1:
     prefix: 172.16.0.1/32
     type: loopback
-    pool: loopback
+    pool: vrf_loopback
   - r2:
     prefix: 172.16.0.2/32
     type: loopback
