@@ -78,70 +78,80 @@ links:
   - r2:
       ifindex: 4
       name: r2->r3
-      prefix.ipv4: 172.20.0.18/31
+      ipv4: 172.20.0.18/31
+      type: p2p
     r3:
       ifindex: 1
       name: r3->r2
   - r1:
       ifindex: 1
       name: r1->r4
-      prefix.ipv4: 172.20.0.25/31
+      ipv4: 172.20.0.25/31
+      type: p2p
     r4:
       ifindex: 1
       name: r4->r1
   - r2:
       ifindex: 1
       name: r2->r7
-      prefix.ipv4: 172.20.0.16/31
+      ipv4: 172.20.0.16/31
+      type: p2p
     r7:
       ifindex: 1
       name: r7->r2
   - r3:
       ifindex: 4
       name: r3->r4
-      prefix.ipv4: 172.20.0.21/31
+      ipv4: 172.20.0.21/31
+      type: p2p
     r4:
       ifindex: 1
       name: r4->r3
   - r3:
       ifindex: 5
       name: r3->r6
-      prefix.ipv4: 172.20.0.23/31
+      ipv4: 172.20.0.23/31
+      type: p2p
     r6:
       ifindex: 1
       name: r6->r5
   - r4:
       ifindex: 3
       name: r4->r5
-      prefix.ipv4: 172.20.0.26/31
+      ipv4: 172.20.0.26/31
+      type: p2p
     r5:
       ifindex: 3
       name: r5->r4
   - r5:
       ifindex: 2
       name: r5->r8
-      prefix.ipv4: 172.20.0.29/31
+      ipv4: 172.20.0.29/31
+      type: p2p
     r8:
       ifindex: 3
       name: r6->r5
   - r6:
       ifindex: 2
       name: r6->r7
-      prefix.ipv4: 172.20.0.30/31
+      ipv4: 172.20.0.30/31
+      type: p2p
     r7:
       ifindex: 3
       name: r7->r6
   - r7:
       ifindex: 1
       name: r7->r8
-      prefix.ipv4: 172.20.0.33/31
+      ipv4: 172.20.0.33/31
+      type: p2p
     r8:
       ifindex: 1
       name: r8->r7
   - r8:
       ifindex: 1
       name: r8->r1
-      prefix.ipv4: 172.20.0.36/31
+      ipv4: 172.20.0.36/31
+      type: p2p
     r1:
       ifindex: 1
       name: r1->r8
