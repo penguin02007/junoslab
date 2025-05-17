@@ -48,7 +48,6 @@ links:
   - r1:
     prefix: 172.16.0.1/32
     type: loopback
-    pool: vrf_loopback
   - r2:
     prefix: 172.16.0.2/32
     type: loopback
@@ -197,4 +196,3 @@ addressing:
     start: 100
   loopback:
     ipv4: 172.16.0.0/24
-    prefix: 32
