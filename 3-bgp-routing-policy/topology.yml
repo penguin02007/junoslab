@@ -1,7 +1,7 @@
 ---
 provider: clab
 defaults.device: vmx
-module: [ vlan ]
+
 nodes:
   r1:
     id: 1
@@ -12,6 +12,7 @@ nodes:
     mgmt.ipv4: 10.10.1.102
     mgmt.ifname: fxp0
   r3:
+    module: [ vlan ]
     id: 3
     mgmt.ipv4: 10.10.1.103
     mgmt.ifname: fxp0
@@ -36,10 +37,12 @@ nodes:
     mgmt.ipv4: 10.10.1.108
     mgmt.ifname: fxp0
   p2-1:
+    module: [ vlan ]
     id: 9
     mgmt.ipv4: 10.10.1.121
     mgmt.ifname: fxp0
   p3-1:
+    module: [ vlan ]
     id: 10
     mgmt.ipv4: 10.10.1.122
     mgmt.ifname: fxp0
