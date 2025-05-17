@@ -129,9 +129,9 @@ links:
       ifindex: 3
       name: r3->p2-1
       vlan.trunk: [ vlan103 ]
-    p2-1:
+    p3-1:
       ifindex: 1
-      name: p2-1->r3
+      name: p3-1->r3
       vlan.trunk: [ vlan103 ]
   - r3:
       ifindex: 5
