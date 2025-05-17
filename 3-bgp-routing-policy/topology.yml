@@ -58,19 +58,6 @@ vlans:
     id: 103
     mode: irb
     ipv4: 192.168.2.0/31
-    links:
-    - r3:
-        ifindex: 2
-        name: r3->p2-1
-        vlan.trunk: [ vlan103 ]
-        type: p2p
-        pool: p2_ptp
-      p2-1:
-        ifindex: 1
-        name: p2-1->r3
-        vlan.trunk: [ vlan103 ]
-        type: p2p
-        pool: p2_ptp
   vlan104:
     id: 104
     mode: irb
@@ -203,6 +190,18 @@ links:
       name: r1->r8
       ipv4: 172.20.0.31/31
       type: p2p
+  - r3:
+      ifindex: 2
+      name: r3->p2-1
+      vlan.trunk: [ vlan103 ]
+      type: p2p
+      pool: p2_ptp
+    p2-1:
+      ifindex: 1
+      name: p2-1->r3
+      vlan.trunk: [ vlan103 ]
+      type: p2p
+      pool: p2_ptp
 addressing:
   mgmt:
     ipv4: 10.10.1.0/24
