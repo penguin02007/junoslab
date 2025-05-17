@@ -46,30 +46,6 @@ nodes:
 
 links:
   - r1:
-    prefix: 172.16.0.1/32
-    type: loopback
-  - r2:
-    prefix: 172.16.0.2/32
-    type: loopback
-  - r3:
-    prefix: 172.16.0.3/32
-    type: loopback
-  - r4:
-    prefix: 172.16.0.4/32
-    type: loopback
-  - r5:
-    prefix: 172.16.0.5/32
-    type: loopback
-  - r6:
-    prefix: 172.16.0.6/32
-    type: loopback
-  - r7:
-    prefix: 172.16.0.7/32
-    type: loopback
-  - r8:
-    prefix: 172.16.0.8/32
-    type: loopback
-  - r1:
       ifindex: 0
     r2:
       ifindex: 0
