@@ -195,4 +195,5 @@ addressing:
     prefix: 24
     start: 100
   loopback:
-    ipv4: 10.16.0.0/24
+    ipv4: 172.16.0.0/24
+    prefix: 32
