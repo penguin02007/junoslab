@@ -1,7 +1,6 @@
 ---
 provider: clab
 defaults.device: vmx
-# module: [ vlan ]
 
 nodes:
   r1:
@@ -36,23 +35,6 @@ nodes:
     id: 8
     mgmt.ipv4: 10.10.1.108
     mgmt.ifname: fxp0
-
-vlans:
-  vlan102:
-    id: 102
-    mode: bridge
-  vlan103:
-    id: 103
-    mode: bridge
-  vlan107:
-    mode: bridge
-    id: 107
-  vlan108:
-    mode: bridge
-    id: 108
-  vlan117:
-    mode: bridge
-    id: 117
 
 links:
   - r1:
