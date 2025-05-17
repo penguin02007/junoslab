@@ -194,3 +194,6 @@ addressing:
     ipv4: 10.10.1.0/24
     prefix: 24
     start: 100
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
