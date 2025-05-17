@@ -55,7 +55,6 @@ vlans:
   vlan103:
     id: 103
     mode: irb
-    ipv4: 192.168.2.0/31
     links:
     - r3:
         ifindex: 2
