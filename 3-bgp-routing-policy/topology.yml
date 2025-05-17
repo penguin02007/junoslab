@@ -47,12 +47,18 @@ nodes:
 links:
   - r1:
       ifindex: 0
+      name: r1->r2 (ae0)
     r2:
       ifindex: 0
+      name: r2->r1 (ae0)
+    pool: l2only
   - r1:
       ifindex: 1
+      name: r1->r2 (ae0)
     r2:
       ifindex: 1
+      name: r1->r2 (ae0)
+    pool: l2only
   - r5:
       ifindex: 0
       name: r5->r6
