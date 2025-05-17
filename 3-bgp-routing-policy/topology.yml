@@ -65,6 +65,8 @@ links:
     r3:
       ifindex: 1
       name: r3->r2
+      ipv4: 172.20.0.19/31
+      type: p2p
   - r1:
       ifindex: 3
       name: r1->r4
@@ -83,6 +85,8 @@ links:
     r7:
       ifindex: 2
       name: r7->r2
+      ipv4: 172.20.0.17/31
+      type: p2p
   - r3:
       ifindex: 4
       name: r3->r4
@@ -91,6 +95,8 @@ links:
     r4:
       ifindex: 1
       name: r4->r3
+      ipv4: 172.20.0.20/31
+      type: p2p
   - r3:
       ifindex: 5
       name: r3->r6
@@ -99,6 +105,8 @@ links:
     r6:
       ifindex: 3
       name: r6->r5
+      ipv4: 172.20.0.24/31
+      type: p2p
   - r4:
       ifindex: 3
       name: r4->r5
@@ -107,6 +115,8 @@ links:
     r5:
       ifindex: 3
       name: r5->r4
+      ipv4: 172.20.0.27/31
+      type: p2p
   - r5:
       ifindex: 2
       name: r5->r8
@@ -115,6 +125,8 @@ links:
     r8:
       ifindex: 3
       name: r6->r5
+      ipv4: 172.20.0.28/31
+      type: p2p
   - r6:
       ifindex: 2
       name: r6->r7
@@ -123,6 +135,8 @@ links:
     r7:
       ifindex: 3
       name: r7->r6
+      ipv4: 172.20.0.31/31
+      type: p2p
   - r7:
       ifindex: 1
       name: r7->r8
@@ -131,14 +145,18 @@ links:
     r8:
       ifindex: 1
       name: r8->r7
+      ipv4: 172.20.0.33/31
+      type: p2p
   - r8:
       ifindex: 4
       name: r8->r1
-      ipv4: 172.20.0.36/31
+      ipv4: 172.20.0.32/31
       type: p2p
     r1:
       ifindex: 4
       name: r1->r8
+      ipv4: 172.20.0.31/31
+      type: p2p
 addressing:
   mgmt:
     ipv4: 10.10.1.0/24
