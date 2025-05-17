@@ -1,7 +1,7 @@
 ---
 provider: clab
 defaults.device: vmx
-
+module: [ vla]
 nodes:
   r1:
     id: 1
@@ -39,10 +39,16 @@ nodes:
     id: 9
     mgmt.ipv4: 10.10.1.121
     mgmt.ifname: fxp0
-  p2-2:
+  p3-1:
     id: 10
     mgmt.ipv4: 10.10.1.122
     mgmt.ifname: fxp0
+
+vlans:
+  vlan103:
+    id: 103
+    mode: bridge
+
 
 links:
   - r1:
@@ -111,6 +117,22 @@ links:
       name: r4->r3
       ipv4: 172.20.0.20/31
       type: p2p
+  - r3:
+      ifindex: 2
+      name: r3->p2-1
+      vlan.trunk: [ vlan103 ]
+    p2-1:
+      ifindex: 1
+      name: p2-1->r3
+      vlan.trunk: [ vlan103 ]
+  - r3:
+      ifindex: 3
+      name: r3->p2-1
+      vlan.trunk: [ vlan103 ]
+    p2-1:
+      ifindex: 1
+      name: p2-1->r3
+      vlan.trunk: [ vlan103 ]
   - r3:
       ifindex: 5
       name: r3->r6
