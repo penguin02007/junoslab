@@ -177,7 +177,7 @@ links:
     r8:
       ifindex: 1
       name: r8->r7
-      ipv4: 172.20.0.33/31
+      ipv4: 172.20.0.34/31
       type: p2p
   - r8:
       ifindex: 4
