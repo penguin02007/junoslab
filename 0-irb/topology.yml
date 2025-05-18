@@ -25,15 +25,15 @@ nodes:
 vlans:
   red:
     id: 100
-    mode: route
+    mode: irb
   blue:
     id: 101
-    mode: route
+    mode: irb
 
 
 links:
-  - r2:
-    r3:
+  - r1:
+    r2:
     vlan.access: blue
   - r3:
     r4:
