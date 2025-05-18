@@ -34,12 +34,12 @@ vlans:
 links:
   - r1:
     r2:
-    vlan.access: red
-  - r2:
+    vlan.trunk: [ red ]
+ ]   - r2:
     r3:
   - r3:
     r4:
-    vlan.access: blue
+    vlan.trunk: [ blue ] 
 
 addressing:
   red:
