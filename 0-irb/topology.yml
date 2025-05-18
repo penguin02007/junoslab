@@ -26,10 +26,10 @@ nodes:
 vlans:
   red:
     id: 100
-    mode: bridge
+    mode: route
   blue:
     id: 101
-    mode: bridge
+    mode: route
 
 links:
   - r1:
