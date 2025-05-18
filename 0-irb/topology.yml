@@ -1,26 +1,31 @@
 ---
 provider: clab
 defaults.device: vmx
-module: [ vlan ]
+module: [ vlan, bgp ]
 
 nodes:
   r1:
     vlans:
       red:
         ipv4: 192.168.1.0/31
+    bgp.as: 65000
   r2:
     vlans:
       red:
         ipv4: 192.168.1.1/31
+    bgp.as: 65001
   r3:
+    bgp.as: 65002
   r4:
     vlans:
       blue:
         ipv4: 192.168.2.0/31
+    bgp.as: 65002
   r5:
     vlans:
       blue:
         ipv4: 192.168.2.1/31
+    bgp.as: 65003
 
 vlans:
   red:
