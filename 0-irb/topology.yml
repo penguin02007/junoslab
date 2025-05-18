@@ -8,24 +8,48 @@ nodes:
     vlans:
       red:
         ipv4: 192.168.1.0/31
-    bgp.as: 65000
+    bgp:
+      as: 65001
+      neighbors:
+      - as: 65002
+        ipv4: 192.168.1.1
+        name: r2
+        type: ebgp
   r2:
     vlans:
       red:
         ipv4: 192.168.1.1/31
-    bgp.as: 65001
+    bgp:
+      as: 65002
+      neighbors:
+      - as: 65001
+        ipv4: 192.168.1.0
+        name: r1
+        type: ebgp
   r3:
     bgp.as: 65002
   r4:
     vlans:
       blue:
         ipv4: 192.168.2.0/31
-    bgp.as: 65002
+    bgp:
+      as: 65004
+      neighbors:
+      - as: 65005
+        ipv4: 192.168.2.1
+        name: r5
+        type: ebgp
   r5:
     vlans:
       blue:
         ipv4: 192.168.2.1/31
-    bgp.as: 65003
+    bgp:
+      as: 65005
+      neighbors:
+      - as: 65004
+        ipv4: 192.168.2.0
+        name: r4
+        type: ebgp
 
 vlans:
   red:
