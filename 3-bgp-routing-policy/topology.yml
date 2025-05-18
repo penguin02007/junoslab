@@ -59,13 +59,13 @@ vlans:
     - r3:
         ifindex: 2
         name: r3->p2-1
-        vlan.trunk: [ vlan103 ]
+        vlan.access: vlan103
         type: p2p
         pool: p2_ptp
       p2-1:
         ifindex: 1
         name: p2-1->r3
-        vlan.trunk: [ vlan103 ]
+        vlan.access: vlan103
         type: p2p
         pool: p2_ptp
   vlan104:
@@ -75,13 +75,13 @@ vlans:
     - r3:
         ifindex: 2
         name: r3->p3-1
-        vlan.trunk: [ vlan104 ]
+        vlan.access: vlan104
         type: p2p
         pool: p2_ptp
       p3-1:
         ifindex: 1
         name: p3-1->r3
-        vlan.trunk: [ vlan104 ]
+        vlan.access: vlan104
         type: p2p
         pool: p2_ptp
 
