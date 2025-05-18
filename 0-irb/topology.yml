@@ -26,41 +26,18 @@ vlans:
   red:
     id: 100
     mode: route
-    links:
-    - r1:
-        ifindex: 2
-        name: r1->p2
-        vlan.access: red
-        type: p2p
-        pool: red
-      r2:
-        ifindex: 1
-        name: r2->r1
-        vlan.access: red
-        type: p2p
-        pool: red
   blue:
     id: 101
     mode: route
-    links:
-    - r4:
-        ifindex: 3
-        name: r4->r5
-        vlan.access: blue
-        type: p2p
-        pool: blue
-      r5:
-        ifindex: 1
-        name: r5->r4
-        vlan.access: blue
-        type: p2p
-        pool: blue
+
 
 links:
   - r2:
     r3:
+    vlan.access: blue
   - r3:
     r4:
+    vlan.access: red
 
 addressing:
   red:
