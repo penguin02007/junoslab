@@ -54,7 +54,7 @@ nodes:
 vlans:
   vlan103:
     id: 103
-    mode: irb
+    mode: route
     links:
     - r3:
         ifindex: 2
@@ -70,8 +70,7 @@ vlans:
         pool: p2_ptp
   vlan104:
     id: 104
-    mode: irb
-    ipv4: 192.168.3.0/31
+    mode: route
     links:
     - r3:
         ifindex: 2
