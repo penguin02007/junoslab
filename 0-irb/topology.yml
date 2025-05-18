@@ -1,0 +1,81 @@
+---
+provider: clab
+defaults.device: vmx
+module: [ vlan ]
+
+nodes:
+  r1:
+    vlans:
+      vlan101:
+        ipv4: 192.168.1.0/31
+  r2:
+    vlans:
+      vlan101:
+        ipv4: 192.168.1.1/31
+  r3:
+  r4:
+    vlans:
+      vlan102:
+        ipv4: 192.168.2.0/31
+  r5:
+    vlans:
+      vlan102:
+        ipv4: 192.168.2.1/31
+
+vlans:
+  vlan103:
+    id: 103
+    mode: route
+    links:
+    - r3:
+        ifindex: 2
+        name: r3->p2-1
+        vlan.access: vlan103
+        type: p2p
+        pool: p2_ptp
+      p2-1:
+        ifindex: 1
+        name: p2-1->r3
+        vlan.access: vlan103
+        type: p2p
+        pool: p2_ptp
+  vlan104:
+    id: 104
+    mode: route
+    links:
+    - r3:
+        ifindex: 3
+        name: r3->p3-1
+        vlan.access: vlan104
+        type: p2p
+        pool: p2_ptp
+      p3-1:
+        ifindex: 1
+        name: p3-1->r3
+        vlan.access: vlan104
+        type: p2p
+        pool: p2_ptp
+
+links:
+  - r2:
+    r3:
+  - r3:
+    r4:
+
+addressing:
+  mgmt:
+    ipv4: 10.10.1.0/24
+    prefix: 24
+    start: 100
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 172.20.0.0/24
+    prefix: 31
+  p2_p2p:
+    ipv4: 192.168.2.0/24
+    prefix: 31
+  p3_p2p:
+    ipv4: 192.168.3.0/24
+    prefix: 31
