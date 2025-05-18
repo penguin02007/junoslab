@@ -73,7 +73,7 @@ vlans:
     mode: route
     links:
     - r3:
-        ifindex: 2
+        ifindex: 3
         name: r3->p3-1
         vlan.access: vlan104
         type: p2p
