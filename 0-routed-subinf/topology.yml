@@ -17,7 +17,6 @@ nodes:
     vlans:
       blue:
         ipv4: 192.168.2.0/31
-
   r5:
     vlans:
       blue:

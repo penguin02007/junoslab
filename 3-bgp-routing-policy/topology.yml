@@ -40,7 +40,6 @@ nodes:
     mgmt.ipv4: 10.10.1.108
     mgmt.ifname: fxp0
   p2-1:
-    module: [ vlan ]
     id: 9
     mgmt.ipv4: 10.10.1.121
     mgmt.ifname: fxp0
@@ -48,46 +47,49 @@ nodes:
       vlan103:
         ipv4: 192.168.2.1/31
   p3-1:
-    module: [ vlan ]
     id: 10
     mgmt.ipv4: 10.10.1.122
     mgmt.ifname: fxp0
+
+groups:
+  p:
+    members: [ r3, p2-1, p3-1 ]
+    module: [ vlan ]
 
 vlans:
   vlan103:
     id: 103
     mode: route
-    links:
-    - r3:
-        ifindex: 2
-        name: r3->p2-1
-        vlan.access: vlan103
-        type: p2p
-        pool: p2_ptp
-      p2-1:
-        ifindex: 1
-        name: p2-1->r3
-        vlan.access: vlan103
-        type: p2p
-        pool: p2_ptp
   vlan104:
     id: 104
     mode: route
-    links:
-    - r3:
-        ifindex: 3
-        name: r3->p3-1
-        vlan.access: vlan104
-        type: p2p
-        pool: p2_ptp
-      p3-1:
-        ifindex: 1
-        name: p3-1->r3
-        vlan.access: vlan104
-        type: p2p
-        pool: p2_ptp
 
 links:
+  - r3:
+     ifindex: 2
+     name: r3->p2-1
+     vlan.trunk: [ vlan103 ]
+     type: p2p
+     pool: p2_ptp
+    p2-1:
+      ifindex: 1
+      name: p2-1->r3
+      vlan.trunk: [ vlan103 ]
+      type: p2p
+      pool: p2_ptp
+    links:
+  - r3:
+      ifindex: 3
+      name: r3->p3-1
+      vlan.access: vlan104
+      type: p2p
+      pool: p2_ptp
+    p3-1:
+      ifindex: 1
+      name: p3-1->r3
+      vlan.access: vlan104
+      type: p2p
+      pool: p2_ptp
   - r1:
       ifindex: 0
       name: r1->r2 (ae0)
