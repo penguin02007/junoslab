@@ -1,0 +1,51 @@
+---
+provider: clab
+defaults.device: vmx
+module: [ vlan ]
+
+nodes:
+  r1:
+    vlans:
+      red:
+        ipv4: 192.168.1.0/31
+  r2:
+    vlans:
+      red:
+        ipv4: 192.168.1.1/31
+  r3:
+  r4:
+    vlans:
+      blue:
+        ipv4: 192.168.2.0/31
+  r5:
+    vlans:
+      blue:
+        ipv4: 192.168.2.1/31
+
+vlans:
+  red:
+    id: 100
+    mode: route
+  blue:
+    id: 101
+    mode: route
+
+links:
+  - r1:
+    r2:
+    vlan.trunk: [ red ]
+  - r2:
+    r3:
+  - r3:
+    r4:
+  - r4:
+    r5:
+    vlan.trunk: [ blue ] 
+
+addressing:
+  red:
+    ipv4: 192.168.1.0/24
+    prefix: 31
+  blue:
+    ipv4: 192.168.2.0/24
+    prefix: 31
