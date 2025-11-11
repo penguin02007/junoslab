@@ -1,0 +1,126 @@
+provider: clab
+defaults.device: vmx
+
+nodes:
+  r1:
+    id: 1
+    mgmt.ipv4: 10.10.1.101
+    mgmt.ifname: fxp0
+  r2:
+    id: 2
+    mgmt.ipv4: 10.10.1.102
+    mgmt.ifname: fxp0
+  r3:
+    id: 3
+    mgmt.ipv4: 10.10.1.103
+    mgmt.ifname: fxp0
+  r4:
+    id: 4
+    mgmt.ipv4: 10.10.1.104
+    mgmt.ifname: fxp0
+  dc2:
+    id: 5
+    mgmt.ipv4: 10.10.1.105
+    mgmt.ifname: fxp0
+links:
+  - r1:
+      ifindex: 0
+      name: r1->r2 (ae0)
+      unnumbered: true
+    r2:
+      ifindex: 0
+      name: r2->r1 (ae0)
+      unnumbered: true
+  - r1:
+      ifindex: 1
+      name: r1->r2 (ae0)
+      unnumbered: true
+    r2:
+      ifindex: 1
+      name: r1->r2 (ae0)
+      unnumbered: true
+  - r2:
+      ifindex: 3
+      name: r2->r3
+      ipv4: 172.20.0.16/31
+      type: p2p
+    r3:
+      ifindex: 3
+      name: r3->r2
+      ipv4: 172.20.0.17/31
+      type: p2p
+  - r1:
+      ifindex: 3
+      name: r1->r4
+      ipv4: 172.20.0.25/31
+      type: p2p
+    r4:
+      ifindex: 3
+      name: r4->r1
+      ipv4: 172.20.0.24/31
+      type: p2p
+  - r3:
+      ifindex: 0
+      name: r3->r4 (ae0)
+      unnumbered: true
+    r4:
+      ifindex: 0
+      name: r4->r3 (ae0)
+      unnumbered: true
+  - r3:
+      ifindex: 1
+      name: r3->r4 (ae0)
+      unnumbered: true
+    r4:
+      ifindex: 1
+      name: r4->r3 (ae0)
+      unnumbered: true
+  - r4:
+      ifindex: 2
+      name: r4->r2
+      ipv4: 172.20.0.19/31
+      type: p2p
+    r2:
+      ifindex: 2
+      name: r1->r4
+  - r1:
+      ifindex: 2
+      name: r4->r1
+      ipv4: 172.20.0.35/31
+      type: p2p
+    r3:
+      ifindex: 2
+      name: r1->r3
+      ipv4: 172.20.0.34/31
+      type: p2p
+  - dc2:
+      ifindex: 4
+      name: r2->dc2
+      ipv4: 172.30.0.50/30
+      type: p2p
+    r2:
+      ifindex: 4
+      name: dc2->r2
+      ipv4: 172.30.0.49/30
+      type: p2p
+  - dc2:
+      ifindex: 5
+      name: r4->dc2
+      ipv4: 172.30.0.58/30
+      type: p2p
+    r4:
+      ifindex: 5
+      name: dc2->r4
+      ipv4: 172.30.0.57/30
+      type: p2p
+addressing:
+  mgmt:
+    ipv4: 10.10.1.0/24
+    prefix: 24
+    start: 100
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 172.20.0.0/24
+    prefix: 31
