@@ -12,4 +12,5 @@ Objectives:
 - All IS-IS routes must be advertised to the DC2 BGP router. Any L1/L2 router failure must not have any L1 area isolated.
 - Any ASBR failure must not result in BGP routes disappearing from the IS-IS domain or the default route disappearing in the DC2 BGP domain.
 - No static routing is allowed.
-  
+
+
