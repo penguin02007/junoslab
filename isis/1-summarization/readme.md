@@ -6,13 +6,12 @@ Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (
 ## Task 1.1: System & Interface Setup
 
 * Configure ISO NET addresses based on the Loopback IP addresses (e.g., 49.0001.1720.1600.0001.00).
-
-* - [ ] Enable wide-metrics-only on all nodes (Mandatory for MPLS/TE support).
-* - [ ] vR1 & vR3: Configure as Level 2 Only routers.
-* - [ ] vR2 & vR4: Configure as Level 1 / Level 2 routers (ABRs).
-* - [ ] Interfaces facing vR1 and vR3 must be Level 2 only.
-* - [ ] The link between vR2 and vR4 (and the AE bundle) must be Level 1 only.
-* - [ ] Verification: Ensure vR1 cannot see vR2 or vR4 as Level 1 neighbors.
+* Enable wide-metrics-only on all nodes (Mandatory for MPLS/TE support).
+* vR1 & vR3: Configure as Level 2 Only routers.
+* vR2 & vR4: Configure as Level 1 / Level 2 routers (ABRs).
+* Interfaces facing vR1 and vR3 must be Level 2 only.
+* The link between vR2 and vR4 (and the AE bundle) must be Level 1 only.
+* Verification: Ensure vR1 cannot see vR2 or vR4 as Level 1 neighbors.
 
 ## Task 2.1: Summarization (L1 to L2)
 
