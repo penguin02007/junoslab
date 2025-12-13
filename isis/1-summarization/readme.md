@@ -1,7 +1,7 @@
 ![alt text](image-1.png)
 
-## Objectives:
-Configure a scalable, secure, and optimized IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
+## Objectives
+Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
 
 ## Task 1.1: System & Interface Setup
 
@@ -23,56 +23,41 @@ Verification: Ensure vR1 cannot see vR2 or vR4 as Level 1 neighbors.
 
 The Edge routers (vR2, vR4) possess the specific loopbacks and connection links for the "Edge" network.
 
-Configure vR2 and vR4 to suppress individual Level 1 specific prefixes from entering the Level 2 backbone.
+* Configure vR2 and vR4 to suppress individual Level 1 specific prefixes from entering the Level 2 backbone.
+* Instead, advertise a single summary route 172.16.0.0/16 into the Level 2 backbone.
+* Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
 
-Instead, advertise a single summary route 172.16.0.0/16 into the Level 2 backbone.
-
-Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
-
-Task 2.2: Route Leaking (L2 to L1)
-
-By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
-
-Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
-
-Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
+## Task 2.2: Route Leaking (L2 to L1)
+* By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
+* Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
+* Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
 
 ## Task 3.1: External Routes
 External Connectivity & Redistribution. Send Customer Connectivity via DC2.
 
-On vR2 and vR4, configure a static route to DC2's loopback (172.16.0.20/32) pointing to the respective next hops on the diagram.
+* On vR2 and vR4, configure a static route to DC2's loopback (172.16.0.20/32) pointing to the respective next hops on the diagram.
+* Redistribute these static routes into IS-IS Level 1 only.
+* Constraint: Ensure external routes appear in the backbone (vR1/vR3) marked with the "External" flag.
 
-Redistribute these static routes into IS-IS Level 1 only.
+## Task 4.1: Authentication
 
-Constraint: Ensure these external routes appear in the backbone (vR1/vR3) marked with the "External" flag.
+* Configure MD5 authentication for all IS-IS Hellos (IIHs) and LSPs.
+* Use a keychain named JNCIE-KEY with a secret of juniper123.
+* Constraint: The key must have a start-time of "now" and never expire.
 
-Task 4.1: Authentication
+### Task 4.2: Fast Convergence (BFD)
 
-Configure MD5 authentication for all IS-IS Hellos (IIHs) and LSPs.
-
-Use a keychain named JNCIE-KEY with a secret of juniper123.
-
-Constraint: The key must have a start-time of "now" and never expire.
-
-Task 4.2: Fast Convergence (BFD)
-
-Enable BFD (Bidirectional Forwarding Detection) on all IS-IS interfaces.
-
-Set minimum interval to 100ms and multiplier to 3.
-
-Verification: Run show bfd session to ensure sessions are "Up" and aligned with IS-IS neighbors.
+* Enable BFD (Bidirectional Forwarding Detection) on all IS-IS interfaces.
+* Set minimum interval to 100ms and multiplier to 3.
+* Verification: Run show bfd session to ensure sessions are "Up" and aligned with IS-IS neighbors.
 
 ## Task 4.3: Loop Free Alternate (LFA)
 
-Enable Link-Protection on vR2's interface facing vR4.
+* Enable Link-Protection on vR2's interface facing vR4.
+* Verify that vR2 has pre-calculated a backup path to vR4's loopback via the backbone if the direct link fails.
 
-Verify that vR2 has pre-calculated a backup path to vR4's loopback via the backbone if the direct link fails.
-
-## Hints
-set protocols isis interface <int> level 2 disable (To create L1-only links).
-
-set routing-options aggregate route 172.16.0.0/16 combined with set protocols isis export <policy> (For summarization).
-
-set policy-options policy-statement LEAK-L2-L1 from level 2 / to level 1 (For route leaking).
-
-set protocols isis level 1 external-preference (To manage redistribution preferences).
+# Hints
+* `set protocols isis interface <int> level 2 disable` - create L1-only links.
+* `set routing-options aggregate route 172.16.0.0/16` combined with `set protocols isis export <policy>` for summarization.
+* `set policy-options policy-statement LEAK-L2-L1 from level 2 / to level 1` - for route leaking.
+* `set protocols isis level 1 external-preference` - to manage redistribution preferences.
