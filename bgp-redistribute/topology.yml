@@ -1,0 +1,69 @@
+---
+provider: clab
+defaults.device: csr
+module: [ vrf,bgp ]
+nodes:
+  r1:
+    mgmt.ifname: GigabitEthernet1
+    id: 1
+    bgp.as: 65534
+  r2:
+    mgmt.ifname: GigabitEthernet1
+    id: 2
+    bgp.as: 65534
+  dc2:
+    device: vmx
+    mgmt.ifname: fxp0
+    id: 3
+    bgp.as: 64666
+vrfs:
+  green:
+  import:
+  - '65534:1'
+  export:
+  - '65534:1'
+  rd: '65534:1'
+links:
+  - r1:
+      ifindex: 3
+      name: r1->r2
+      ipv4: 10.10.0.4/31
+      type: p2p
+      ospf.network_type: point-to-point
+    r2:
+      ifindex: 3
+      name: r2->r1
+      ipv4: 10.10.0.5/31
+      type: p2p
+      ospf.network_type: point-to-point
+  - dc2:
+      ifindex: 4
+      name: r2->dc2
+      ipv4: 10.10.0.1/31
+      type: p2p
+      vrf: green
+    r1:
+      ifindex: 4
+      name: dc2->r2
+      ipv4: 10.10.0.0/31
+      type: p2p
+      vrf: green
+  - dc2:
+      ifindex: 5
+      name: r2->dc2
+      ipv4: 10.10.0.3/31
+      type: p2p
+      vrf: green
+    r2:
+      ifindex: 5
+      name: dc2->r2
+      ipv4: 10.10.0.2/31
+      type: p2p
+      vrf: green
+addressing:
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 10.10.0.0/24
+    prefix: 31
