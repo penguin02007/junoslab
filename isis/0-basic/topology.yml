@@ -104,11 +104,11 @@ links:
   - dc2:
       ifindex: 4
       name: r2->dc2
-      vlan.trunk: [ red ]
+      vlan.trunk: [ edge202 ]
     r2:
       ifindex: 4
       name: dc2->r2
-      vlan.trunk: [ red ]
+      vlan.trunk: [ edge202 ]
   - dc2:
       ifindex: 5
       name: r4->dc2
