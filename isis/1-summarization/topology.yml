@@ -78,6 +78,8 @@ links:
     r2:
       ifindex: 2
       name: r1->r4
+      ipv4: 172.20.0.18/31
+      type: p2p
   - r1:
       ifindex: 2
       name: r4->r1
