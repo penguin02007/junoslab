@@ -3,7 +3,7 @@
 ## Objectives
 Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
 
-## Task 1.1: System & Interface Setup
+## Task 1.1: Interface Setup
 
 * Configure ISO NET addresses based on the Loopback IP addresses (e.g., 49.000X.1720.1600.000X.00).
 * Enable wide-metrics-only on all nodes (Mandatory for MPLS/TE support).
@@ -12,6 +12,7 @@ Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (
 * Interfaces facing vR1 and vR3 must be Level 2 only.
 * The link between vR2 and vR4 must be Level 1 only.
 * Verification: Ensure vR1 cannot see vR2 or vR4 as Level 1 neighbors.
+* Level 2 must have a single summarized route to BGP destinations. 
 
 ## Task 2.1: Summarization (L1 to L2)
 
