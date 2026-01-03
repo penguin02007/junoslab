@@ -1,1 +1,10 @@
 .DS_Store
+
+# Network lab files (global)
+clab.yml
+clab*/
+hosts.yml
+netlab.*
+group_vars/
+host_vars/
+ansible.cfg
