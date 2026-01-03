@@ -1,6 +1,5 @@
 provider: clab
 defaults.device: vmx
-module: [ vlan ]
 
 nodes:
   r1:
@@ -9,6 +8,7 @@ nodes:
   r2:
     id: 2
     mgmt.ifname: fxp0
+    module: [ vlan ]
     vlans:
       edge202:
        ipv4: 172.30.0.49/30
@@ -21,6 +21,7 @@ nodes:
   dc2:
     id: 5
     mgmt.ifname: fxp0
+    module: [ vlan ]
     vlans:
       edge202:
        ipv4: 172.30.0.50/30
