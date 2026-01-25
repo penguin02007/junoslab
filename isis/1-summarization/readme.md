@@ -12,7 +12,8 @@ Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (
 * Interfaces facing vR1 and vR3 must be Level 2 only.
 * The link between vR2 and vR4 must be Level 1 only.
 * Verification: Ensure vR1 cannot see vR2 or vR4 as Level 1 neighbors.
-* Level 2 must have a single summarized route to BGP destinations. 
+* Level 2 must have a single summarized route to BGP destinations.
+* DC2: Enable BGP load balancing.
 
 ## Task 2.1: Summarization (L1 to L2)
 
