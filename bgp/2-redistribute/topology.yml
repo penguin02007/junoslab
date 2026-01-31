@@ -39,13 +39,13 @@ links:
   - dc2:
       ifindex: 4
       name: r2->dc2
-      ipv4: 10.10.0.1/31
+      ipv4: 10.20.0.1/31
       type: p2p
       vrf: green
     r1:
       ifindex: 4
       name: dc2->r2
-      ipv4: 10.10.0.0/31
+      ipv4: 10.20.0.0/31
       type: p2p
       vrf: green
   - dc2:
