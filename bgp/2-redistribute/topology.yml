@@ -51,13 +51,13 @@ links:
   - dc2:
       ifindex: 5
       name: r2->dc2
-      ipv4: 10.10.0.3/31
+      ipv4: 10.20.0.1/31
       type: p2p
       vrf: green
     r2:
       ifindex: 5
       name: dc2->r2
-      ipv4: 10.10.0.2/31
+      ipv4: 10.20.0.0/31
       type: p2p
       vrf: green
 addressing:
@@ -65,5 +65,6 @@ addressing:
     ipv4: 172.16.0.0/24
     prefix: 32
   p2p:
-    ipv4: 10.10.0.0/24
+    ipv4: 10.0.0.0/16
     prefix: 31
+  
