@@ -18,11 +18,11 @@ nodes:
     bgp.as: 64666
 vrfs:
   green:
-  import:
-  - '65534:1'
-  export:
-  - '65534:1'
-  rd: '65534:1'
+    import:
+      - '65534:1'
+    export:
+      - '65534:1'
+    rd: '65534:1'
 links:
   - r1:
       ifindex: 3
