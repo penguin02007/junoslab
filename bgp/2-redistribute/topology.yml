@@ -1,7 +1,7 @@
 ---
 provider: clab
 defaults.device: csr
-module: [ vrf,bgp ]
+module: [ ospf,vrf,bgp ]
 nodes:
   r1:
     mgmt.ifname: GigabitEthernet1
