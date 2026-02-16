@@ -20,7 +20,7 @@ Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (
 The Edge routers (vR2, vR4) possess the specific loopbacks and connection links for the "Edge" network.
 
 * Configure vR2 and vR4 to suppress individual Level 1 specific prefixes from entering the Level 2 backbone.
-* Instead, advertise a single summary route 172.16.0.0/16 into the Level 2 backbone.
+* Instead, advertise a single summary route 192.168.0.0/16 into the Level 2 backbone.
 * Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
 
 ## Task 2.2: Route Leaking (L2 to L1)
