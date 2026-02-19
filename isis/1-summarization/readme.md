@@ -25,6 +25,15 @@ The Edge routers (vR2, vR4) possess the specific loopbacks and connection links 
 
 ## Task 2.2: Route Leaking (L2 to L1)
 * By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
+```
+admin@r4> show route protocol isis 172.16.0.1       
+
+inet.0: 28 destinations, 29 routes (28 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+0.0.0.0/0          *[IS-IS/15] 00:13:17, metric 10
+                    >  to 172.20.0.18 via ge-0/0/2.0
+```
 * Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
 * Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
 
