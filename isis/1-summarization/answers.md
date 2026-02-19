@@ -66,6 +66,22 @@ set routing-options forwarding-table export LB-POLICY
 The Edge routers (vR2, vR4) possess the specific loopbacks and connection links for the "Edge" network.
 
 * Configure vR2 and vR4 to suppress individual Level 1 specific prefixes from entering the Level 2 backbone.
+```
+### Summarization (L1 to L2)
+### Create the aggregate route first
+set routing-options aggregate route 192.168.0.0/16
+### Export it to IS-IS L2, rejecting specifics is implicit in L1->L2 default behavior usually, but use policy to be explicit
+set policy-options policy-statement summarize-to-l2 term send_summary from protocol aggregate
+set policy-options policy-statement summarize-to-l2 term send_summary from route-filter 192.168.0.0/16 exact
+set policy-options policy-statement summarize-to-l2 term send_summary then accept
+set policy-options policy-statement summarize-to-l2 term suppress_l1 from level 1
+set policy-options policy-statement summarize-to-l2 term suppress_l1 then reject
+set policy-options policy-statement summarize-to-l2 term reject-specifics from protocol isis
+set policy-options policy-statement summarize-to-l2 term reject-specifics from level 1
+set policy-options policy-statement summarize-to-l2 term reject-specifics from route-filter 192.168.0.0/16 prefix-length-range /17-/32
+set policy-options policy-statement summarize-to-l2 term reject-specifics to level 2
+set policy-options policy-statement summarize-to-l2 term reject-specifics then reject
+```
 * Instead, advertise a single summary route 172.16.0.0/16 into the Level 2 backbone.
 * Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
 
@@ -85,6 +101,15 @@ inet.0: 14 destinations, 14 routes (14 active, 0 holddown, 0 hidden)
 * By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
 * Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
 * Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
+
+```
+set policy-options policy-statement leak_r1_to_L1 term r1_loopback from protocol isis
+set policy-options policy-statement leak_r1_to_L1 term r1_loopback from level 2
+set policy-options policy-statement leak_r1_to_L1 term r1_loopback from route-filter 172.16.0.1/32 exact
+set policy-options policy-statement leak_r1_to_L1 term r1_loopback to level 1
+set policy-options policy-statement leak_r1_to_L1 term r1_loopback then accept
+set protocols isis export leak_r1_to_L1
+```
 
 ## Task 3.1: External Routes
 External Connectivity & Redistribution. Send Customer Connectivity via DC2.

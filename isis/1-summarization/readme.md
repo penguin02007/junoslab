@@ -66,3 +66,4 @@ External Connectivity & Redistribution. Send Customer Connectivity via DC2.
 * `set routing-options aggregate route 172.16.0.0/16` combined with `set protocols isis export <policy>` for summarization.
 * `set policy-options policy-statement LEAK-L2-L1 from level 2 / to level 1` - for route leaking.
 * `set protocols isis level 1 external-preference` - to manage redistribution preferences.
+* ` show isis interface xxx detail` - debug isis adjacency
