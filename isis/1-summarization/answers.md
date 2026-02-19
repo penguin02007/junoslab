@@ -1,4 +1,4 @@
-![alt text](image-1.png)
+![alt text](image-2.png)
 
 ## Objectives
 Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
@@ -69,6 +69,18 @@ The Edge routers (vR2, vR4) possess the specific loopbacks and connection links 
 * Instead, advertise a single summary route 172.16.0.0/16 into the Level 2 backbone.
 * Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
 
+### Vertification
+#### R1 or R3
+```
+admin@r1> show route protocol isis 192.168.0.0/16 
+
+inet.0: 14 destinations, 14 routes (14 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+192.168.0.0/16     *[IS-IS/18] 1w1d 15:00:44, metric 20
+                       to 172.20.0.24 via ge-0/0/3.0
+                    >  to 172.20.0.1 via ae0.0
+```
 ## Task 2.2: Route Leaking (L2 to L1)
 * By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
 * Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
