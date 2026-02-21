@@ -6,18 +6,34 @@ Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (
 ## Task 1.1: Interface Setup
 
 * Configure ISO NET addresses based on the Loopback IP addresses (e.g., 49.000X.1720.1600.000X.00).
+* Enable wide-metrics-only on all nodes (Mandatory for MPLS/TE support).
+* vR1 & vR3: Configure as Level-2 Only routers.
+* vR2 & vR4: Configure as Level-1-2 routers (ABRs).
+* Interfaces facing vR1 and vR3 must be Level 2 only.
+* The link between vR2 and vR4 must be Level 1 only.
+* Verification: Ensure vR1 cannot see vR2 or vR4 as Level 1 neighbors.
+* Level 2 must have a single summarized route to BGP destinations.
+* DC2: Enable BGP load balancing.
+
 ```
 # r1 - 172.16.0.1
 set interfaces lo0 unit 0 family iso address 49.0001.1720.1600.0001.00
+set routing-options router-id 172.16.0.1
 
 # r2 - 172.16.0.2
 set interfaces lo0 unit 0 family iso address 49.0002.1720.1600.0002.00
+set routing-options router-id 172.16.0.2
 
 # r3 - 172.16.0.3
 set interfaces lo0 unit 0 family iso address 49.0001.1720.1600.0003.00
+set routing-options router-id 172.16.0.3
 
 # r4 - 172.16.0.4
 set interfaces lo0 unit 0 family iso address 49.0002.1720.1600.0004.00
+set routing-options router-id 172.16.0.4
+
+# dc2 - 172.16.0.20
+set routing-options router-id 172.16.0.20
 ```
 
 * Enable wide-metrics-only on all nodes (Mandatory for MPLS/TE support).
@@ -57,8 +73,8 @@ show route 192.168.0.16
 ```
 # On DC2
 set protocols bgp group AS54591 multipath
-set policy-options policy-statement LB-POLICY then load-balance per-packet
-set routing-options forwarding-table export LB-POLICY
+set policy-options policy-statement lb-policy then load-balance per-packet
+set routing-options forwarding-table export lb-policy
 ```
 
 ## Task 2.1: Summarization (L1 to L2)
@@ -157,16 +173,20 @@ set protocols isis export REDIST-STATIC
 * Use a keychain named JNCIE-KEY with a secret of juniper123.
 * Constraint: The key must have a start-time of "now" and never expire.
 
+```
+set protocols isis authentication-type md5
+set protocols isis authentication-key juniper123
+set protocols isis level 1 authentication-type md5
+set protocols isis level 1 authentication-key juniper123
+set protocols isis level 2 authentication-type md5
+set protocols isis level 2 authentication-key juniper123
+```
+
 ### Task 4.2: Fast Convergence (BFD)
 
 * Enable BFD (Bidirectional Forwarding Detection) on all IS-IS interfaces.
 * Set minimum interval to 100ms and multiplier to 3.
 * Verification: Run show bfd session to ensure sessions are "Up" and aligned with IS-IS neighbors.
-
-## Task 4.3: Loop Free Alternate (LFA)
-
-* Enable Link-Protection on vR2's interface facing vR4.
-* Verify that vR2 has pre-calculated a backup path to vR4's loopback via the backbone if the direct link fails.
 
 # Hints
 * `set protocols isis interface <int> level 2 disable` - create L1-only links.

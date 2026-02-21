@@ -54,10 +54,6 @@ External Connectivity & Redistribution. Send Customer Connectivity via DC2.
 * Set minimum interval to 100ms and multiplier to 3.
 * Verification: Run show bfd session to ensure sessions are "Up" and aligned with IS-IS neighbors.
 
-## Task 4.3: Loop Free Alternate (LFA)
-
-* Enable Link-Protection on vR2's interface facing vR4.
-* Verify that vR2 has pre-calculated a backup path to vR4's loopback via the backbone if the direct link fails.
 
 # Hints
 * `set protocols isis interface <int> level 2 disable` - create L1-only links.
