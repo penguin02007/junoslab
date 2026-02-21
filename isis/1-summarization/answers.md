@@ -1,4 +1,4 @@
-![alt text](image-1.png)
+![alt text](image.png)
 
 ## Objectives
 Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
