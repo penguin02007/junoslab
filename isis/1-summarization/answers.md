@@ -188,6 +188,15 @@ set protocols isis level 2 authentication-key juniper123
 * Set minimum interval to 100ms and multiplier to 3.
 * Verification: Run show bfd session to ensure sessions are "Up" and aligned with IS-IS neighbors.
 
+```
+set protocols isis interface ae0 bfd-liveness-detection minimum-interval 1000 multiplier 3
+set protocols isis interface ge-0/0/2 bfd-liveness-detection minimum-interval 1000 multiplier 3
+set protocols isis interface ge-0/0/3 bfd-liveness-detection minimum-interval 1000 multiplier 3
+```
+
+```
+show bfd session
+```
 # Hints
 * `set protocols isis interface <int> level 2 disable` - create L1-only links.
 * `set routing-options aggregate route 172.16.0.0/16` combined with `set protocols isis export <policy>` for summarization.
