@@ -81,12 +81,12 @@ set policy-options policy-statement summarize-to-l2 term reject-specifics from l
 set policy-options policy-statement summarize-to-l2 term reject-specifics from route-filter 192.168.0.0/16 prefix-length-range /17-/32
 set policy-options policy-statement summarize-to-l2 term reject-specifics to level 2
 set policy-options policy-statement summarize-to-l2 term reject-specifics then reject
+set protocols isis export summarize-to-l2
 ```
 * Instead, advertise a single summary route 172.16.0.0/16 into the Level 2 backbone.
 * Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
 
-### Vertification
-#### R1 or R3
+### Vertification - R1 or R3
 ```
 show route protocol isis 192.168.0.0/16 
 ```
@@ -99,17 +99,42 @@ inet.0: 14 destinations, 14 routes (14 active, 0 holddown, 0 hidden)
                     >  to 172.20.0.1 via ae0.0
 ```
 ## Task 2.2: Route Leaking (L2 to L1)
-* By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
+* Isolate vR4: To verify the ATT bit behavior, vR4 must be isolated to Level 1 only.
+```
+# R4
+set protocols isis level 2 disable
+```
 * Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
+```
+# R2
+set policy-options policy-statement leak-L2-to-L1 term vR1 from level 2
+set policy-options policy-statement leak-L2-to-L1 term vR1 from route-filter 172.16.0.1/32 exact
+set policy-options policy-statement leak-L2-to-L1 term vR1 to level 1
+set policy-options policy-statement leak-L2-to-L1 term vR1 then accept
+set protocols isis export leak-L2-to-L1
+```
 * Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
 
 ```
-set policy-options policy-statement leak_r1_to_L1 term r1_loopback from protocol isis
-set policy-options policy-statement leak_r1_to_L1 term r1_loopback from level 2
-set policy-options policy-statement leak_r1_to_L1 term r1_loopback from route-filter 172.16.0.1/32 exact
-set policy-options policy-statement leak_r1_to_L1 term r1_loopback to level 1
-set policy-options policy-statement leak_r1_to_L1 term r1_loopback then accept
-set protocols isis export leak_r1_to_L1
+sho route protocol isis
+```
+
+```
+# #0.0.0.0/0: Present via vR2 (due to ATT bit).
+# 172.16.0.1/32: Present as a specific L1 route (due to the leak).
+# 172.16.0.3/32: NOT present as a specific route; reachable only via the default route.
+
+admin@r4> show route protocol isis    
+
+inet.0: 31 destinations, 32 routes (31 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+0.0.0.0/0          *[IS-IS/15] 00:07:35, metric 10
+                    >  to 172.20.0.18 via ge-0/0/2.0
+172.16.0.1/32      *[IS-IS/18] 00:00:04, metric 20
+                    >  to 172.20.0.18 via ge-0/0/2.0
+172.16.0.2/32      *[IS-IS/15] 00:07:35, metric 10
+                    >  to 172.20.0.18 via ge-0/0/2.0
 ```
 
 ## Task 3.1: External Routes

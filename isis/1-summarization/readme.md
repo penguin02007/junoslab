@@ -22,23 +22,17 @@ The Edge routers (vR2, vR4) possess the specific loopbacks and connection links 
 * Configure vR2 and vR4 to suppress individual Level 1 specific prefixes from entering the Level 2 backbone.
 * Instead, advertise a single summary route 192.168.0.0/16 into the Level 2 backbone.
 * Constraint: Do not summarize the Loopback addresses of vR2 and vR4 (172.16.0.2/32 and 172.16.0.4/32)—these must remain specific in the backbone for MPLS LSPs to resolve correctly later.
+### Vertification - R1 or R3
+```
+show route protocol isis 192.168.0.0/16 
+```
 
 ## Task 2.2: Route Leaking (L2 to L1)
-* By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
-```
-show route protocol isis 172.16.0.1       
-```
-```
-inet.0: 28 destinations, 29 routes (28 active, 0 holddown, 0 hidden)
-+ = Active Route, - = Last Active, * = Both
-
-0.0.0.0/0          *[IS-IS/15] 00:13:17, metric 10
-                    >  to 172.20.0.18 via ge-0/0/2.0
-```
-* Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
+* By default, L1 routers will only see a default route (ATT bit) to the backbone.
+* Isolate vR4 to Level 1 only and configure a routing policy on vR4 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
 * Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
 ```
-# vR4 has no L2 adjacencies
+show route protocol isis
 show isis adjacency
 ```
 ## Task 3.1: External Routes
