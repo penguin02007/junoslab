@@ -4,24 +4,33 @@ defaults.device: vmx
 nodes:
   r1:
     id: 1
-    mgmt.ipv4: 10.10.1.101
     mgmt.ifname: fxp0
   r2:
     id: 2
-    mgmt.ipv4: 10.10.1.102
     mgmt.ifname: fxp0
+    module: [ vlan ]
+    vlans:
+      edge202:
+       ipv4: 172.30.0.49/30
   r3:
     id: 3
-    mgmt.ipv4: 10.10.1.103
     mgmt.ifname: fxp0
   r4:
     id: 4
-    mgmt.ipv4: 10.10.1.104
     mgmt.ifname: fxp0
   dc2:
     id: 5
-    mgmt.ipv4: 10.10.1.105
     mgmt.ifname: fxp0
+    module: [ vlan ]
+    vlans:
+      edge202:
+       ipv4: 172.30.0.50/30
+
+vlans:
+  edge202:
+    id: 202
+    mode: route
+
 links:
   - r1:
       ifindex: 0
@@ -96,13 +105,11 @@ links:
   - dc2:
       ifindex: 4
       name: r2->dc2
-      ipv4: 172.30.0.50/30
-      type: p2p
+      vlan.trunk: [ edge202 ]
     r2:
       ifindex: 4
       name: dc2->r2
-      ipv4: 172.30.0.49/30
-      type: p2p
+      vlan.trunk: [ edge202 ]
   - dc2:
       ifindex: 5
       name: r4->dc2
@@ -113,11 +120,8 @@ links:
       name: dc2->r4
       ipv4: 172.30.0.57/30
       type: p2p
+
 addressing:
-  mgmt:
-    ipv4: 10.10.1.0/24
-    prefix: 24
-    start: 100
   loopback:
     ipv4: 172.16.0.0/24
     prefix: 32
