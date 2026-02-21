@@ -1,4 +1,4 @@
-![alt text](image-2.png)
+![alt text](image.png)
 
 ## Objectives
 Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
@@ -26,8 +26,9 @@ The Edge routers (vR2, vR4) possess the specific loopbacks and connection links 
 ## Task 2.2: Route Leaking (L2 to L1)
 * By default, L1 routers (vR2, vR4) will only see a default route (ATT bit) to the backbone.
 ```
-admin@r4> show route protocol isis 172.16.0.1       
-
+show route protocol isis 172.16.0.1       
+```
+```
 inet.0: 28 destinations, 29 routes (28 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
@@ -36,7 +37,10 @@ inet.0: 28 destinations, 29 routes (28 active, 0 holddown, 0 hidden)
 ```
 * Configure a routing policy on vR2 to leak the Loopback address of vR1 (172.16.0.1/32) into the Level 1 area.
 * Verification: Check show route protocol isis on vR4. It should see 172.16.0.1/32 as an L1 route (leaked from L2), but vR3's loopback should only be reachable via the default route.
-
+```
+# vR4 has no L2 adjacencies
+show isis adjacency
+```
 ## Task 3.1: External Routes
 External Connectivity & Redistribution. Send Customer Connectivity via DC2.
 

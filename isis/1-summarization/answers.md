@@ -1,4 +1,4 @@
-![alt text](image-2.png)
+![alt text](image-1.png)
 
 ## Objectives
 Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.
@@ -88,8 +88,9 @@ set policy-options policy-statement summarize-to-l2 term reject-specifics then r
 ### Vertification
 #### R1 or R3
 ```
-admin@r1> show route protocol isis 192.168.0.0/16 
-
+show route protocol isis 192.168.0.0/16 
+```
+```
 inet.0: 14 destinations, 14 routes (14 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
