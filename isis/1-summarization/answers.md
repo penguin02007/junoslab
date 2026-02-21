@@ -114,7 +114,14 @@ set protocols isis export leak_r1_to_L1
 
 ## Task 3.1: External Routes
 External Connectivity & Redistribution. Send Customer Connectivity via DC2.
-
+```
+# Connectivity to DC2 (Static + Redistribute)
+set routing-options static route 172.16.0.20/32 next-hop 172.30.0.50
+set policy-options policy-statement REDIST-STATIC term DC2 from protocol static
+set policy-options policy-statement REDIST-STATIC term DC2 from route-filter 172.16.0.20/32 exact
+set policy-options policy-statement REDIST-STATIC term DC2 then accept
+set protocols isis export REDIST-STATIC
+```
 * On vR2 and vR4, configure a static route to DC2's loopback (172.16.0.20/32) pointing to the respective next hops on the diagram.
 * Redistribute these static routes into IS-IS Level 1 only.
 * Constraint: Ensure external routes appear in the backbone (vR1/vR3) marked with the "External" flag.
