@@ -242,7 +242,7 @@ links:
     vr8:
       ifindex: 4
       name: r8->r7
-      vlan.trunk: [ r8_r5 ]
+      vlan.trunk: [ r7_r8 ]
 addressing:
   loopback:
     ipv4: 172.16.0.0/24
