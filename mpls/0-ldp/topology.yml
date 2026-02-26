@@ -214,19 +214,19 @@ links:
   - vr5:
       ifindex: 0
       name: r5->r6 (ae0)
-      unnumbered: true
+      ipv4: False
     vr6:
       ifindex: 0
       name: r6->r5 (ae0)
-      unnumbered: true
+      ipv4: False
   - vr5:
       ifindex: 1
       name: r5->r6 (ae0)
-      unnumbered: true
+      ipv4: False
     vr6:
       ifindex: 1
       name: r6->r5 (ae0)
-      unnumbered: true
+      ipv4: False
   - vr6:
       ifindex: 3
       name: r6->r7
