@@ -1,2 +1,3 @@
-devices.vmx.clab.image: vrnetlab/juniper_vmx:23.2R2.21
+devices.vjunos-router.clab.image: vrnetlab/juniper_vjunos-router:23.4R2-S2.1
+devices.vmx.clab.image: vrnetlab/juniper_vmx:21.4R3.15
 netlab_license_file: ~/netlab/vmx_license.txt
