@@ -6,27 +6,75 @@ nodes:
   vr1:
     id: 1
     mgmt.ifname: fxp0
+    vlans:
+      r1_r4:
+        ipv4: 172.20.0.1/30
+      r8_r1:
+        ipv4: 172.20.0.17/30
   vr2:
     id: 2
     mgmt.ifname: fxp0
+    vlans:
+      r2_r7:
+        ipv4: 172.20.0.4/30
+      r2_r3:
+        ipv4: 172.20.0.21/30
   vr3:
     id: 3
     mgmt.ifname: fxp0
+    vlans:
+      r3_r6:
+        ipv4: 172.20.0.9/30
+      r2_r3:
+        ipv4: 172.20.0.22/30
+      r3_r4:
+        ipv4: 172.20.0.25/30
   vr4:
     id: 4
     mgmt.ifname: fxp0
+    vlans:
+      r1_r4:
+        ipv4: 172.20.0.2/30
+      r3_r4:
+        ipv4: 172.20.0.26/30
+      r4_r5:
+        ipv4: 172.20.0.29/30
   vr5:
     id: 5
     mgmt.ifname: fxp0
+    vlans:
+      r8_r5:
+        ipv4: 172.20.0.13/30
+      r4_r5:
+        ipv4: 172.20.0.30/30
   vr6:
     id: 6
     mgmt.ifname: fxp0
+    vlans:
+      r3_r6:
+        ipv4: 172.20.0.10/30
+      r6_r7:
+        ipv4: 172.20.0.33/30
   vr7:
     id: 7
     mgmt.ifname: fxp0
+    vlans:
+      r2_r7:
+        ipv4: 172.20.0.5/30
+      r7_r8:
+        ipv4: 172.20.0.37/30
+      r6_r7:
+        ipv4: 172.20.0.34/30
   vr8:
     id: 8
     mgmt.ifname: fxp0
+    vlans:
+      r8_r5:
+        ipv4: 172.20.0.14/30
+      r8_r1:
+        ipv4: 172.20.0.18/30
+      r7_r8:
+        ipv4: 172.20.0.38/30
 
 vlans:
   r1_r2:
@@ -89,73 +137,70 @@ links:
     r3:
       ifindex: 3
       name: r3->r2
-    vlan.trunk: [ red ]
-  - r1:
-      ifindex: 3
-      name: r1->r4
-      ipv4: 172.20.0.25/31
-      type: p2p
-    r4:
-      ifindex: 3
-      name: r4->r1
-      ipv4: 172.20.0.24/31
-      type: p2p
+  - r2:
+      ifindex: 5
+      name: r2->r7
+    r7:
+      ifindex: 5
+      name: r7->r2
   - r3:
-      ifindex: 0
-      name: r3->r4 (ae0)
-      unnumbered: true
+      ifindex: 3
+      name: r3->r4
     r4:
-      ifindex: 0
-      name: r4->r3 (ae0)
-      unnumbered: true
+      ifindex: 3
+      name: r4->r3
   - r3:
-      ifindex: 1
-      name: r3->r4 (ae0)
-      unnumbered: true
-    r4:
-      ifindex: 1
-      name: r4->r3 (ae0)
-      unnumbered: true
+      ifindex: 5
+      name: r3->r6
+    r6:
+      ifindex: 5
+      name: r6->r3
   - r4:
-      ifindex: 2
-      name: r4->r2
-      ipv4: 172.20.0.19/31
-      type: p2p
-    r2:
-      ifindex: 2
-      name: r1->r4
-      ipv4: 172.20.0.18/31
-      type: p2p
-  - r1:
-      ifindex: 2
+      ifindex: 5
       name: r4->r1
-      ipv4: 172.20.0.35/31
-      type: p2p
-    r3:
-      ifindex: 2
-      name: r1->r3
-      ipv4: 172.20.0.34/31
-      type: p2p
-  - dc2:
-      ifindex: 4
-      name: r2->dc2
-      ipv4: 172.30.0.50/30
-      type: p2p
-    r2:
-      ifindex: 4
-      name: dc2->r2
-      ipv4: 172.30.0.49/30
-      type: p2p
-  - dc2:
+    r1:
       ifindex: 5
-      name: r4->dc2
-      ipv4: 172.30.0.58/30
-      type: p2p
-    r4:
+      name: r1->r4
+  - r4:
       ifindex: 5
-      name: dc2->r4
-      ipv4: 172.30.0.57/30
-      type: p2p
+      name: r4->r5
+    r5:
+      ifindex: 5
+      name: r5->r4
+  - r5:
+      ifindex: 5
+      name: r5->r8
+    r8:
+      ifindex: 5
+      name: r8->r5
+  - r5:
+      ifindex: 0
+      name: r5->r6 (ae0)
+      unnumbered: true
+    r6:
+      ifindex: 0
+      name: r6->r5 (ae0)
+      unnumbered: true
+  - r5:
+      ifindex: 1
+      name: r5->r6 (ae0)
+      unnumbered: true
+    r6:
+      ifindex: 1
+      name: r6->r5 (ae0)
+      unnumbered: true
+  - r6:
+      ifindex: 3
+      name: r6->r7
+    r7:
+      ifindex: 3
+      name: r7->r6
+  - r7:
+      ifindex: 3
+      name: r7->r8
+    r8:
+      ifindex: 3
+      name: r8->r7
 addressing:
   loopback:
     ipv4: 172.16.0.0/24
