@@ -144,10 +144,10 @@ links:
       ifindex: 5
       name: r7->r2
   - vr3:
-      ifindex: 3
+      ifindex: 4
       name: r3->r4
     vr4:
-      ifindex: 3
+      ifindex: 4
       name: r4->r3
   - vr3:
       ifindex: 5
@@ -196,10 +196,10 @@ links:
       ifindex: 3
       name: r7->r6
   - vr7:
-      ifindex: 3
+      ifindex: 4
       name: r7->r8
     vr8:
-      ifindex: 3
+      ifindex: 4
       name: r8->r7
 addressing:
   loopback:
