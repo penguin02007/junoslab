@@ -115,65 +115,65 @@ vlans:
     mode: route
  
 links:
-  - r1:
+  - vr1:
       ifindex: 0
       name: r1->r2 (ae0)
       unnumbered: true
-    r2:
+    vr2:
       ifindex: 0
       name: r2->r1 (ae0)
       unnumbered: true
-  - r1:
+  - vr1:
       ifindex: 1
       name: r1->r2 (ae0)
       unnumbered: true
-    r2:
+    vr2:
       ifindex: 1
       name: r1->r2 (ae0)
       unnumbered: true
-  - r2:
+  - vr2:
       ifindex: 3
       name: r2->r3
-    r3:
+    vr3:
       ifindex: 3
       name: r3->r2
-  - r2:
+  - vr2:
       ifindex: 5
       name: r2->r7
-    r7:
+    vr7:
       ifindex: 5
       name: r7->r2
-  - r3:
+  - vr3:
       ifindex: 3
       name: r3->r4
     r4:
       ifindex: 3
       name: r4->r3
-  - r3:
+  - vr3:
       ifindex: 5
       name: r3->r6
     r6:
       ifindex: 5
       name: r6->r3
-  - r4:
+  - vr4:
       ifindex: 5
       name: r4->r1
-    r1:
+    vr1:
       ifindex: 5
       name: r1->r4
-  - r4:
+  - vr4:
       ifindex: 5
       name: r4->r5
-    r5:
+    vr5:
       ifindex: 5
       name: r5->r4
-  - r5:
+  - vr5:
       ifindex: 5
       name: r5->r8
-    r8:
+    vr8:
       ifindex: 5
       name: r8->r5
-  - r5:
+  - vr5:
       ifindex: 0
       name: r5->r6 (ae0)
       unnumbered: true
@@ -181,7 +181,7 @@ links:
       ifindex: 0
       name: r6->r5 (ae0)
       unnumbered: true
-  - r5:
+  - vr5:
       ifindex: 1
       name: r5->r6 (ae0)
       unnumbered: true
@@ -189,16 +189,16 @@ links:
       ifindex: 1
       name: r6->r5 (ae0)
       unnumbered: true
-  - r6:
+  - vr6:
       ifindex: 3
       name: r6->r7
-    r7:
+    vr7:
       ifindex: 3
       name: r7->r6
-  - r7:
+  - vr7:
       ifindex: 3
       name: r7->r8
-    r8:
+    vr8:
       ifindex: 3
       name: r8->r7
 addressing:
