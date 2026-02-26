@@ -148,6 +148,14 @@ links:
       name: r2->r1 (ae0)
       ipv4: False
   - vr1:
+      ifindex: 3
+      name: r1->r8
+      vlan.trunk: [ r8_r1 ]
+    vr8:
+      ifindex: 3
+      name: r8->r1
+      vlan.trunk: [ r8_r1 ]
+  - vr1:
       ifindex: 1
       name: r1->r2 (ae0)
       ipv4: False
