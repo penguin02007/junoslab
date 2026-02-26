@@ -19,7 +19,7 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       r2_r7:
-        ipv4: 172.20.0.4/30
+        ipv4: 172.20.0.5/30
       r2_r3:
         ipv4: 172.20.0.21/30
     loopback:
@@ -78,7 +78,7 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       r2_r7:
-        ipv4: 172.20.0.5/30
+        ipv4: 172.20.0.7/30
       r7_r8:
         ipv4: 172.20.0.37/30
       r6_r7:
