@@ -1,4 +1,4 @@
-![alt text](image.png)
+![alt text](image-2.png)
 
 # MPLS LDP
 ## Task 5.1: LDP Infrastructure & Session Security
