@@ -21,8 +21,8 @@
 
 ## 5.5 Verification 
 
-[ ] `show ldp neighbor`: Confirm all sessions are "Up" and "Authenticated".
-[ ] `show ldp database`: Verify FECs for all loopbacks (vR1-vR8) are present.
-[ ] `show isis interface detail`: Confirm LDP sync: enabled, Status: in sync.
-[ ] `show route table mpls.0`: Verify label-switched paths exist for all core loopbacks.
-[ ] `traceroute mpls ipv4 <remote-loopback>`: Confirm the path matches the IS-IS best path.
+- [ ] `show ldp neighbor`: Confirm all sessions are "Up" and "Authenticated".
+- [ ] `show ldp database`: Verify FECs for all loopbacks (vR1-vR8) are present.
+- [ ] `show isis interface detail`: Confirm LDP sync: enabled, Status: in sync.
+- [ ] `show route table mpls.0`: Verify label-switched paths exist for all core loopbacks.
+- [ ] `traceroute mpls ipv4 <remote-loopback>`: Confirm the path matches the IS-IS best path.
