@@ -12,7 +12,8 @@ nodes:
       r8_r1:
         ipv4: 172.20.0.17/30
     loopback:
-      ipv4: 172.16.0.1
+      ipv4: 172.16.0.1/32
+      ipv6: fd00:172:16::172:16:0:1/128
   vr2:
     id: 2
     mgmt.ifname: fxp0
@@ -22,7 +23,8 @@ nodes:
       r2_r3:
         ipv4: 172.20.0.21/30
     loopback:
-      ipv4: 172.16.0.2
+      ipv4: 172.16.0.2/32
+      ipv6: fd00:172:16::172:16:0:2/128
   vr3:
     id: 3
     mgmt.ifname: fxp0
@@ -34,7 +36,8 @@ nodes:
       r3_r4:
         ipv4: 172.20.0.25/30
     loopback:
-      ipv4: 172.16.0.3
+      ipv4: 172.16.0.3/32
+      ipv6: fd00:172:16::172:16:0:3/128
   vr4:
     id: 4
     mgmt.ifname: fxp0
@@ -46,7 +49,8 @@ nodes:
       r4_r5:
         ipv4: 172.20.0.29/30
     loopback:
-      ipv4: 172.16.0.4
+      ipv4: 172.16.0.4/32
+      ipv6: fd00:172:16::172:16:0:4/128
   vr5:
     id: 5
     mgmt.ifname: fxp0
@@ -56,7 +60,8 @@ nodes:
       r4_r5:
         ipv4: 172.20.0.30/30
     loopback:
-      ipv4: 172.16.0.5
+      ipv4: 172.16.0.5/32
+      ipv6: fd00:172:16::172:16:0:5/128
   vr6:
     id: 6
     mgmt.ifname: fxp0
@@ -66,7 +71,8 @@ nodes:
       r6_r7:
         ipv4: 172.20.0.33/30
     loopback:
-      ipv4: 172.16.0.6
+      ipv4: 172.16.0.6/32
+      ipv6: fd00:172:16::172:16:0:6/128
   vr7:
     id: 7
     mgmt.ifname: fxp0
@@ -78,7 +84,8 @@ nodes:
       r6_r7:
         ipv4: 172.20.0.34/30
     loopback:
-      ipv4: 172.16.0.7
+      ipv4: 172.16.0.7/32
+      ipv6: fd00:172:16::172:16:0:7/128
   vr8:
     id: 8
     mgmt.ifname: fxp0
@@ -90,7 +97,8 @@ nodes:
       r7_r8:
         ipv4: 172.20.0.38/30
     loopback:
-      ipv4: 172.16.0.8
+      ipv4: 172.16.0.8/32
+      ipv6: fd00:172:16::172:16:0:8/128
 
 vlans:
   r1_r2:
@@ -150,45 +158,59 @@ links:
   - vr2:
       ifindex: 3
       name: r2->r3
+      vlan.trunk: [ r2_r3 ]
     vr3:
       ifindex: 3
       name: r3->r2
+      vlan.trunk: [ r2_r3 ]
   - vr2:
       ifindex: 5
       name: r2->r7
+      vlan.trunk: [ r2_r7 ]
     vr7:
       ifindex: 5
       name: r7->r2
+      vlan.trunk: [ r2_r7 ]
   - vr3:
       ifindex: 4
       name: r3->r4
+      vlan.trunk: [ r3_r4 ]
     vr4:
       ifindex: 4
       name: r4->r3
+      vlan.trunk: [ r3_r4 ]
   - vr3:
       ifindex: 5
       name: r3->r6
+      vlan.trunk: [ r3_r6 ]
     vr6:
       ifindex: 5
       name: r6->r3
+      vlan.trunk: [ r3_r6 ]
   - vr4:
       ifindex: 5
       name: r4->r1
+      vlan.trunk: [ r1_r4 ]
     vr1:
       ifindex: 5
       name: r1->r4
+      vlan.trunk: [ r1_r4 ]
   - vr4:
       ifindex: 3
       name: r4->r5
+      vlan.trunk: [ r4_r5 ]
     vr5:
       ifindex: 3
       name: r5->r4
+      vlan.trunk: [ r4_r5 ]
   - vr5:
       ifindex: 5
       name: r5->r8
+      vlan.trunk: [ r8_r5 ]
     vr8:
       ifindex: 5
       name: r8->r5
+      vlan.trunk: [ r8_r5 ]
   - vr5:
       ifindex: 0
       name: r5->r6 (ae0)
@@ -208,19 +230,23 @@ links:
   - vr6:
       ifindex: 3
       name: r6->r7
+      vlan.trunk: [ r6_r7 ]
     vr7:
       ifindex: 3
       name: r7->r6
+      vlan.trunk: [ r6_r7 ]
   - vr7:
       ifindex: 4
       name: r7->r8
+      vlan.trunk: [ r7_r8 ]
     vr8:
       ifindex: 4
       name: r8->r7
+      vlan.trunk: [ r8_r5 ]
 addressing:
   loopback:
     ipv4: 172.16.0.0/24
     prefix: 32
   p2p:
     ipv4: 172.20.0.0/24
-    prefix: 31
+    prefix: 30
