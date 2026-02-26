@@ -172,35 +172,35 @@ links:
       name: r3->r2
       vlan.trunk: [ r2_r3 ]
   - vr2:
-      ifindex: 5
+      ifindex: 4
       name: r2->r7
       vlan.trunk: [ r2_r7 ]
     vr7:
-      ifindex: 5
+      ifindex: 4
       name: r7->r2
       vlan.trunk: [ r2_r7 ]
   - vr3:
-      ifindex: 4
+      ifindex: 2
       name: r3->r4
       vlan.trunk: [ r3_r4 ]
     vr4:
-      ifindex: 4
+      ifindex: 2
       name: r4->r3
       vlan.trunk: [ r3_r4 ]
   - vr3:
-      ifindex: 5
+      ifindex: 4
       name: r3->r6
       vlan.trunk: [ r3_r6 ]
     vr6:
-      ifindex: 5
+      ifindex: 4
       name: r6->r3
       vlan.trunk: [ r3_r6 ]
   - vr4:
-      ifindex: 5
+      ifindex: 4
       name: r4->r1
       vlan.trunk: [ r1_r4 ]
     vr1:
-      ifindex: 5
+      ifindex: 4
       name: r1->r4
       vlan.trunk: [ r1_r4 ]
   - vr4:
@@ -212,11 +212,11 @@ links:
       name: r5->r4
       vlan.trunk: [ r4_r5 ]
   - vr5:
-      ifindex: 5
+      ifindex: 4
       name: r5->r8
       vlan.trunk: [ r8_r5 ]
     vr8:
-      ifindex: 5
+      ifindex: 4
       name: r8->r5
       vlan.trunk: [ r8_r5 ]
   - vr5:
@@ -244,11 +244,11 @@ links:
       name: r7->r6
       vlan.trunk: [ r6_r7 ]
   - vr7:
-      ifindex: 4
+      ifindex: 2
       name: r7->r8
       vlan.trunk: [ r7_r8 ]
     vr8:
-      ifindex: 4
+      ifindex: 2
       name: r8->r7
       vlan.trunk: [ r7_r8 ]
 addressing:
