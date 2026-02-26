@@ -162,10 +162,10 @@ links:
       ifindex: 5
       name: r1->r4
   - vr4:
-      ifindex: 5
+      ifindex: 3
       name: r4->r5
     vr5:
-      ifindex: 5
+      ifindex: 3
       name: r5->r4
   - vr5:
       ifindex: 5
