@@ -19,7 +19,7 @@ Finally, for the data plane to function, mpls needs to be enable globally under 
 - Enable LDP as shown in the diagram.
 - All LDP sessions should be configured with MD5 authentication using secret `juniper123`.
 
-## Task 0.2: IGP/LDP Synchronization
+## Task 0.2: IGP/LDP Synchronization 
 - LDP should be tracking the correct physical/logical interfaces.
 - Configure IS-IS to track the LDP operational status on all core interfaces.
 
