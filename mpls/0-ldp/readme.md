@@ -2,8 +2,17 @@
 
 # MPLS LDP
 
-There are three requirements to make up LDP, IGP, LDP and family MPLS.
-IGP populate `inet.0`. It provides reachability needed for LDP neighbors to find each other's loopback and establish TCP session.
+There are three requirements to make up LDP -  IGP, LDP and family MPLS.
+IGP populate `inet.0`. It provides reachability needed for LDP neighbors to find each other's loopback and establish TCP session. LDP doesn't care how a route gets into the RIB, you can use static route if you prefer to skip IGP for loopback reachability:
+```
+show configuration routing-options 
+static {
+    route 172.16.0.5/32 next-hop 172.20.0.3;
+}
+```
+>[!WARNING]
+> Using static route for LDP is not recommended in production.
+
 LDP handles "Hello" discovery and label exchange. Defining `set protocols ldp interface` instruct the router to start talking LDP on the interfaces.
 Finally, for the data plane to function, mpls needs to be enable globally under `set protocols mpls interface <name> | all` so the router knows how to mange the Label Forwarding Information Base (LFIB) for the interfaces.
 ## Task 0.1: LDP Infrastructure & Session Security
