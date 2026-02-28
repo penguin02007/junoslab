@@ -1,3 +1,3 @@
 # JunOS Lab 
 
-Juniper labs uses netlab.
+Juniper labs in containers using netlab.
