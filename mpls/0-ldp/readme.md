@@ -1,6 +1,9 @@
 ![alt text](image.png)
 
 # MPLS LDP
+
+There are three requirements to make up LDP, IGP, LDP and family MPLS.
+IGP populate `inet.0`. It provides reachability needed for LDP neighbors to find each other's loopback and establish TCP session. LDP handles the "Hello" discovery
 ## Task 5.1: LDP Infrastructure & Session Security
 - Enable LDP as shown in the diagram
 - Ensure LDP is tracking the correct physical/logical interfaces as defined in the diagram.
