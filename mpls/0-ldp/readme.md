@@ -3,7 +3,7 @@
 # MPLS LDP
 
 There are three requirements to make up LDP -  IGP, LDP and family MPLS.
-IGP populate `inet.0`. It provides reachability needed for LDP neighbors to find each other's loopback and establish TCP session. LDP doesn't care how a route gets into the RIB, you can use static route if you prefer to skip IGP for loopback reachability:
+IGP populates `inet.0`. It provides reachability for LDP neighbors to find each other's loopback addresses and establish TCP session. LDP doesn't care how a route gets into the RIB, you can use static route if you prefer to skip IGP:
 ```
 show configuration routing-options 
 static {
