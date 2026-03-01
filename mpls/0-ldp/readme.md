@@ -16,7 +16,7 @@ static {
 LDP handles "Hello" discovery and label exchange. Defining `set protocols ldp interface` instruct the router to start talking LDP on the interfaces.
 Finally, for the data plane to function, mpls needs to be enable globally under `set protocols mpls interface <name> | all` so the router knows how to mange the Label Forwarding Information Base (LFIB) for the interfaces.
 
-LDP has a default export policy and only advertising loopback address. It will not automatically generate labels for static routes, direct interface routes, or learned routes without export policy.
+LDP has a default egress policy and only advertising loopback address. It will not automatically generate labels for static routes, direct interface routes, or learned routes without export policy.
 
 To announce specific prefixes, create an export policy and apply to LDP:
 
