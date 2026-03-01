@@ -17,6 +17,14 @@ LDP handles "Hello" discovery and label exchange. Defining `set protocols ldp in
 Finally, for the data plane to function, mpls needs to be enable globally under `set protocols mpls interface <name> | all` so the router knows how to mange the Label Forwarding Information Base (LFIB) for the interfaces.
 
 LDP has a default export policy and only advertising loopback address. It will not automatically generate labels for static routes, direct interface routes, or learned routes without export policy.
+
+To announce specific prefixes, create an export policy and apply to LDP:
+
+```
+set policy-options policy-statement ldp-export-all from protocol direct
+set policy-options policy-statement ldp-export-all then accept
+set protocols ldp export ldp-export-all
+```
 ## Task 0.1: LDP Infrastructure & Session Security
 - Enable LDP as shown in the diagram.
 - All LDP sessions should be configured with MD5 authentication using secret `juniper123`.
