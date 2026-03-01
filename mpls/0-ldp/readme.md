@@ -1,6 +1,6 @@
 ![alt text](image.png)
 
-# MPLS LDP
+# LDP
 
 There are three requirements to make up LDP -  IGP, LDP and family MPLS.
 IGP populates `inet.0`. It provides reachability for LDP neighbors to find each other's loopback addresses and establish TCP session. LDP doesn't care how a route gets into the RIB, you can use static route if you prefer to skip IGP:
@@ -15,12 +15,13 @@ static {
 
 LDP handles "Hello" discovery and label exchange. Defining `set protocols ldp interface` instruct the router to start talking LDP on the interfaces.
 Finally, for the data plane to function, mpls needs to be enable globally under `set protocols mpls interface <name> | all` so the router knows how to mange the Label Forwarding Information Base (LFIB) for the interfaces.
+
+LDP has a default export policy and only advertising loopback address. It will not automatically generate labels for static routes, direct interface routes, or learned routes without export policy.
 ## Task 0.1: LDP Infrastructure & Session Security
 - Enable LDP as shown in the diagram.
 - All LDP sessions should be configured with MD5 authentication using secret `juniper123`.
 
 ## Task 0.2: IGP/LDP Synchronization 
-- LDP should be tracking the correct physical/logical interfaces.
 - Configure IS-IS to track the LDP operational status on all core interfaces.
 
 ## Task 0.3: FEC Management & Path Diversity (vR1 & vR2)
