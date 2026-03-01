@@ -1,6 +1,6 @@
 .DS_Store
-
-# Network lab files (global)
+*conf.gz
+# Nelab files
 clab.yml
 clab*/
 hosts.yml
