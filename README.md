@@ -6,7 +6,7 @@ Juniper labs in containers using [netlab](https://netlab.tools/). Current availa
 - IS-IS
 - LDP
 
-End config is pull from from virtual device using the following:
+Config is pulled from from virtual device using the following:
 ```
 for i in {1..8}; do
 	ml="3"
