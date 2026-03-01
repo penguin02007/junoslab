@@ -46,9 +46,9 @@ set protocols ldp egress-policy ldp-export-all
 > If no IX subnets are available, create a export policy to inject a dummy `discard` route into IS-IS database.
 
 ## Task 0.4: Metric Alignment & Label Operations
-- Configure LDP to ensure that LSPs reflect the same metric as the underlying IS-IS paths. (Note: LDP natively follows the IGP shortest path; this verifies that no manual metric offsets are overriding the IGP logic).
-- Ensure that LDP labels are "popped" by the egress routers via PHP(Penultimate Hop Popping).
-- The label for the egress loopback must 3 (Implicit Null).
+- Configure LDP to ensure that LSPs reflect the same metric as the underlying IS-IS paths. 
+- Configure all routers to use Explicit Null for LDP label advertisement.
+- Ensure the egress routers advertise a label of **0** (instead of 3) for their loopback prefixes. This ensures the egress router receives the MPLS header to preserve CoS bits.
 
 ## Task 0.5: Verification 
 
