@@ -10,7 +10,7 @@ static {
     route 172.16.0.5/32 next-hop 172.20.0.3;
 }
 ```
->[!WARNING]
+>[!NOTE]
 > Using static route for LDP is not recommended in production.
 
 LDP handles "Hello" discovery and label exchange. Defining `set protocols ldp interface` instruct the router to start talking LDP on the interfaces.
@@ -40,7 +40,10 @@ set protocols ldp egress-policy ldp-export-all
 
 ## Task 0.3: FEC Management
 - Inject specific IX-facing subnets into LDP.
-- Ensure each FEC (Forwarding Equivalence Class) advertised by vR1 or vR2 is reachable via a separate LSP. This requires manipulating the LDP egress policy or using specific prefix-lists to control label advertisement.
+- Ensure each FEC (Forwarding Equivalence Class) advertised by vR1 or vR2 is reachable via a separate LSP. This requires manipulating the LDP egress policy to control label advertisement.
+
+>[!NOTE]
+> If no IX subnets are available, create a export policy to inject a dummy `discard` route into IS-IS database.
 
 ## Task 0.4: Metric Alignment & Label Operations
 - Configure LDP to ensure that LSPs reflect the same metric as the underlying IS-IS paths. (Note: LDP natively follows the IGP shortest path; this verifies that no manual metric offsets are overriding the IGP logic).
@@ -50,9 +53,9 @@ set protocols ldp egress-policy ldp-export-all
 ## Task 0.5: Verification 
 
 - `show ldp neighbor`: LDP sessions are up and authenticated.
-- `show ldp database`: Verify FECs for all loopbacks.
-- `show isis interface detail`: Confirm LDP sync: enabled, Status: in sync.
-- `show route table mpls.0`: Verify label-switched paths exist for all core loopbacks.
+- `show ldp database`: Verify FECs and labels.
+- `show isis interface ext`: LDP sync state is`in sync`
+- `show route table mpls.0`: Label-switched paths exist for all core loopbacks.
 - `traceroute mpls ipv4 <remote-loopback>`: Confirm the path matches the IS-IS best path.
 
 ### Tips
