@@ -28,8 +28,6 @@ Diagram 1.1: RSVP Topology
 | vR8    | ge-0/0/3.170 | RED         |
 | vR8    | ge-0/0/2.160 | GREEN, RED  |
 
-Diagram 1.2 RSVP LSPs
-
 # RSVP
 
 ## Task 1.1: Bandwidth Management
