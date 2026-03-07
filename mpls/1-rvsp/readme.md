@@ -30,6 +30,10 @@ Diagram 1.1: RSVP Topology
 
 # RSVP
 
+RSVP is a MPLS signaling protocol that can work side by side with LDP to provide traffic engineering and traffic protection.
+
+RSVP sends hello keepalives every 9 seconds.
+
 ## Task 1.1: Bandwidth Management
 - Enable RSVP on all core-facing interfaces for routers vR1 through vR8.
 - Configure all RSVP-enabled interfaces to allow exactly 333 Mbps of reservable bandwidth.
