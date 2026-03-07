@@ -1,5 +1,5 @@
 Diagram 1.1: RSVP Topology
-![alt text](image-1.png)
+![alt text](image.png)
 
 | Router | Interface    | Admin Group |
 | ------ | ------------ | ----------- |
@@ -44,7 +44,7 @@ RSVP sends hello keepalives every 9 seconds.
 - Define the administrative groups globally and apply them to the specified core interfaces.
 
 Diagram 2.2: RSVP Topology
-![alt text](image.png)
+![alt text](image-1.png)
 
 ## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
