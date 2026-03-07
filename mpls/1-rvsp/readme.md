@@ -1,4 +1,4 @@
-![alt text][github/junoslab/mpls/1-rvsp/image.png]]
+![alt text][github/junoslab/mpls/1-rvsp/image.png]
 
 # LDP
 
