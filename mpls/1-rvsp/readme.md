@@ -1,4 +1,4 @@
-Diagram 2.1: RSVP Topology
+Diagram 1.1: RSVP Topology
 ![alt text](image-1.png)
 
 | Router | Interface    | Admin Group |
@@ -27,23 +27,23 @@ Diagram 2.1: RSVP Topology
 | vR8    | ge-0/0/4.210 | GREEN       |
 | vR8    | ge-0/0/3.170 | RED         |
 | vR8    | ge-0/0/2.160 | GREEN, RED  |
-Diagram 2.2 RSVP LSPs
+Diagram 1.2 RSVP LSPs
 
 # RSVP
 
-## Task 2.1: Bandwidth Management
+## Task 1.1: Bandwidth Management
 - Enable RSVP on all core-facing interfaces for routers vR1 through vR8.
 - Configure all RSVP-enabled interfaces to allow exactly 333 Mbps of reservable bandwidth.
 - The `ae0` Ethernet bundles must not have a manual bandwidth reservation configured (allow default behavior).
 
-## Task 2.2: Link Coloring
+## Task 1.2: Link Coloring
 - Implement Resource Affinity by assigning admin groups to links.
 - Define the administrative groups globally and apply them to the specified core interfaces.
 
 Diagram 2.2: RSVP Topology
 ![alt text](image.png)
 
-## Task 2.3: RSVP signaled LSPs
+## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
 - Configure LSPs between specific PEs (vR1 to vR5, etc.).
     - Ensure LSPs utilize the administrative groups defined in Task 6.2 to influence path selection (e.g., `include-any GOLD`).
@@ -66,7 +66,7 @@ Diagram 2.2: RSVP Topology
 15) Configure per-flow load balancing over LSPs `vr4_to_vr7_1 and vr4_to_vr7_2`. Similarly, configure per-flow load balancing over LSPs `vr7_to_vr4_1 and vr7_to_vr4_2`.
 16) Make sure that MPLS paths in your network are hidden from external traceroute utilities.
 
-## Task 2.4: Verification 
+## Task 1.4: Verification 
 
 - `show ldp neighbor`: LDP sessions are up and authenticated.
 - `show ldp database`: Verify FECs and labels.
