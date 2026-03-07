@@ -31,7 +31,7 @@ set protocols ldp egress-policy ldp-export-all
 
 >[!WARNING]
 > When adjusting LDP egress policy, you must add router loopback address or via protocol `direct` in the egress policy or it will take down the control plane.
-## Task 0.1: LDP Infrastructure & Session Security
+## Task 0.1: LDP Session Security
 - Enable LDP as shown in the diagram.
 - All LDP sessions should be configured with MD5 authentication using secret `juniper123`.
 
