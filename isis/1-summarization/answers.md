@@ -1,4 +1,4 @@
-![alt text](image.png)
+![alt text](github/junoslab/isis/1-summarization/image.png)
 
 ## Objectives
 Configure IS-IS domain splitting the network into a Level 1 (Edge) and Level 2 (Backbone) hierarchy, ensuring specific traffic patterns and fast convergence.

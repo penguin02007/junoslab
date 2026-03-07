@@ -1,4 +1,4 @@
-![alt text](image.png)
+![[github/junoslab/mpls/1-rvsp/image.png]]
 
 # LDP
 
