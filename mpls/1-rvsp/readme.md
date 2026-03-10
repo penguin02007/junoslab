@@ -28,12 +28,24 @@ Diagram 1.1: RSVP Topology
 | vR8    | ge-0/0/3.170 | RED         |
 | vR8    | ge-0/0/2.160 | GREEN, RED  |
 
-# RSVP
+# RSVP Basics
 
-RSVP is a MPLS signaling protocol that can work side by side with LDP to provide traffic engineering and traffic protection.
+RSVP is a MPLS signaling protocol to provide bandwidth management, traffic engineering and traffic protection. This lab cover the basis of how RSVP uses path messages (PATH), reservation messages (RESV) and Explicit Route Object (ERO) to propagate the bandwidth through out the LSP "journey". (The reason I call it journey because each hop individual and make up the whole lSP)
 
-RSVP sends hello keepalives every 9 seconds.
+This diagram explains the relationship between the PATH, RESV and ERO used to establish a LSP.
 
+```
+    [ vR1 ]              [ vR2 ]              [ vR3 ]              [ vR5 ]
+   (Ingress)             (Transit)            (Transit)            (Egress)
+      |                    |                    |                    |
+      |  --- PATH Msg ---> |                    |                    |
+      |  (ERO: R2,R3,R5)   |  --- PATH Msg ---> |                    |
+      |                    |  (ERO: R3,R5)      |  --- PATH Msg ---> |
+      |                    |                    |  (ERO: R5)         |
+      |                    |                    |                    |
+```
+
+Step 1: vR1, the head end router calculates a path and encapsulates it in the ERO. This message travels downstream to the tail-end router,(vR5).
 ## Task 1.1: Bandwidth Management
 - Enable RSVP on all core-facing interfaces for routers vR1 through vR8.
 - Configure all RSVP-enabled interfaces to allow exactly 333 Mbps of reservable bandwidth.
