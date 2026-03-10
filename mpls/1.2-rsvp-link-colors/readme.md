@@ -28,42 +28,10 @@ Diagram 1.1: RSVP Topology
 | vR8    | ge-0/0/3.170 | RED         |
 | vR8    | ge-0/0/2.160 | GREEN, RED  |
 
-# RSVP Basics
-
-RSVP is a MPLS signaling protocol to provide bandwidth management, traffic engineering and traffic protection. This lab cover the basis of how RSVP uses path messages (PATH), reservation messages (RESV) and Explicit Route Object (ERO) to propagate the bandwidth through out the LSP "journey". (The reason I call it journey because each hop individual and make up the whole lSP)
-
-This diagram explains the relationship between the PATH, RESV and ERO used to establish a LSP. Notice how each router strips itself from the ERO before forwarding the message? Why?
-
-```
-    [ vR1 ]              [ vR2 ]              [ vR3 ]              [ vR5 ]
-   (Ingress)             (Transit)            (Transit)            (Egress)
-      |                    |                    |                    |
-      |  --- PATH Msg ---> |                    |                    |
-      |  (ERO: R2,R3,R5)   |  --- PATH Msg ---> |                    |
-      |                    |  (ERO: R3,R5)      |  --- PATH Msg ---> |
-      |                    |                    |  (ERO: R5)         |
-      |                    |                    |                    |
-
-```
-
-First, vR1, the ingress router calculates a path and encapsulates it in the ERO. This message travels downstream to the egress router, vR5.
-
->[!NOTE]
-> Some documentation uses head-end router instead of Ingress router, they represent the same device but in two different perspectives.
-> 
-> Ingress router is a functional term that found in MPLS [RFC3031](****). It refers to the router where a packet enters the MPLS domain.
-> 
-> Head-end router is a role term gear toward to the TE tunnel. It is the router that crafts the RSVP `RSVP` message and is respoinsbility for computing the path via CSPF to destination.
-
-
-
-Next, 
-## Task 1.1: Bandwidth Management
-- Enable RSVP on all core-facing interfaces for routers vR1 through vR8.
-- Configure all RSVP-enabled interfaces to allow exactly 333 Mbps of reservable bandwidth.
-- The `ae0` Ethernet bundles must not have a manual bandwidth reservation configured (allow default behavior).
+# RSVP Basics - Admin Groups
 
 ## Task 1.2: Link Coloring
+
 - Implement Resource Affinity by assigning admin groups to links.
 - Define the administrative groups globally and apply them to the specified core interfaces.
 
@@ -102,7 +70,6 @@ Diagram 2.2: RSVP Topology
 - `traceroute mpls ipv4 <remote-loopback>`: Confirm the path matches the IS-IS best path.
 
 ### Tips
-- Setting bandwidth -  `set protocols rsvp interface ge-0/0/2.170 bandwidth 333m
 - Creating admin groups - ```
 ```
 set protocols mpls admin-groups GREEN 1
