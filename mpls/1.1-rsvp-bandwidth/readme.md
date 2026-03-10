@@ -67,4 +67,4 @@ In Summary, this collapsed view shows relationship between the bidirectional nat
 - The `ae0` interfaces must not have a manual bandwidth reservation configured.
 
 ### Tips
-- Setting reservation -  `set protocols rsvp interface ge-x/y/z bandwidth 111m
+- Setting reservation -  `set protocols rsvp interface ge-x/y/z bandwidth 111m`
