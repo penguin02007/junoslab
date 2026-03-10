@@ -64,7 +64,7 @@ In Summary, this collapsed view shows relationship between the bidirectional nat
 
 - Enable RSVP on all core-facing interfaces for routers vR1 through vR8.
 - Configure all RSVP-enabled interfaces to allow exactly 333 Mbps of reservable bandwidth.
-- The `ae0` Ethernet bundles must not have a manual bandwidth reservation configured (allow default behavior).
+- The `ae0` interfaces must not have a manual bandwidth reservation configured.
 
 ### Tips
 - Setting reservation -  `set protocols rsvp interface ge-x/y/z bandwidth 111m
