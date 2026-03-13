@@ -30,6 +30,12 @@ Diagram 1.1: RSVP Topology
 
 # RSVP Basics - Admin Groups
 
+Admin group in RSVP is also known as link coloring and group bit i
+
+The relationship between an **RSVP Admin Group** (also known as Link Coloring or Resource Class) and a **Group Bit** is that of a **Label** to its **Binary Representation**.
+
+Think of the Admin Group as a human-readable alias for a specific bit position in a 32-bit vector.
+
 ## Task 1.2: Link Coloring
 
 - Implement Resource Affinity by assigning admin groups to links.
