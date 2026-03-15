@@ -1,6 +1,5 @@
 .DS_Store
-*conf.gz
-# Nelab files
+*.conf.gz
 clab.yml
 clab*/
 hosts.yml
