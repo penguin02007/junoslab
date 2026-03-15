@@ -2,13 +2,14 @@ Diagram 1.1: RSVP Topology
 ![alt text](image.png)
 
 # RSVP - LSPs
+RSVP LSP is uni-directional tunnel.
 
 ## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
 - Configure LSPs between specific PEs (vR1 to vR5, etc.).
-    - Ensure LSPs utilize the administrative groups defined in Task 6.2 to influence path selection (e.g., `include-any GOLD`).
+    - Ensure LSPs utilize the administrative groups defined in Task 6.2 to influence path selection (e.g., `include-any YELLOW`).
     - Enable Fast Reroute (FRR) to protect against link and node failures.
-- LSP Configuration (assume LSP name is `vrX_to_vrX`)
+
 1) Configure MD5 authentication for all RSVP sessions.
 2) Enable BFD continuity checking for all RSVP sessions.
 3) Make sure LSPs vr2_to_vr7, vr7_to_vr2,  vr3_to_vr6 and vr6_to_vr3 use only links belonging to the “RED” administrative group.
@@ -25,3 +26,7 @@ Diagram 1.1: RSVP Topology
 14) Make sure that IPv4 traffic at R8 from P1 to P2 uses LSP I and traffic from P1 to P3 uses LSP K.
 15) Configure per-flow load balancing over LSPs `vr4_to_vr7_1 and vr4_to_vr7_2`. Similarly, configure per-flow load balancing over LSPs `vr7_to_vr4_1 and vr7_to_vr4_2`.
 16) Make sure that MPLS paths in your network are hidden from external trace route utilities.
+
+# Tips
+1. RSVP LSP are configured under `protocol mpls label-switcvhed-path`.
+2. Use `show rsvp session extensive` to see the explicit route object.
