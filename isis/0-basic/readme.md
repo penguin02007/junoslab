@@ -1,4 +1,4 @@
-![alt text](image.png)
+![alt text](github/junoslab/isis/0-basic/image.png)
 
 ## Objectives
 - All IS-IS adjacencies are up.
