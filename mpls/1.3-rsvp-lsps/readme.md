@@ -26,6 +26,7 @@ BFD for MPLS uses MPLS ping to check plane of the LSPs. In JunOS, MPLS ping uses
 15) Configure per-flow load balancing over LSPs `vr4_to_vr7_1 and vr4_to_vr7_2`. Similarly, configure per-flow load balancing over LSPs `vr7_to_vr4_1 and vr7_to_vr4_2`.
 16) Make sure that MPLS paths in your network are hidden from external trace route utilities.
 
-# Tips
-1. RSVP LSP are configured under `protocol mpls label-switcvhed-path`.
+## Tips
+1. RSVP LSP are configured under `protocol mpls label-switched-path`.
 2. Use `show rsvp session extensive` to see the explicit route object.
+3. Use `show route table inet.3 protocol rsvp` to see loopback is reachable from MPLS LSPs.
