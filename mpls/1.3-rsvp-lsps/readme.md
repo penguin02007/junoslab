@@ -1,8 +1,7 @@
-Diagram 1.1: RSVP Topology
 ![alt text](image.png)
 
 # RSVP - LSPs
-RSVP LSP is uni-directional tunnel.
+BFD for MPLS uses MPLS ping to check plane of the LSPs. In JunOS, MPLS ping uses 127.0.0.1 and udp/3503.
 
 ## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
