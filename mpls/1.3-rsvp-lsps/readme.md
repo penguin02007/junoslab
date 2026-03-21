@@ -17,9 +17,9 @@ This is because the headend router is the only one that needs to resolve the BGP
 - LSP Configuration (assume LSP name is `vrX_to_vrX`)
 1) Configure MD5 authentication for all RSVP sessions.
 2) Enable BFD continuity checking for all RSVP sessions.
-3) Make sure LSPs vr2_to_vr7, vr7_to_vr2,  vr3_to_vr6 and vr6_to_vr3 use only links belonging to the “RED” administrative group.
-4) Make sure that LSPs  vr1_to_vr8, vr8_to_vr1, vr8_to_vr1, and T use only links belonging to the “green” administrative group.
-5) Configure LSPs vr3_to_vr8_1, vr3_to_vr8_2, vr8_to_vr3_1 and vr8_to_vr3_2 to use two distinct physical paths to the egress node. The paths should take three hops each. You may not use administrative groups in this step.
+3) Make sure LSPs `vr2_to_vr7, vr7_to_vr2, vr3_to_vr6 and vr6_to_vr3` use only links belonging to RED administrative group.
+4) Make sure LSPs  `vr1_to_vr8, vr8_to_vr1, vr4_to_r5, vr5_to_vr4` use only links belonging to GREEN administrative group.
+5) Configure LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr8_to_vr3_1 and vr8_to_vr3_2` to use two distinct physical paths to the egress node. The paths should take three hops each. You may not use administrative groups in this step.
 6) Configure LSPs `vr4_to_vr8_1, vr4_to_vr8_2, vr7_to_vr4_1 and vr7_to_vr4_2` so that they use two distinct physical paths to the egress node. LSPs M and O should use only the “green” links, and LSPs N and P should use only the “red” links.
 7) Configure all LSPs except `vr1_to_vr8, vr4_to_vr5, vr8_to_vr1, vr5_to_vr4` to reserve 60 Mbps of bandwidth.
 8) Configure LSPs A, B, S, and T to automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure that the LSPs can use not less than 30 Mbps and not more than 120 Mbps.
