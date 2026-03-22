@@ -30,7 +30,7 @@ Diagram 1.1: RSVP Topology
 
 # RSVP Basics - Admin Groups
 
-Admin group in RSVP is also known as link coloring and group bit is is the label to binary representation. Think of link color is a human readable alias for binary position in a 32-bit vector, and you are allowed to use up to 32 bits.
+Administrative  group in RSVP is also known as link coloring. Group bit is is the label to binary representation. Think of link color is a human readable alias for binary position in a 32-bit vector, and it is allowed to use up to 32 bits.
 
 ## Task 1.2: Link Coloring
 
