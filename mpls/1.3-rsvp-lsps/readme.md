@@ -24,7 +24,7 @@ In ERO, loose hop specifies only a LSR hop must be included whereas whereas stri
 3) Make sure LSPs `vr2_to_vr7, vr7_to_vr2, vr3_to_vr6 and vr6_to_vr3` use only links belonging to RED administrative group.
 4) Make sure LSPs  `vr1_to_vr8, vr8_to_vr1, vr4_to_r5, vr5_to_vr4` use only links belonging to GREEN administrative group.
 5) Configure LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr8_to_vr3_1 and vr8_to_vr3_2` to use two distinct physical paths to the egress node. The paths should take three hops each. You may not use administrative groups in this step.
-6) Configure LSPs `vr4_to_vr8_1, vr4_to_vr8_2, vr7_to_vr4_1 and vr7_to_vr4_2` so that they use two distinct physical paths to the egress node. LSPs M and O should use only the “green” links, and LSPs N and P should use only the “red” links.
+6) Configure LSPs `vr4_to_vr8_1, vr4_to_vr8_2, vr7_to_vr4_1 and vr7_to_vr4_2` so that they use two distinct physical paths to the egress node. LSPs `vr7_to_vr4` should use only GREEN links. LSPs `vr4_to_vr7` should use only RED links.
 7) Configure all LSPs except `vr1_to_vr8, vr4_to_vr5, vr8_to_vr1, vr5_to_vr4` to reserve 60 Mbps of bandwidth.
 8) Configure LSPs A, B, S, and T to automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure that the LSPs can use not less than 30 Mbps and not more than 120 Mbps.
 9) Configure LSPs `vr1_to_vr8,  vr2_to_vr7, vr3_to_vr8, vr3_to_vr6, vr4_to_vr5` (as well as in reverse direction) to ensure that they have higher priority for bandwidth reservation than the remaining LSPs.
