@@ -9,6 +9,8 @@ During MPLS forwarding, only ingress router uses in `inet.3` , egress router on 
 
 This is because the headend router is the only one that needs to resolve the BGP route to an LSP. Transit and egress router only exists in `mpls.0` because they no longer forward an IP packet but uses label for swap or pop.
 
+There are 
+
 ## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
 - Configure LSPs between specific PEs (vR1 to vR5, etc.).
