@@ -1,5 +1,5 @@
 Diagram 1.1: RSVP Topology
-![alt text](image-1.png)
+![alt text](image.png)
 
 | Router | Interface    | Admin Group |
 | ------ | ------------ | ----------- |
