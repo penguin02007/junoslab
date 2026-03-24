@@ -35,3 +35,6 @@ In ERO, loose hop specifies only a LSR hop must be included whereas whereas stri
 14) Make sure that IPv4 traffic at R8 from P1 to P2 uses LSP I and traffic from P1 to P3 uses LSP K.
 15) Configure per-flow load balancing over LSPs `vr4_to_vr7_1 and vr4_to_vr7_2`. Similarly, configure per-flow load balancing over LSPs `vr7_to_vr4_1 and vr7_to_vr4_2`.
 16) Make sure that MPLS paths in your network are hidden from external trace route utilities.
+
+# Tips
+- `show mpls lsp extensive | match Bandwidth` to check bandwidth
