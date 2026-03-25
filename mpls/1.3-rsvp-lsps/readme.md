@@ -26,8 +26,8 @@ In ERO, loose hop specifies only a LSR hop must be included whereas whereas stri
 5) Configure LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr8_to_vr3_1 and vr8_to_vr3_2` to use two distinct physical paths to the egress node. The paths should take three hops each. You may not use administrative groups in this step.
 6) Configure LSPs `vr3_to_vr8, vr8_to_vr3, vr4_to_vr7 and vr7_to_vr4` so that they use two distinct physical paths to the egress node. LSPs `vr7_to_vr4` should use only GREEN links. LSPs `vr4_to_vr7` should use only RED links.
 7) Configure all LSPs except `vr1_to_vr8, vr4_to_vr5, vr8_to_vr1, vr5_to_vr4` to reserve 60 Mbps of bandwidth.
-8) Configure LSPs A, B, S, and T to automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure that the LSPs can use not less than 30 Mbps and not more than 120 Mbps.
-9) Configure LSPs `vr1_to_vr8,  vr2_to_vr7, vr3_to_vr8, vr3_to_vr6, vr4_to_vr5` (as well as in reverse direction) to ensure that they have higher priority for bandwidth reservation than the remaining LSPs.
+8) Configure LSPs `vr1_to_vr8`, `vr8_to_vr1`, `vr5_to_vr4` and `vr4_to_vt5` automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure LSPs can use not less than 30 Mbps and not more than 120 Mbps.
+9) Configure LSPs `vr1_to_vr8, vr2_to_vr7, vr3_to_vr8, vr3_to_vr6, vr4_to_vr5` (as well as in reverse direction) to ensure that they have higher priority for bandwidth reservation than the remaining LSPs.
 10) Make sure that if LSPs `vr3_to_vr8, vr4_to_vr7`  (as well as in reverse direction)  must be preempted, the ingress router will attempt to re-signal the LSP before tearing it down.
 11) Configure automatic optimization for the LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr4_to_vr7_1, vr4_to_vr7_2`. Set the optimize timer to 8 hours. Make sure that the ingress routers attempt to re-signal the LSP before tearing it down.
 12) Make sure that R5 and R6 prefer RSVP LSPs as the next hops for IPv4 BGP routes advertised by IX peers.
