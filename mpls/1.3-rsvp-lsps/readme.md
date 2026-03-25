@@ -11,15 +11,18 @@ This is because the headend router is the only one that needs to resolve the BGP
 
 In ERO, loose hop specifies only a LSR hop must be included whereas whereas strict hop identifies exact path thorugh which LSP must be routed.
 
-## Auto-bandwidth
-
-Imagine you built out fixed size LSPs and some of them never get used, that would be wasteful, isn' it?
-
-`Auto-bandwidth` is an excellent way to fully utilization without wasting the bandwidth using MBB (Make-Before-Break)
-
-
 >[!NOTE]
 >LSR must be be the correct order in strict hop path.
+## Auto-bandwidth
+
+Building fixed-size LSPs that are rarely fully utilized is wasteful for network resources. `Auto-bandwidth`is an powerful knob to automatically adjust the bandwidth allocation using make-before-break (MBB).
+
+It works by observing value over a a fixed statistics interval, builds the new tunnel, verified the new tunnel is ready and move the traffic over. Finally, it tears down the old tunnel.
+
+MBB requires two parameter:
+1. `statistics` - Enable global bandwidth monitoring
+2. `auto-bandwdith` - Adjust interval and bandwidth threshold
+
 ## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
 - Configure LSPs between specific PEs (vR1 to vR5, etc.).
