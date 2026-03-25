@@ -38,7 +38,7 @@ MBB requires two parameter:
 7) Configure all LSPs except `vr1_to_vr8, vr4_to_vr5, vr8_to_vr1, vr5_to_vr4` to reserve 60 Mbps of bandwidth.
 8) Configure LSPs `vr1_to_vr8`, `vr8_to_vr1`, `vr5_to_vr4` and `vr4_to_vt5` automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure LSPs can use not less than 30 Mbps and not more than 120 Mbps.
 9) Configure LSPs `vr1_to_vr8, vr2_to_vr7, vr3_to_vr8, vr3_to_vr6, vr4_to_vr5` (as well as in reverse direction) to ensure that they have higher priority for bandwidth reservation than the remaining LSPs.
-10) Make sure that if LSPs `vr3_to_vr8, vr4_to_vr7`  (as well as in reverse direction)  must be preempted, the ingress router will attempt to re-signal the LSP before tearing it down.
+10) Make sure that if LSPs `vr3_to_vr8_2, vr4_to_vr7_2`  (as well as in reverse direction) must be preempted, the ingress router will attempt to re-signal the LSP before tearing it down.
 11) Configure automatic optimization for the LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr4_to_vr7_1, vr4_to_vr7_2`. Set the optimize timer to 8 hours. Make sure that the ingress routers attempt to re-signal the LSP before tearing it down.
 12) Make sure that R5 and R6 prefer RSVP LSPs as the next hops for IPv4 BGP routes advertised by IX peers.
 13) Configure LDP tunnels between R3 and R8 and between R4 and R7. Make sure that any router in your AS has an LDP-signaled LSP to any other router.
