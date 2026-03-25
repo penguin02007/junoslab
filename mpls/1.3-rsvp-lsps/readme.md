@@ -11,6 +11,13 @@ This is because the headend router is the only one that needs to resolve the BGP
 
 In ERO, loose hop specifies only a LSR hop must be included whereas whereas strict hop identifies exact path thorugh which LSP must be routed.
 
+## Auto-bandwidth
+
+Imagine you built out fixed size LSPs and some of them never get used, that would be wasteful, isn' it?
+
+`Auto-bandwidth` is an excellent way to fully utilization without wasting the bandwidth using MBB (Make-Before-Break)
+
+
 >[!NOTE]
 >LSR must be be the correct order in strict hop path.
 ## Task 1.3: RSVP signaled LSPs
