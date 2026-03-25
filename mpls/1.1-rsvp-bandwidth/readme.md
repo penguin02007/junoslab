@@ -3,9 +3,11 @@ Diagram 1.1: RSVP Topology
 
 # RSVP Basics
 
-RSVP is a MPLS signaling protocol to provide bandwidth management, traffic engineering and traffic protection. This lab cover the basis of how RSVP uses path messages (PATH), reservation messages (RESV) and Explicit Route Object (ERO) to propagate the bandwidth through out the LSP "journey". (The reason I call it journey because each hop individual and make up the whole lSP)
+RSVP is a signaling protocol to provide bandwidth management, traffic engineering in MPLS. This lab cover the basis of how RSVP uses path messages (PATH), reservation messages (RESV) and Explicit Route Object (ERO) to propagate the bandwidth through out the LSP "journey". I refer it as a 'journey' because  LSP is composed of distinct, individual hops that collectively define the end-to-end path.
 
-This diagram explains the relationship between the PATH, RESV and ERO used to establish a LSP. Notice how each router strips itself from the ERO before forwarding the message? Why?
+This diagram explains the relationship between PATH messages, RESV messages and ERO used to establish a LSP. Notice how each router strips itself from the ERO before forwarding the message?
+
+Think of the ingress router is the entrance, whereas the egress router the exit point where the final node in the RSVP path.
 
 ```
     [ vR1 ]              [ vR2 ]              [ vR3 ]              [ vR4 ]
@@ -19,7 +21,8 @@ This diagram explains the relationship between the PATH, RESV and ERO used to es
 
 ```
 
-First, vR1, the ingress router calculates a path and encapsulates it in the ERO. This message travels downstream to the egress router, vR5.
+
+First, vR1, the ingress router calculates a path and encapsulates it in the ERO. This message travels downstream to the egress router, vR4.
 
 >[!NOTE]
 > Some documentation uses head-end router instead of Ingress router, they represent the same device but in two different perspectives.
@@ -28,7 +31,7 @@ First, vR1, the ingress router calculates a path and encapsulates it in the ERO.
 > 
 > Head-end router is a role term gear toward to the TE tunnel. It is the router that crafts the RSVP `RSVP` message and is respoinsbility for computing the path via CSPF to destination.
 
-Next, vR5 receives the PATH message and triggers a RESV message that travels in the reverse path of the PATH message.
+Second, vR4 receives the PATH message and triggers a RESV message that travels in the reverse path of the PATH message.
 
 ```
       |                    |                    |                    |
@@ -44,7 +47,7 @@ Next, vR5 receives the PATH message and triggers a RESV message that travels in 
 >[!NOTE]
 >RESV Message performs the bandwidth reservation and carries the Label Object.
 
-Finally, data flows from Ingress to Egress using the labels signaled from previous step.
+Finally, data flows from Ingress to Egress (again) using the labels signaled from previous step.
 
 ```
       [ vR1 ] ------------> [ vR2 ] ------------> [ vR3 ] ------------> [ vR4 ]
