@@ -11,17 +11,11 @@ In this task, you will implement  protection mechanisms to ensure traffic contin
 5. Implement Fast Reroute (FRR) protection for LSPs `vr1_to_vr6`, `vr6_to_vr1`, `vr2_to_vr5`, `vr5_to_vr2`.
 	1. The detour LSPs must **not** inherit bandwidth or administrative group settings from the main LSP.
 	2. Detour LSPs must not exceed **five hops**.
-6. Enable **Link Protection** for LSPs `vr1_to_vr8`,vr2_to_vr7, vr3_to_vr6 and vr4_to_vr5 and the reverse path.
-
-- **L1, L8, L2, L3, L4, L43, L5, and L53**.
-    
-- _Note: Ensure `link-protection` is also enabled on the participating physical interfaces under `protocols rsvp`._
-    
-
-## 7. Node and Link Protection
-
-For LSPs **L81, L82, L83, and L13** (the upper and western diagonal connections), configure both **Link and Node protection** to protect against transit router failures in the core.
+6. Enable **Link Protection** for LSPs `vr1_to_vr8`,vr2_to_vr7, vr3_to_vr6 and vr4_to_vr5 and its reverse path.
+	- _Note: Ensure `link-protection` is also enabled on the participating physical interfaces under `protocols rsvp`._
+7. Configure both node link protection on `vr8_to_vr3_1` and `vr7_to_vr4_1` and its reverse path.
 ## Tips
 1. RSVP LSP are configured under `protocol mpls label-switched-path`.
 2. Use `show rsvp session extensive` to see the explicit route object.
 3. Use `show route table inet.3 protocol rsvp` to see loopback is reachable from MPLS LSPs.
+
