@@ -1,5 +1,5 @@
 
-This repository contains a collection of containerized network labs designed to study various protocols and environments. It is more leaner than VMs manually and allows you to focus on the configuration rather than the plumbing.
+This repository contains a collection of containerized network labs designed to study various protocols and scenario. It is more leaner than VMs manually and allows you to focus on the configuration rather than the plumbing.
 
 # 🚀 Lab Catalog
 
@@ -15,5 +15,10 @@ To run these labs, you will need:
 - Virtualization Provider: Docker.
 - Juniper Images: vMX or vJunos-router.
 
-Config on each lab pulled from device using the get_junos_config.sh.
-```
+## Tutorial
+
+Coming soon!
+
+# Notes
+Config on each lab pulled from device using `get_junos_config.sh`.
+

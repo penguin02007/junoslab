@@ -1,7 +1,28 @@
+
 ![alt text](image.png)
 
 # RSVP - LSPs
 BFD for MPLS uses MPLS ping to check plane of the LSPs. In JunOS, MPLS ping uses 127.0.0.1 and udp/3503.
+
+`inet.3` vs `mpls.0`
+
+During MPLS forwarding, only ingress router uses in `inet.3` , egress router on the path uses `mpls.0`.
+
+This is because the headend router is the only one that needs to resolve the BGP route to an LSP. Transit and egress router only exists in `mpls.0` because they no longer forward an IP packet but uses label for swap or pop.
+
+In ERO, loose hop specifies only a LSR hop must be included whereas whereas strict hop identifies exact path through which LSP must be routed.
+
+>[!NOTE]
+>LSR must be be the correct order in strict hop path.
+## Auto-bandwidth
+
+Building fixed-size LSPs that are rarely fully utilized is wasteful for network resources. `Auto-bandwidth`is an powerful knob to automatically adjust the bandwidth allocation using make-before-break (MBB).
+
+It works by observing value over a a fixed statistics interval, builds the new tunnel, verified the new tunnel is ready and move the traffic over. Finally, it tears down the old tunnel.
+
+MBB requires two parameter:
+1. `statistics` - Enable global bandwidth monitoring
+2. `auto-bandwdith` - Adjust interval and bandwidth threshold
 
 ## Task 1.3: RSVP signaled LSPs
 - Establish a mesh of RSVP LSPs as shown in diagram 2.2.
@@ -11,14 +32,14 @@ BFD for MPLS uses MPLS ping to check plane of the LSPs. In JunOS, MPLS ping uses
 
 1) Configure MD5 authentication for all RSVP sessions.
 2) Enable BFD continuity checking for all RSVP sessions.
-3) Make sure LSPs vr2_to_vr7, vr7_to_vr2,  vr3_to_vr6 and vr6_to_vr3 use only links belonging to the “RED” administrative group.
-4) Make sure that LSPs  vr1_to_vr8, vr8_to_vr1, vr8_to_vr1, and T use only links belonging to the “green” administrative group.
-5) Configure LSPs vr3_to_vr8_1, vr3_to_vr8_2, vr8_to_vr3_1 and vr8_to_vr3_2 to use two distinct physical paths to the egress node. The paths should take three hops each. You may not use administrative groups in this step.
-6) Configure LSPs `vr4_to_vr8_1, vr4_to_vr8_2, vr7_to_vr4_1 and vr7_to_vr4_2` so that they use two distinct physical paths to the egress node. LSPs M and O should use only the “green” links, and LSPs N and P should use only the “red” links.
+3) Make sure LSPs `vr2_to_vr7, vr7_to_vr2, vr3_to_vr6 and vr6_to_vr3` use only links belonging to RED administrative group.
+4) Make sure LSPs  `vr1_to_vr8, vr8_to_vr1, vr4_to_r5, vr5_to_vr4` use only links belonging to GREEN administrative group.
+5) Configure LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr8_to_vr3_1 and vr8_to_vr3_2` to use two distinct physical paths to the egress node. The paths should take three hops each. You may not use administrative groups in this step.
+6) Configure LSPs `vr3_to_vr8, vr8_to_vr3, vr4_to_vr7 and vr7_to_vr4` so that they use two distinct physical paths to the egress node. LSPs `vr7_to_vr4` should use only GREEN links. LSPs `vr4_to_vr7` should use only RED links.
 7) Configure all LSPs except `vr1_to_vr8, vr4_to_vr5, vr8_to_vr1, vr5_to_vr4` to reserve 60 Mbps of bandwidth.
-8) Configure LSPs A, B, S, and T to automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure that the LSPs can use not less than 30 Mbps and not more than 120 Mbps.
-9) Configure LSPs `vr1_to_vr8,  vr2_to_vr7, vr3_to_vr8, vr3_to_vr6, vr4_to_vr5` (as well as in reverse direction) to ensure that they have higher priority for bandwidth reservation than the remaining LSPs.
-10) Make sure that if LSPs `vr3_to_vr8, vr4_to_vr7`  (as well as in reverse direction)  must be preempted, the ingress router will attempt to re-signal the LSP before tearing it down.
+8) Configure LSPs `vr1_to_vr8`, `vr8_to_vr1`, `vr5_to_vr4` and `vr4_to_vt5` automatically re-signal the LSP once in 48 hours based on the average bandwidth usage. Make sure LSPs can use not less than 30 Mbps and not more than 120 Mbps.
+9) Configure LSPs `vr1_to_vr8, vr2_to_vr7, vr3_to_vr8, vr3_to_vr6, vr4_to_vr5` (as well as in reverse direction) to ensure that they have higher priority for bandwidth reservation than the remaining LSPs.
+10) Make sure that if LSPs `vr3_to_vr8_2, vr4_to_vr7_2`  (as well as in reverse direction) must be preempted, the ingress router will attempt to re-signal the LSP before tearing it down.
 11) Configure automatic optimization for the LSPs `vr3_to_vr8_1, vr3_to_vr8_2, vr4_to_vr7_1, vr4_to_vr7_2`. Set the optimize timer to 8 hours. Make sure that the ingress routers attempt to re-signal the LSP before tearing it down.
 12) Make sure that R5 and R6 prefer RSVP LSPs as the next hops for IPv4 BGP routes advertised by IX peers.
 13) Configure LDP tunnels between R3 and R8 and between R4 and R7. Make sure that any router in your AS has an LDP-signaled LSP to any other router.
@@ -26,7 +47,9 @@ BFD for MPLS uses MPLS ping to check plane of the LSPs. In JunOS, MPLS ping uses
 15) Configure per-flow load balancing over LSPs `vr4_to_vr7_1 and vr4_to_vr7_2`. Similarly, configure per-flow load balancing over LSPs `vr7_to_vr4_1 and vr7_to_vr4_2`.
 16) Make sure that MPLS paths in your network are hidden from external trace route utilities.
 
+
 ## Tips
 1. RSVP LSP are configured under `protocol mpls label-switched-path`.
 2. Use `show rsvp session extensive` to see the explicit route object.
 3. Use `show route table inet.3 protocol rsvp` to see loopback is reachable from MPLS LSPs.
+
