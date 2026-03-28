@@ -18,3 +18,7 @@ To run these labs, you will need:
 ## Tutorial
 
 Coming soon!
+
+# Notes
+Config on each lab pulled from device using `get_junos_config.sh`.
+
