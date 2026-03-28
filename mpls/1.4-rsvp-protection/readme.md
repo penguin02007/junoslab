@@ -14,6 +14,12 @@ In this task, you will implement  protection mechanisms to ensure traffic contin
 6. Enable **Link Protection** for LSPs `vr1_to_vr8`,vr2_to_vr7, vr3_to_vr6 and vr4_to_vr5 and its reverse path.
 	- _Note: Ensure `link-protection` is also enabled on the participating physical interfaces under `protocols rsvp`._
 7. Configure both node link protection on `vr8_to_vr3_1` and `vr7_to_vr4_1` and its reverse path.
+
+# IPv6 Tunneling with 6PE
+
+1. Enable IPv6 over MPLS tunneling using 6PE. No native IPv6 forwarding allowed
+2. No MPLS LSPs on route reflector. Static route is allowed on RR if needed.
+3. 
 ## Tips
 1. RSVP LSP are configured under `protocol mpls label-switched-path`.
 2. Use `show rsvp session extensive` to see the explicit route object.
