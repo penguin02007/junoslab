@@ -176,7 +176,7 @@ nodes:
       vce1-3_to_vr4:
         ipv4: 192.168.0.52/30
   vce1-4:
-    id: 113
+    id: 114
     mgmt.ifname: fxp0
     vlans:
       vce1-2_to_vr4:
@@ -220,13 +220,13 @@ nodes:
       vce2-5_to_vr5:
         ipv4: 192.168.0.44/30
   vce3-1:
-    id: 18
+    id: 131
     mgmt.ifname: fxp0
     vlans:
       vce3-1_to_vr8:
         ipv4: 192.168.0.52/30
   vce3-2:
-    id: 19
+    id: 132
     mgmt.ifname: fxp0
     vlans:
       vce3-2_to_vr3:
