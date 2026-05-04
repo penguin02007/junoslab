@@ -497,7 +497,7 @@ links:
       ifindex: 5
       name: vr5->vce2-4
       vlan.trunk: [ vce2-4_to_vr5 ]
-    vce-4:
+    vce2-4:
       ifindex: 5
       name: vce-4->vr5
       vlan.trunk: [ vce2-4_to_vr5 ]
