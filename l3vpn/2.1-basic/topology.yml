@@ -448,19 +448,19 @@ links:
   - vr1:
       ifindex: 5
       name: vr1->vce2-1
-      vlan.trunk: [ vce2-1_to_vr1_1 vce2-1_to_vr1_2 vce2-1_to_vr1_3 ]
+      vlan.trunk: [ vce2-1_to_vr1_1,vce2-1_to_vr1_2,vce2-1_to_vr1_3 ]
     vce2-1:
       ifindex: 5
       name: vce2-1->vr1
-      vlan.trunk: [ vce2-1_to_vr1_1 vce2-1_to_vr1_2 vce2-1_to_vr1_3 ]
+      vlan.trunk: [ vce2-1_to_vr1_1,vce2-1_to_vr1_2,vce2-1_to_vr1_3 ]
   - vr2:
       ifindex: 5
       name: vr2->vce2-2
-      vlan.trunk: [ vce2-2_to_vr2_1 vce2-2_to_vr2_2 vce2-2_to_vr2_3 ]
+      vlan.trunk: [ vce2-2_to_vr2_1,vce2-2_to_vr2_2,vce2-2_to_vr2_3 ]
     vce2-2:
       ifindex: 5
       name: vce2-2->vr2
-      vlan.trunk: [ vce2-2_to_vr2_1 vce2-2_to_vr2_2 vce2-2_to_vr2_3 ]
+      vlan.trunk: [ vce2-2_to_vr2_1,vce2-2_to_vr2_2,vce2-2_to_vr2_3 ]
   - vr3:
       ifindex: 5
       name: vr3->vce3-2
