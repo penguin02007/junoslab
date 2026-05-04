@@ -487,22 +487,22 @@ links:
       ifindex: 5
       name: vce1-3->vr4
       vlan.trunk: [ vce1-3_to_vr4 ]
-  - vr5:
-      ifindex: 5
-      name: vr5->vce2-3
-      vlan.trunk: [ vce2-3_to_vr5 ]
-    vce2-3:
-      ifindex: 5
-      name: vce2-3->vr5
-      vlan.trunk: [ vce2-3_to_vr5 ]
-  - vr5:
+  - vr4:
       ifindex: 6
-      name: vr5->vce2-3
-      vlan.trunk: [ vce2-3_to_vr5 ]
+      name: vr4->vce2-3
+      vlan.trunk: [ vce2-3_to_vr4 ]
     vce2-3:
       ifindex: 6
-      name: vce2-3->vr5
+      name: vce2-3->vr4
       vlan.trunk: [ vce2-3_to_vr5 ]
+  - vr5:
+      ifindex: 5
+      name: vr5->vce2-4
+      vlan.trunk: [ vce2-3_to_vr5 ]
+    vce-4:
+      ifindex: 5
+      name: vce-4->vr5
+      vlan.trunk: [ vce-4_to_vr5 ]
   - vr6:
       ifindex: 5
       name: vr6->vce1-4
