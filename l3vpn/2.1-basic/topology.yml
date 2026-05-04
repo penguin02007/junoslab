@@ -328,11 +328,11 @@ links:
   - vr1:
       ifindex: 3
       name: r1->r8
-      vlan.trunk: [ vr8_vr1 ]
+      vlan.trunk: [ vr8_to_vr1 ]
     vr8:
       ifindex: 3
       name: r8->r1
-      vlan.trunk: [ vr8_vr1 ]
+      vlan.trunk: [ vr8_to_vr1 ]
   - vr1:
       ifindex: 1
       name: r1->r2 (ae0)
@@ -344,59 +344,59 @@ links:
   - vr2:
       ifindex: 3
       name: r2->r3
-      vlan.trunk: [ vr2_vr3 ]
+      vlan.trunk: [ vr2_to_vr3 ]
     vr3:
       ifindex: 3
       name: r3->r2
-      vlan.trunk: [ vr2_vr3 ]
+      vlan.trunk: [ vr2_to_vr3 ]
   - vr2:
       ifindex: 4
       name: r2->r7
-      vlan.trunk: [ vr2_vr7 ]
+      vlan.trunk: [ vr2_to_vr7 ]
     vr7:
       ifindex: 4
       name: r7->r2
-      vlan.trunk: [ vr2_vr7 ]
+      vlan.trunk: [ vr2_to_vr7 ]
   - vr3:
       ifindex: 2
       name: r3->r4
-      vlan.trunk: [ vr3_vr4 ]
+      vlan.trunk: [ vr3_to_vr4 ]
     vr4:
       ifindex: 2
       name: r4->r3
-      vlan.trunk: [ vr3_vr4 ]
+      vlan.trunk: [ vr3_to_vr4 ]
   - vr3:
       ifindex: 4
       name: r3->r6
-      vlan.trunk: [ vr3_vr6 ]
+      vlan.trunk: [ vr3_to_vr6 ]
     vr6:
       ifindex: 4
       name: r6->r3
-      vlan.trunk: [ vr3_vr6 ]
+      vlan.trunk: [ vr3_to_vr6 ]
   - vr4:
       ifindex: 4
       name: r4->r1
-      vlan.trunk: [ vr1_vr4 ]
+      vlan.trunk: [ vr1_to_vr4 ]
     vr1:
       ifindex: 4
       name: r1->r4
-      vlan.trunk: [ vr1_vr4 ]
+      vlan.trunk: [ vr1_to_vr4 ]
   - vr4:
       ifindex: 3
       name: r4->r5
-      vlan.trunk: [ vr4_vr5 ]
+      vlan.trunk: [ vr4_to_vr5 ]
     vr5:
       ifindex: 3
       name: r5->r4
-      vlan.trunk: [ vr4_vr5 ]
+      vlan.trunk: [ vr4_to_vr5 ]
   - vr5:
       ifindex: 4
       name: r5->r8
-      vlan.trunk: [ vr8_vr5 ]
+      vlan.trunk: [ vr8_to_vr5 ]
     vr8:
       ifindex: 4
       name: r8->r5
-      vlan.trunk: [ vr8_vr5 ]
+      vlan.trunk: [ vr8_to_vr5 ]
   - vr5:
       ifindex: 0
       name: r5->r6 (ae0)
@@ -416,19 +416,19 @@ links:
   - vr6:
       ifindex: 3
       name: r6->r7
-      vlan.trunk: [ vr6_vr7 ]
+      vlan.trunk: [ vr6_to_vr7 ]
     vr7:
       ifindex: 3
       name: r7->r6
-      vlan.trunk: [ vr6_vr7 ]
+      vlan.trunk: [ vr6_to_vr7 ]
   - vr7:
       ifindex: 2
       name: r7->r8
-      vlan.trunk: [ vr7_vr8 ]
+      vlan.trunk: [ vr7_to_vr8 ]
     vr8:
       ifindex: 2
       name: r8->r7
-      vlan.trunk: [ vr7_vr8 ]
+      vlan.trunk: [ vr7_to_vr8 ]
   - vr1:
       ifindex: 6
       name: vr1->vr10
