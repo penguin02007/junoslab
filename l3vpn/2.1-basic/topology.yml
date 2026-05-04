@@ -10,7 +10,6 @@ nodes:
     id: 1
     mgmt.ifname: fxp0
     module: [ vlan,bgp,isis ]
-
     vlans:
       vr1_to_vr4:
         ipv4: 172.20.0.41/31
@@ -68,7 +67,6 @@ nodes:
   vr4:
     id: 4
     mgmt.ifname: fxp0
-
     vlans:
       vr1_to_vr4:
         ipv4: 172.20.0.42/31
@@ -76,6 +74,8 @@ nodes:
         ipv4: 172.20.0.26/31
       vr4_to_vr5:
         ipv4: 172.20.0.29/31
+      vce2-3_to_vr4:
+        ipv4: 192.168.0.33/31
       vce1-3_to_vr4:
         ipv4: 192.168.0.53/31
     loopback:
@@ -89,8 +89,6 @@ nodes:
         ipv4: 172.20.0.13/31
       vr4_to_vr5:
         ipv4: 172.20.0.30/31
-      vce2-3_to_vr5:
-        ipv4: 192.168.0.33/31
       vce2-4_to_vr5:
         ipv4: 192.168.0.37/31
     loopback:
@@ -494,11 +492,11 @@ links:
     vce2-3:
       ifindex: 6
       name: vce2-3->vr4
-      vlan.trunk: [ vce2-3_to_vr5 ]
+      vlan.trunk: [ vce2-3_to_vr4 ]
   - vr5:
       ifindex: 5
       name: vr5->vce2-4
-      vlan.trunk: [ vce2-3_to_vr5 ]
+      vlan.trunk: [ vce2-4_to_vr5 ]
     vce-4:
       ifindex: 5
       name: vce-4->vr5
