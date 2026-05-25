@@ -59,7 +59,7 @@ nodes:
         ipv4: 172.20.0.25/31
       vce3-2_to_vr3:
         ipv4: 192.168.0.37/30
-        ipv6: fc09:c0:ffee::8/126
+        ipv6: fc09:c0:ffee::9/126
       vce1-2_to_vr3:
         ipv4: 192.168.0.69/30
     loopback:
@@ -162,7 +162,7 @@ nodes:
       vce2-1_to_vr1_1:
         ipv4: 192.168.0.42/30
       vce2-1_to_vr1_2:
-        ipv4: 192.168.0.44/30 
+        ipv4: 192.168.0.46/30 
       vce2-1_to_vr1_3:
         ipv4: 192.168.0.50/30
   vce1-2:
@@ -234,7 +234,7 @@ nodes:
     vlans:
       vce3-2_to_vr3:
         ipv4: 192.168.0.38/30
-        ipv6: fc09:c0:ffee::9/126
+        ipv6: fc09:c0:ffee::a/126
 # 12 Core links
 vlans:
   vr2_to_vr3:
