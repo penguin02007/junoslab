@@ -319,13 +319,13 @@ vlans:
     mode: route
 links:
   - lag.members:
-    - r1:
+    - vr1:
       ifindex: 0
-      r2:
+      vr2:
       ifindex: 0
-    - r1:
+    - vr1:
       ifindex: 1
-      r2:
+      vr2:
       ifindex: 1
   - vr1:
       ifindex: 3
