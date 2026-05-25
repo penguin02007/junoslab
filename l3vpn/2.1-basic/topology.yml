@@ -202,7 +202,7 @@ nodes:
     id: 123
     mgmt.ifname: fxp0
     vlans:
-      vce2-3_to_vr5:
+      vce2-3_to_vr4:
         ipv4: 192.168.0.78/30
   vce2-4:
     id: 124
