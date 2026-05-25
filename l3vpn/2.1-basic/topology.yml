@@ -31,7 +31,7 @@ nodes:
   vr2:
     id: 2
     mgmt.ifname: fxp0
-    module: [ vlan,bgp,isis,lag ]
+    module: [ vlan,bgp,isis ]
     vlans:
       vr2_to_vr7:
         ipv4: 172.20.0.4/31
@@ -318,11 +318,22 @@ vlans:
     id: 325
     mode: route
 links:
-  - lag.members:
-    - vr1:
-      vr2:
-    - vr5:
-      vr6:
+  - vr1:
+      ifindex: 0
+      name: r5->r6 (ae0)
+      ipv4: False
+    vr2:
+      ifindex: 0
+      name: r6->r5 (ae0)
+      ipv4: False
+  - vr5:
+      ifindex: 1
+      name: r5->r6 (ae0)
+      ipv4: False
+    vr6:
+      ifindex: 1
+      name: r6->r5 (ae0)
+      ipv4: False
   - vr1:
       ifindex: 3
       name: r1->r8
@@ -331,6 +342,14 @@ links:
       ifindex: 3
       name: r8->r1
       vlan.trunk: [ vr8_to_vr1 ]
+  - vr1:
+      ifindex: 1
+      name: r1->r2 (ae0)
+      ipv4: False
+    vr2:
+      ifindex: 1
+      name: r1->r2 (ae0)
+      ipv4: False
   - vr2:
       ifindex: 3
       name: r2->r3
@@ -387,6 +406,22 @@ links:
       ifindex: 4
       name: r8->r5
       vlan.trunk: [ vr8_to_vr5 ]
+  - vr5:
+      ifindex: 0
+      name: r5->r6 (ae0)
+      ipv4: False
+    vr6:
+      ifindex: 0
+      name: r6->r5 (ae0)
+      ipv4: False
+  - vr5:
+      ifindex: 1
+      name: r5->r6 (ae0)
+      ipv4: False
+    vr6:
+      ifindex: 1
+      name: r6->r5 (ae0)
+      ipv4: False
   - vr6:
       ifindex: 3
       name: r6->r7
