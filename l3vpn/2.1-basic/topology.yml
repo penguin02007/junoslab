@@ -9,7 +9,7 @@ nodes:
   vr1:
     id: 1
     mgmt.ifname: fxp0
-    module: [ vlan,bgp,isis,lag ]
+    module: [ vlan,bgp,isis ]
     vlans:
       vr1_to_vr4:
         ipv4: 172.20.0.41/31
