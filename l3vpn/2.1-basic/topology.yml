@@ -318,19 +318,19 @@ vlans:
     id: 325
     mode: route
 links:
-- lag.members:
-  - r1:
-     ifindex: 0
-     name: vr1->vr2
-    r2:
-     ifindex: 0
-     name: vr2->vr1
-  - r1:
-     ifindex: 1
-     name: vr2->vr1
-    r2:
-     ifindex: 1
-     name: vr2->vr1
+  - lag.members:
+    - r1:
+      ifindex: 0
+      name: vr1->vr2
+      r2:
+      ifindex: 0
+      name: vr2->vr1
+    - r1:
+      ifindex: 1
+      name: vr2->vr1
+      r2:
+      ifindex: 1
+      name: vr2->vr1
   - vr1:
       ifindex: 3
       name: r1->r8
