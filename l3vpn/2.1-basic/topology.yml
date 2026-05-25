@@ -318,25 +318,12 @@ vlans:
     id: 325
     mode: route
 links:
-  - lag.members:
-    - vr1:
-      ifindex: 0
-      vr2:
-      ifindex: 0
-    - vr1:
-      ifindex: 1
-      vr2:
-      ifindex: 1
-    ipv4: 172.20.0.0/31
-    - vr2:
-      ifindex: 0
-      vr1:
-      ifindex: 0
-    - vr2:
-      ifindex: 1
-      vr1:
-      ifindex: 1
-    ipv4: 172.20.0.1/31
+- lag.members:
+      - [ vr1, 0 ]
+      - [ vr2, 0 ]
+      - [ vr1, 1 ]
+      - [ vr2, 1 ]
+  prefix.ipv4: 172.16.0.0/31
   - vr1:
       ifindex: 3
       name: r1->r8
