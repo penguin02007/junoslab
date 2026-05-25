@@ -23,6 +23,8 @@ nodes:
         ipv4: 192.168.0.45/30 
       vce2-1_to_vr1_3:
         ipv4: 192.168.0.49/30
+      vrr_to_vr1:
+        ipv4: 172.20.0.65/31
     loopback:
       ipv4: 172.16.0.1/32
       ipv6: fd00:172:16::172:16:0:1/128
@@ -30,7 +32,6 @@ nodes:
     id: 2
     mgmt.ifname: fxp0
     module: [ vlan,bgp,isis ]
-
     vlans:
       vr2_to_vr7:
         ipv4: 172.20.0.4/31
@@ -44,6 +45,8 @@ nodes:
         ipv4: 192.168.0.57/30
       vce2-2_to_vr2_3:
         ipv4: 192.168.0.61/30
+      vrr_to_vr2:
+        ipv4: 172.20.0.69/31
     loopback:
       ipv4: 172.16.0.2/32
       ipv6: fd00:172:16::172:16:0:2/128
@@ -112,11 +115,11 @@ nodes:
     id: 7
     mgmt.ifname: fxp0
     vlans:
-      r2_to_r7:
+      vr2_to_vr7:
         ipv4: 172.20.0.5/31
-      r7_to_r8:
+      vr7_to_vr8:
         ipv4: 172.20.0.37/31
-      r6_to_r7:
+      vr6_to_vr7:
         ipv4: 172.20.0.34/31
       vce2-5_to_vr7:
         ipv4: 192.168.0.89/30
@@ -148,9 +151,9 @@ nodes:
     bgp.rr: True
     vlans:
       vrr_to_vr1:
-        ipv4: 172.20.0.14/31
-      r8_r1:
-        ipv4: 172.20.0.18/31
+        ipv4: 172.20.0.66/31
+      vrr_to_vr2:
+        ipv4: 172.20.0.67/31
     loopback:
       ipv4: 172.16.0.8/32
       ipv6: fd00:172:16::172:16:0:8/128
