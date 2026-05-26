@@ -9,13 +9,13 @@ main() {
     done
 
     if [ -z "$1" ]; then
-        display_help
+        get_help
     else
         echo "Processing: $1"
     fi
 }
 
-help() {
+get_help() {
     echo "Usage: $0 [multi-lab number]"
     echo "Example: $0 21"
 }
