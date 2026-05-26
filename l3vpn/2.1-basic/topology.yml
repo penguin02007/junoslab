@@ -320,17 +320,17 @@ vlans:
 links:
   - vr1:
       ifindex: 0
-      name: r5->r6 (ae0)
+      name: vr1->vr2 (ae0)
       ipv4: False
     vr2:
       ifindex: 0
       name: r6->r5 (ae0)
       ipv4: False
-  - vr5:
+  - vr1:
       ifindex: 1
-      name: r5->r6 (ae0)
+      name: vr1->vr2 (ae0)
       ipv4: False
-    vr6:
+    vr2:
       ifindex: 1
       name: r6->r5 (ae0)
       ipv4: False
@@ -342,14 +342,6 @@ links:
       ifindex: 3
       name: r8->r1
       vlan.trunk: [ vr8_to_vr1 ]
-  - vr1:
-      ifindex: 1
-      name: r1->r2 (ae0)
-      ipv4: False
-    vr2:
-      ifindex: 1
-      name: r1->r2 (ae0)
-      ipv4: False
   - vr2:
       ifindex: 3
       name: r2->r3
