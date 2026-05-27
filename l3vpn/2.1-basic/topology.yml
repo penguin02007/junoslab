@@ -2,7 +2,7 @@ provider: clab
 defaults.device: vmx
 module: [ vlan ]
 
-bgp.as: 64000
+bgp.as: 54000
 bgp.activate.ipv4: []
 
 nodes:
@@ -78,6 +78,10 @@ nodes:
         ipv4: 192.168.0.73/30
       vce2-3_to_vr4:
         ipv4: 192.168.0.77/30
+      vdc2_to_vr4:
+        ipv4: 172.20.0.49/30
+      vdc2_to_vr4:
+        ipv4: 172.20.0.53/30
     loopback:
       ipv4: 172.16.0.4/32
       ipv6: fd00:172:16::172:16:0:4/128
@@ -91,6 +95,10 @@ nodes:
         ipv4: 172.20.0.30/31
       vce2-4_to_vr5:
         ipv4: 192.168.0.81/30
+      vdc2_to_vr5:
+        ipv4: 172.20.0.57/30
+      vdc3_to_vr5:
+        ipv4: 172.20.0.61/30
     loopback:
       ipv4: 172.16.0.5/32
       ipv6: fd00:172:16::172:16:0:5/128
@@ -151,8 +159,26 @@ nodes:
       vr10_to_vr2:
         ipv4: 172.20.0.70/31
     loopback:
-      ipv4: 172.16.0.8/32
-      ipv6: fd00:172:16::172:16:0:8/128
+      ipv4: 172.16.0.10/32
+      ipv6: fd00:172:16::172:16:0:10/128
+  vdc2:
+    id:12
+    mgmt.ifname: fxp0
+    module: [ vlan,bgp ]
+    vlans:
+      vdc2_to_vr4:
+        ipv4: 172.20.0.50/30
+      vdc2_to_vr5:
+        ipv4: 172.20.0.58/30
+  vdc3:
+    id:13
+    mgmt.ifname: fxp0
+    module: [ vlan,bgp ]
+    vlans:
+      vdc2_to_vr5:
+        ipv4: 172.20.0.54/30
+      vdc3_to_vr5:
+        ipv4: 172.20.0.62/30
   vce1-1:
     id: 111
     mgmt.ifname: fxp0
@@ -260,6 +286,15 @@ vlans:
     mode: route
   vr8_to_vr5:
     id: 158
+    mode: route
+  vdc2_to_vr4:
+    id: 202
+    mode: route
+  vdc3_to_vr4:
+    id: 203
+    mode: route
+  vdc3_to_vr5:
+    id: 205
     mode: route
   vr10_to_vr1:
     id: 206
@@ -490,6 +525,38 @@ links:
       ifindex: 5
       name: vce2-3->vr4
       vlan.trunk: [ vce2-3_to_vr4 ]
+  - vr4:
+      ifindex: 6
+      name: vr4->vdc2
+      vlan.trunk: [ vdc2_to_vr4 ]
+    vdc2:
+      ifindex: 1
+      name: vdc2->vr4
+      vlan.trunk: [ vdc2_to_vr4 ]
+  - vr4:
+      ifindex: 7
+      name: vr4->vdc3
+      vlan.trunk: [ vdc3_to_vr4 ]
+    vdc3:
+      ifindex: 1
+      name: vdc3->vr4
+      vlan.trunk: [ vdc3_to_vr4 ]
+  - vr5:
+      ifindex: 6
+      name: vr5->vdc2
+      vlan.trunk: [ vdc2_to_vr5 ]
+    vdc2:
+      ifindex: 2
+      name: vdc2->vr5
+      vlan.trunk: [ vdc2_to_vr5 ]
+  - vr5:
+      ifindex: 7
+      name: vr5->vdc3
+      vlan.trunk: [ vdc3_to_vr5 ]
+    vdc3:
+      ifindex: 2
+      name: vdc3->vr5
+      vlan.trunk: [ vdc3_to_vr5 ]
   - vr5:
       ifindex: 5
       name: vr5->vce2-4
