@@ -162,7 +162,7 @@ nodes:
       ipv4: 172.16.0.10/32
       ipv6: fd00:172:16::172:16:0:10/128
   vdc2:
-    id:12
+    id: 12
     mgmt.ifname: fxp0
     module: [ vlan,bgp ]
     vlans:
@@ -171,7 +171,7 @@ nodes:
       vdc2_to_vr5:
         ipv4: 172.20.0.58/30
   vdc3:
-    id:13
+    id: 13
     mgmt.ifname: fxp0
     module: [ vlan,bgp ]
     vlans:
