@@ -502,7 +502,7 @@ links:
       name: vce3-2->vr3
       vlan.trunk: [ vce3-2_to_vr3 ]
   - vr3:
-      ifindex: 6
+      ifindex: 8
       name: vr3->vce1-2
       vlan.trunk: [ vce1-2_to_vr3 ]
     vce1-2:
