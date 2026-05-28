@@ -149,7 +149,6 @@ nodes:
     id: 10
     mgmt.ifname: fxp0
     module: [ vlan,isis ]
-    bgp.rr: True
     vlans:
       vr10_to_vr1:
         ipv4: 172.20.0.66/31
