@@ -2,7 +2,9 @@ provider: clab
 defaults.device: vmx
 module: [ vlan ]
 
-bgp.as: 54000
+bgp:
+  as: 54000
+  rr: vr10
 bgp.activate.ipv4: []
 
 nodes:
@@ -164,7 +166,7 @@ nodes:
   vdc2:
     id: 12
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
+    module: [ vlan ]
     vlans:
       vdc2_to_vr4:
         ipv4: 172.20.0.50/30
@@ -173,7 +175,7 @@ nodes:
   vdc3:
     id: 13
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
+    module: [ vlan ]
     vlans:
       vdc2_to_vr5:
         ipv4: 172.20.0.54/30
