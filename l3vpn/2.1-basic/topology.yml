@@ -206,10 +206,7 @@ nodes:
         ipv4: 192.168.0.86/30
   vce2-1:
     id: 121
-    mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
-    bgp:
-      as: 64600    
+    mgmt.ifname: fxp0 
     vlans:
       vce2-1_to_vr1_1:
         ipv4: 192.168.0.42/30
@@ -220,9 +217,6 @@ nodes:
   vce2-2:
     id: 122
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
-    bgp:
-      as: 64600
     vlans:
       vce2-2_to_vr2_1:
         ipv4: 192.168.0.54/30
@@ -233,18 +227,12 @@ nodes:
   vce2-3:
     id: 123
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
-    bgp:
-      as: 64600
     vlans:
       vce2-3_to_vr4:
         ipv4: 192.168.0.78/30
   vce2-4:
     id: 124
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
-    bgp:
-      as: 64600
     vlans:
       vce2-4_to_vr5:
         ipv4: 192.168.0.82/30
@@ -260,9 +248,6 @@ nodes:
   vce3-1:
     id: 131
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
-    bgp:
-      as: 64601
     vlans:
       vce3-1_to_vr8:
         ipv4: 192.168.0.98/30
@@ -270,9 +255,6 @@ nodes:
   vce3-2:
     id: 132
     mgmt.ifname: fxp0
-    module: [ vlan,bgp ]
-    bgp:
-      as: 64601
     vlans:
       vce3-2_to_vr3:
         ipv4: 192.168.0.38/30
