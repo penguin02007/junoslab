@@ -1,7 +1,6 @@
 # /bin/bash
 
 main() {
-
     if [ -z "$1" ]; then
         get_help
     else
@@ -14,7 +13,6 @@ main() {
         done
     fi
 }
-
 get_help() {
     echo "Usage: $0 [multi-lab number]"
     echo "Example: $0 21"
