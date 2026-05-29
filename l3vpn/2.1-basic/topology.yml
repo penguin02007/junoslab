@@ -9,11 +9,11 @@ nodes:
     module: [ vlan,isis ]
     vlans:
       vr1_to_vr4:
-        ipv4: 172.20.0.41/30
+        ipv4: 172.20.0.40/31
       vr8_to_vr1:
-        ipv4: 172.20.0.17/30
+        ipv4: 172.20.0.16/31
       vr10_to_vr1:
-        ipv4: 172.20.0.64/30
+        ipv4: 172.20.0.64/31
       vce2-1_to_vr1_1:
         ipv4: 192.168.0.41/30
       vce2-1_to_vr1_2:
@@ -29,9 +29,9 @@ nodes:
     module: [ vlan,isis ]
     vlans:
       vr2_to_vr7:
-        ipv4: 172.20.0.4/30
+        ipv4: 172.20.0.4/31
       vr2_to_vr3:
-        ipv4: 172.20.0.21/30
+        ipv4: 172.20.0.20/31
       vce2-2_to_vr2_1:
         ipv4: 192.168.0.53/30
       vce2-2_to_vr2_2:
@@ -39,7 +39,7 @@ nodes:
       vce2-2_to_vr2_3:
         ipv4: 192.168.0.61/30
       vr10_to_vr2:
-        ipv4: 172.20.0.66/30
+        ipv4: 172.20.0.66/31
     loopback:
       ipv4: 172.16.0.2/32
       ipv6: fd00:172:16::172:16:0:2/128
@@ -48,11 +48,11 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       vr3_to_vr6:
-        ipv4: 172.20.0.9/30
+        ipv4: 172.20.0.8/31
       vr2_to_vr3:
-        ipv4: 172.20.0.22/30
+        ipv4: 172.20.0.21/31
       vr3_to_vr4:
-        ipv4: 172.20.0.25/30
+        ipv4: 172.20.0.25/31
       vce3-2_to_vr3:
         ipv4: 192.168.0.37/30
         ipv6: fc09:c0:ffee::9/126
@@ -66,11 +66,11 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       vr1_to_vr4:
-        ipv4: 172.20.0.42/30
+        ipv4: 172.20.0.41/31
       vr3_to_vr4:
-        ipv4: 172.20.0.26/30
+        ipv4: 172.20.0.24/31
       vr4_to_vr5:
-        ipv4: 172.20.0.29/30
+        ipv4: 172.20.0.28/31
       vce1-3_to_vr4:
         ipv4: 192.168.0.73/30
       vce2-3_to_vr4:
@@ -87,9 +87,9 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       vr8_to_vr5:
-        ipv4: 172.20.0.13/30
+        ipv4: 172.20.0.13/31
       vr4_to_vr5:
-        ipv4: 172.20.0.30/30
+        ipv4: 172.20.0.29/31
       vce2-4_to_vr5:
         ipv4: 192.168.0.81/30
       vdc2_to_vr5:
@@ -104,7 +104,7 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       vr3_to_vr6:
-        ipv4: 172.20.0.10/30
+        ipv4: 172.20.0.9/31
       vr6_to_vr7:
         ipv4: 172.20.0.33/30
       vce1-4_to_vr6:
@@ -117,11 +117,11 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       vr2_to_vr7:
-        ipv4: 172.20.0.5/30
+        ipv4: 172.20.0.5/31
       vr7_to_vr8:
-        ipv4: 172.20.0.37/30
+        ipv4: 172.20.0.37/31
       vr6_to_vr7:
-        ipv4: 172.20.0.34/30
+        ipv4: 172.20.0.33/31
       vce2-5_to_vr7:
         ipv4: 192.168.0.89/30
     loopback:
@@ -132,11 +132,11 @@ nodes:
     mgmt.ifname: fxp0
     vlans:
       vr8_to_vr5:
-        ipv4: 172.20.0.14/30
+        ipv4: 172.20.0.12/31
       vr8_to_vr1:
-        ipv4: 172.20.0.18/30
+        ipv4: 172.20.0.17/31
       vr7_to_vr8:
-        ipv4: 172.20.0.38/30
+        ipv4: 172.20.0.36/31
       vce1-1_to_vr8:
         ipv4: 192.168.0.93/30
       vce3-1_to_vr8:
@@ -151,9 +151,9 @@ nodes:
     module: [ vlan,isis ]
     vlans:
       vr10_to_vr1:
-        ipv4: 172.20.0.65/30
+        ipv4: 172.20.0.65/31
       vr10_to_vr2:
-        ipv4: 172.20.0.67/30
+        ipv4: 172.20.0.67/31
     loopback:
       ipv4: 172.16.0.10/32
       ipv6: fd00:172:16::172:16:0:10/128
