@@ -1,6 +1,7 @@
 provider: clab
 defaults.device: vmx
 module: [ vlan ]
+isis.type: level-1
 
 nodes:
   vr1:
