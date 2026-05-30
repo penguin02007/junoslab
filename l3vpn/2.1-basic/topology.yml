@@ -46,6 +46,7 @@ nodes:
   vr3:
     id: 3
     mgmt.ifname: fxp0
+    module: [ vlan,isis ]
     vlans:
       vr3_to_vr6:
         ipv4: 172.20.0.8/31
@@ -64,6 +65,7 @@ nodes:
   vr4:
     id: 4
     mgmt.ifname: fxp0
+    module: [ vlan,isis ]
     vlans:
       vr1_to_vr4:
         ipv4: 172.20.0.41/31
@@ -85,6 +87,7 @@ nodes:
   vr5:
     id: 5
     mgmt.ifname: fxp0
+    module: [ vlan,isis ]
     vlans:
       vr8_to_vr5:
         ipv4: 172.20.0.13/31
@@ -102,6 +105,7 @@ nodes:
   vr6:
     id: 6
     mgmt.ifname: fxp0
+    module: [ vlan,isis ]
     vlans:
       vr3_to_vr6:
         ipv4: 172.20.0.9/31
@@ -115,6 +119,7 @@ nodes:
   vr7:
     id: 7
     mgmt.ifname: fxp0
+    module: [ vlan,isis ]
     vlans:
       vr2_to_vr7:
         ipv4: 172.20.0.5/31
@@ -130,6 +135,7 @@ nodes:
   vr8:
     id: 8
     mgmt.ifname: fxp0
+    module: [ vlan,isis ]
     vlans:
       vr8_to_vr5:
         ipv4: 172.20.0.12/31
