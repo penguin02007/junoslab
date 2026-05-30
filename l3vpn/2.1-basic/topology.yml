@@ -21,10 +21,10 @@ nodes:
         ipv4: 192.168.0.45/30 
       vce2-1_to_vr1_3:
         ipv4: 192.168.0.49/30
-      vr21_to_vr1:
+      vix1_to_vr1:
         ipv4: 192.168.1.1/24
-      vr22_to_vr1:
-        ipv4: 192.168.1.2/24
+      vix2_to_vr1:
+        ipv4: 192.168.1.3/24
     loopback:
       ipv4: 172.16.0.1/32
       ipv6: fd00:172:16::172:16:0:1/128
@@ -45,6 +45,10 @@ nodes:
         ipv4: 192.168.0.61/30
       vr10_to_vr2:
         ipv4: 172.20.0.66/31
+      vix1_to_vr2:
+        ipv4: 192.168.1.2/24
+      vix2_to_vr2:
+        ipv4: 192.168.1.4/24
     loopback:
       ipv4: 172.16.0.2/32
       ipv6: fd00:172:16::172:16:0:2/128
@@ -184,7 +188,7 @@ nodes:
         ipv4: 172.20.0.54/30
       vdc3_to_vr5:
         ipv4: 172.20.0.62/30
-  vr21:
+  vix1:
     id: 21
     mgmt.ifname: fxp0
     module: [ vlan,bgp ]
@@ -192,9 +196,11 @@ nodes:
       as: 1620
       sessions: ebgp
     vlans:
-      vr21_to_vr1:
-        ipv4: 192.168.1.3/24
-  vr22:
+      vix1_to_vr1:
+        ipv4: 192.168.1.11/24
+      vix1_to_vr2:
+        ipv4: 192.168.1.13/24
+  vix2:
     id: 22
     mgmt.ifname: fxp0
     module: [ vlan,bgp ]
@@ -202,8 +208,10 @@ nodes:
       as: 1620
       sessions: ebgp
     vlans:
-      vr22_to_vr1:
-        ipv4: 192.168.1.4/24
+      vix2_to_vr1:
+        ipv4: 192.168.1.12/24
+      vix2_to_vr2:
+        ipv4: 192.168.1.14/24
   vce1-1:
     id: 111
     mgmt.ifname: fxp0
@@ -328,10 +336,16 @@ vlans:
   vr10_to_vr2:
     id: 207
     mode: route
-  vr21_to_vr1:
+  vix1_to_vr1:
     id: 300
     mode: route
-  vr22_to_vr1:
+  vix2_to_vr1:
+    id: 300
+    mode: route
+  vix1_to_vr2:
+    id: 300
+    mode: route
+  vix2_to_vr2:
     id: 300
     mode: route
 # 15 PE to CE links
@@ -383,131 +397,131 @@ vlans:
 links:
   - vr1:
       ifindex: 0
-      name: vr1->vr2 (ae0)
+      name: vR1->vR2 (ae0)
       ipv4: False
     vr2:
       ifindex: 0
-      name: r6->r5 (ae0)
+      name: vR6->vR5 (ae0)
       ipv4: False
   - vr1:
       ifindex: 1
-      name: vr1->vr2 (ae0)
+      name: vr1->vR2 (ae0)
       ipv4: False
     vr2:
       ifindex: 1
-      name: r6->r5 (ae0)
+      name: vR6->vR5 (ae0)
       ipv4: False
   - vr1:
       ifindex: 3
-      name: r1->r8
+      name: vR1->rR8
       vlan.trunk: [ vr8_to_vr1 ]
     vr8:
       ifindex: 3
-      name: r8->r1
+      name: vR8->rR1
       vlan.trunk: [ vr8_to_vr1 ]
   - vr2:
       ifindex: 3
-      name: r2->r3
+      name: vR2->rR3
       vlan.trunk: [ vr2_to_vr3 ]
     vr3:
       ifindex: 3
-      name: r3->r2
+      name: vR3->rR2
       vlan.trunk: [ vr2_to_vr3 ]
   - vr2:
       ifindex: 4
-      name: r2->r7
+      name: vR2->rR7
       vlan.trunk: [ vr2_to_vr7 ]
     vr7:
       ifindex: 4
-      name: r7->r2
+      name: vR7->rR2
       vlan.trunk: [ vr2_to_vr7 ]
   - vr3:
       ifindex: 2
-      name: r3->r4
+      name: vR3->rR4
       vlan.trunk: [ vr3_to_vr4 ]
     vr4:
       ifindex: 2
-      name: r4->r3
+      name: vR4->rR3
       vlan.trunk: [ vr3_to_vr4 ]
   - vr3:
       ifindex: 4
-      name: r3->r6
+      name: vR3->rR6
       vlan.trunk: [ vr3_to_vr6 ]
     vr6:
       ifindex: 4
-      name: r6->r3
+      name: vR6->rR3
       vlan.trunk: [ vr3_to_vr6 ]
   - vr4:
       ifindex: 4
-      name: r4->r1
+      name: vR4->rR1
       vlan.trunk: [ vr1_to_vr4 ]
     vr1:
       ifindex: 4
-      name: r1->r4
+      name: vR1->rR4
       vlan.trunk: [ vr1_to_vr4 ]
   - vr4:
       ifindex: 3
-      name: r4->r5
+      name: vR4->rR5
       vlan.trunk: [ vr4_to_vr5 ]
     vr5:
       ifindex: 3
-      name: r5->r4
+      name: vR5->rR4
       vlan.trunk: [ vr4_to_vr5 ]
   - vr5:
       ifindex: 4
-      name: r5->r8
+      name: vR5->rR8
       vlan.trunk: [ vr8_to_vr5 ]
     vr8:
       ifindex: 4
-      name: r8->r5
+      name: vR8->rR5
       vlan.trunk: [ vr8_to_vr5 ]
   - vr5:
       ifindex: 0
-      name: r5->r6 (ae0)
+      name: vR5->rR6 (ae0)
       ipv4: False
     vr6:
       ifindex: 0
-      name: r6->r5 (ae0)
+      name: vR6->vR5 (ae0)
       ipv4: False
   - vr5:
       ifindex: 1
-      name: r5->r6 (ae0)
+      name: vR5->vR6 (ae0)
       ipv4: False
     vr6:
       ifindex: 1
-      name: r6->r5 (ae0)
+      name: vR6->vR5 (ae0)
       ipv4: False
   - vr6:
       ifindex: 3
-      name: r6->r7
+      name: vR6->vr7
       vlan.trunk: [ vr6_to_vr7 ]
     vr7:
       ifindex: 3
-      name: r7->r6
+      name: vR7->vR6
       vlan.trunk: [ vr6_to_vr7 ]
   - vr7:
       ifindex: 2
-      name: r7->r8
+      name: vR7->vR8
       vlan.trunk: [ vr7_to_vr8 ]
     vr8:
       ifindex: 2
-      name: r8->r7
+      name: vR8->vR7
       vlan.trunk: [ vr7_to_vr8 ]
   - vr1:
       ifindex: 6
-      name: vr1->vr10
+      name: vR1->vR10
       vlan.trunk: [ vr10_to_vr1 ]
     vr10:
       ifindex: 6
-      name: vr10->vr1
+      name: vR10->vR1
       vlan.trunk: [ vr10_to_vr1 ]
   - vr2:
       ifindex: 7
-      name: vr2->vr10
+      name: vR2->vR10
       vlan.trunk: [ vr10_to_vr2 ]
     vr10:
       ifindex: 7
-      name: vr10->vr2
+      name: vR10->vR2
       vlan.trunk: [ vr10_to_vr2 ]
   - vr1:
       ifindex: 5
@@ -629,6 +643,38 @@ links:
       ifindex: 6
       name: vce3-1->vr8
       vlan.trunk: [ vce3-1_to_vr8 ]
+  - vix1:
+      ifindex: 6
+      name: vIX1->vr1
+      vlan.trunk: [ vix1_to_vr1 ]
+    vr1:
+      ifindex: 6
+      name: vr1->vIX1
+      vlan.trunk: [ vix1_to_vr1 ]
+  - vix1:
+      ifindex: 7
+      name: vIX1->vr2
+      vlan.trunk: [ vix1_to_vr2 ]
+    vr2:
+      ifindex: 6
+      name: vr2->vIX1
+      vlan.trunk: [ vix1_to_vr2 ]
+  - vix2:
+      ifindex: 7
+      name: vIX2->vr1
+      vlan.trunk: [ vix2_to_vr1 ]
+    vr1:
+      ifindex: 7
+      name: vr1->vIX2
+      vlan.trunk: [ vix2_to_vr1 ]
+  - vix2:
+      ifindex: 6
+      name: vIX2->vr2
+      vlan.trunk: [ vix2_to_vr2 ]
+    vr2:
+      ifindex: 7
+      name: vr2->vIX2
+      vlan.trunk: [ vix2_to_vr2 ]
 addressing:
   loopback:
     ipv4: 172.16.0.0/24
