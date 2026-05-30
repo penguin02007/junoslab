@@ -21,6 +21,10 @@ nodes:
         ipv4: 192.168.0.45/30 
       vce2-1_to_vr1_3:
         ipv4: 192.168.0.49/30
+      vr21_to_vr1:
+        ipv4: 192.168.1.1/24
+      vr22_to_vr1:
+        ipv4: 192.168.1.2/24
     loopback:
       ipv4: 172.16.0.1/32
       ipv6: fd00:172:16::172:16:0:1/128
@@ -175,12 +179,31 @@ nodes:
   vdc3:
     id: 13
     mgmt.ifname: fxp0
-
     vlans:
       vdc2_to_vr5:
         ipv4: 172.20.0.54/30
       vdc3_to_vr5:
         ipv4: 172.20.0.62/30
+  vr21:
+    id: 21
+    mgmt.ifname: fxp0
+    module: [ vlan,bgp ]
+    bgp:
+      as: 1620
+      sessions: ebgp
+    vlans:
+      vr21_to_vr1:
+        ipv4: 192.168.1.3/24
+  vr22:
+    id: 22
+    mgmt.ifname: fxp0
+    module: [ vlan,bgp ]
+    bgp:
+      as: 1620
+      sessions: ebgp
+    vlans:
+      vr22_to_vr1:
+        ipv4: 192.168.1.4/24
   vce1-1:
     id: 111
     mgmt.ifname: fxp0
@@ -304,6 +327,12 @@ vlans:
     mode: route
   vr10_to_vr2:
     id: 207
+    mode: route
+  vr21_to_vr1:
+    id: 300
+    mode: route
+  vr22_to_vr1:
+    id: 300
     mode: route
 # 15 PE to CE links
   vce2-1_to_vr1_1:
