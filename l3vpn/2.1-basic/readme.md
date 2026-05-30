@@ -7,4 +7,7 @@
 
 # Lab Question
 1. Validate core and ce interfaces.  `show interface desc`
+2. Troubleshoot the following:
+  - Ensure isis adjacency are up.
+  - Ensure iBGP sessions are up in vRR.
 2. Configure BGP VPNv4 address family on all routers.
