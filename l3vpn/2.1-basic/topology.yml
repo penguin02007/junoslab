@@ -194,7 +194,6 @@ nodes:
     module: [ vlan,bgp ]
     bgp:
       as: 1620
-      sessions: ebgp
     vlans:
       vix1_to_vr1:
         ipv4: 192.168.1.11/24
@@ -206,7 +205,6 @@ nodes:
     module: [ vlan,bgp ]
     bgp:
       as: 1620
-      sessions: ebgp
     vlans:
       vix2_to_vr1:
         ipv4: 192.168.1.12/24
