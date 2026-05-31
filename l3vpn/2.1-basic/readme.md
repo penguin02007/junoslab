@@ -9,6 +9,6 @@
 1. Validate core and ce interfaces.  `show interface desc`
 2. Troubleshoot the following:
   - Ensure ISIS adjacency are up, all routers should have 34 adjacencies except for vr1 and vr2 that should have 4. `show isis adjacency | match Up | count `
-  - Ensure iBGP sessions are up in vRR.
+  - Ensure 8 iBGP sessions are up in vRR. `show bgp summary | match Est | count`
   - Ensure LDP sessions are up on all routers.
 2. Configure BGP VPNv4 address family on all routers.
