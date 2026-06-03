@@ -1,0 +1,31 @@
+provider: clab
+defaults.device: vmx
+mgmt.ifname: fxp0
+module: [ isis, mpls, bgp ]
+bgp.as: 65000
+mpls.bgp:
+  ipv4: True
+  explicit_null: True
+
+nodes:
+  vr1:
+  vr2:
+  vr3:
+  vr4:
+  vr5:
+
+links:
+- vr1-vr2
+- vr2-vr3
+- vr3-vr4
+- vr4-vr1
+- vr1-vr3
+- vr2-vr4
+
+addressing:
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 172.16.16.0/24
+    prefix: 31
