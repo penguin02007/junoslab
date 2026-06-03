@@ -1,6 +1,6 @@
 provider: clab
 defaults.device: vmx
-module: [ isis, mpls, bgp ]
+module: [ isis, mpls ]
 bgp.as: 65000
 mpls.bgp:
   ipv4: True
