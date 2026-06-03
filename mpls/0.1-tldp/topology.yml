@@ -1,14 +1,11 @@
 provider: clab
 defaults.device: vmx
 module: [ isis, mpls ]
-bgp.as: 65000
-
 nodes:
   vr1:
   vr2:
   vr3:
   vr4:
-
 links:
 - vr1-vr2
 - vr2-vr3
@@ -16,7 +13,6 @@ links:
 - vr4-vr1
 - vr1-vr3
 - vr2-vr4
-
 addressing:
   loopback:
     ipv4: 172.16.0.0/24
