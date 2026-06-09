@@ -506,19 +506,19 @@ links:
       name: vR8->vR7
       vlan.trunk: [ vr7_to_vr8 ]
   - vr1:
-      ifindex: 6
+      ifindex: 8
       name: vR1->vR10
       vlan.trunk: [ vr10_to_vr1 ]
     vr10:
-      ifindex: 6
+      ifindex: 8
       name: vR10->vR1
       vlan.trunk: [ vr10_to_vr1 ]
   - vr2:
-      ifindex: 7
+      ifindex: 9
       name: vR2->vR10
       vlan.trunk: [ vr10_to_vr2 ]
     vr10:
-      ifindex: 7
+      ifindex: 9
       name: vR10->vR2
       vlan.trunk: [ vr10_to_vr2 ]
   - vr1:
