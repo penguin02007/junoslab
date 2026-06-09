@@ -9,7 +9,6 @@
 This tutorial demonstrate how to construct a dedicated **Route Generator (Injector)** using Junos OS to broadcast an internet snapshot . This recreate attribute such as MED, mixed AS paths, and distinct BGP Origin.
 
 ## 2. Configuration
-Define Local Rib-In.
 
 ### 2.1 Define Local Rib-In
 ```
@@ -1831,7 +1830,7 @@ set term AS_223_160 then accept
 set term DENY_REST then reject
 ```
 
-### 2.3 ebgp peers
+### 2.3 ebgp peer
 ```
 top
 set routing-options autonomous-system 1620
