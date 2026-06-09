@@ -1,4 +1,17 @@
-1. Define Local Rib-In Anchor.
+## Table of Contents
+- [1. Overview](#1-overview)
+- [2. Configuration](#2-configuration)
+  - [2.1 Define Local Rib-In](#21-define-local-rib-in)
+  - [2.2 Export Policies](#22-export-policies)
+  - [2.3 eBGP Peer](#23-ebgp-peer)
+ 
+## 1. Overview
+This tutorial demonstrate how to construct a dedicated **Route Generator (Injector)** using Junos OS to broadcast an internet snapshot . This recreate attribute such as MED, mixed AS paths, and distinct BGP Origin.
+
+## 2. Configuration
+Define Local Rib-In.
+
+### 2.1 Define Local Rib-In
 ```
 top
 edit routing-options static
@@ -369,7 +382,7 @@ set route 222.99.79.0/24 discard
 set route 223.151.0.0/16 discard
 set route 223.160.0.0/11 discard
 ```
-
+### 2.2 Export policies
 ```
 top
 edit policy-options policy-statement INJECT_INTERNET
@@ -1818,6 +1831,7 @@ set term AS_223_160 then accept
 set term DENY_REST then reject
 ```
 
+### 2.3 ebgp peers
 ```
 top
 set routing-options autonomous-system 1620
