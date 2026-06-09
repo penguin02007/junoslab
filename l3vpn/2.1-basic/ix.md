@@ -1,5 +1,6 @@
 1. Define Local Rib-In Anchor.
 ```
+top
 edit routing-options static
 set route 19.103.96.0/20 discard
 set route 20.67.16.0/20 discard
@@ -370,6 +371,7 @@ set route 223.160.0.0/11 discard
 ```
 
 ```
+top
 edit policy-options policy-statement INJECT_INTERNET
 # Baseline rule: Match everything, set MED (Metric), set default origin code to IGP
 set term BASELINE from protocol static
