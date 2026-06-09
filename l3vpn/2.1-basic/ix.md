@@ -1834,8 +1834,8 @@ set term DENY_REST then reject
 ```
 top
 set routing-options autonomous-system 1620
-set protocols bgp bgp group pe type external
-set protocols bgp bgp group pe peer-as 54000
-set protocols bgp bgp group pe neighbor 192.168.1.1 export INJECT_INTERNET
-set protocols bgp bgp group pe neighbor 192.168.1.2 export INJECT_INTERNET
+set protocols bgp group pe type external
+set protocols bgp group pe peer-as 54000
+set protocols bgp group pe neighbor 192.168.1.1 export INJECT_INTERNET
+set protocols bgp group pe neighbor 192.168.1.2 export INJECT_INTERNET
 ```
