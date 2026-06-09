@@ -1816,10 +1816,13 @@ set term AS_223_160 then as-path-prepend "33003 5697 56469 27842 11580"
 set term AS_223_160 then accept
 
 set term DENY_REST then reject
+```
+
+```
 top
 set routing-options autonomous-system 1620
 set protocols bgp bgp group pe type external
 set protocols bgp bgp group pe peer-as 54000
 set protocols bgp bgp group pe neighbor 192.168.1.1 export INJECT_INTERNET
+set protocols bgp bgp group pe neighbor 192.168.1.2 export INJECT_INTERNET
 ```
-
