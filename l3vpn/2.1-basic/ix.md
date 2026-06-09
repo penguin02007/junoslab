@@ -1,6 +1,6 @@
 1. Define Local Rib-In Anchor.
 ```
-[edit routing-options static]
+edit routing-options static
 set route 19.103.96.0/20 discard
 set route 20.67.16.0/20 discard
 set route 22.32.0.0/11 discard
@@ -370,8 +370,7 @@ set route 223.160.0.0/11 discard
 ```
 
 ```
-[edit policy-options policy-statement INJECT_INTERNET]
-
+edit policy-options policy-statement INJECT_INTERNET
 # Baseline rule: Match everything, set MED (Metric), set default origin code to IGP
 set term BASELINE from protocol static
 set term BASELINE then metric 1620
@@ -1815,7 +1814,7 @@ set term AS_223_160 then as-path-prepend "33003 5697 56469 27842 11580"
 set term AS_223_160 then accept
 
 set term DENY_REST then reject
-
+top
 set routing-options autonomous-system 1620
 set protocols bgp bgp group pe type external
 set protocols bgp bgp group pe peer-as 54000
