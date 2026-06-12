@@ -17,7 +17,7 @@ for i in {1..8}; do
 done
 
 for vmx in vce1-1 vce1-2 vce1-3 vce1-4 vce2-1 vce2-2 vce2-3 vce2-4 vce2-5 vce3-1 vce3-2; do
-    echo "Downloading configuration for vMX $vmx..."
+    echo "Downloading configuration for $vmx..."
     
     # Using sshpass to pull the configuration
     sshpass -p 'admin@123' scp "admin@clab-ml_$ml-$vmx:/config/juniper.conf.gz" "$vmx.xml.conf.gz"
