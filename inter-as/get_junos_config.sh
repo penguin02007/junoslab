@@ -12,7 +12,7 @@ get_help() {
 if [ -z "$1" ]; then
     get_help
 else
-    for i in {1..8}; do
+    for i in {1..8} 10; do
         vmx="$i"
         echo "Downloading configuration for vMX $vmx..."
         
