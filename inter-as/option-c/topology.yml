@@ -8,46 +8,44 @@ vrfs:
   green:
   blue:
   yellow:
-# mpls.ldp: True
-# mpls.vpn: True
-
+mpls.ldp: True
+mpls.vpn: ibgp
+bgp:
+  as_list:
+    65000:
+      members: [ vrr1, vrr2, vr1, vr2, vr3, vr4, vr5, vr6, vr7 ]    
+      rr: [ vrr1, vrr2 ]
+    65001:
+      members: [ vr8,vr9 ]
 nodes:
   vr1:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf, mpls ]
   vr2:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf, mpls ]
   vr3:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ ospf, isis, bgp, vrf, mpls ]
   vr4:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf, mpls ]
   vr5:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf, mpls ]
   vr6:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf, mpls ]
   vr7:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf, mpls ]
   vr8:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65001
+    module: [ isis, bgp, vrf, mpls ]
   vr9:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65001
+    module: [ isis, bgp, vrf, mpls ]
   vrr1:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf ]
+    bgp.rr: True
   vrr2:
-    module: [ isis,bgp,vrf ]
-    bgp.as: 65000
+    module: [ isis, bgp, vrf ]
+    bgp.rr: True
   vce1:
   vce2:
   vce3:
+    module: [ ospf ]
   vce4:
   vce5:
   vce6:
@@ -58,7 +56,6 @@ nodes:
   vix1:
   vix2:
   vtransit:
-
 links:
 - vr1: { vrf: green }
   vce2:
@@ -84,7 +81,7 @@ links:
 - vr6: { vrf: blue }
   vr8:
 - vr6-vcgnat
-- vr1-vrr2
+- vr6-vrr2
 - vr7-vr4
 - vr7: { vrf: blue }
   vr9:
