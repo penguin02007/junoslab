@@ -14,7 +14,7 @@ bgp:
   rr_mesh: False
   as_list:
     65000:
-      members: [ vrr1, vrr2, vr* ]    
+      members: [ vrr1, vrr2, vr1, vr2, vr3, vr4, vr5, vr6, vr7 ]    
       rr: [ vrr* ]
     65001:
       members: [ vr8,vr9 ]
