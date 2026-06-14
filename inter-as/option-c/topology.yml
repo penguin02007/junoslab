@@ -8,9 +8,8 @@ vrfs:
   green:
   blue:
   yellow:
-  
-mpls.ldp: True
-mpls.vpn: True
+# mpls.ldp: True
+# mpls.vpn: True
 
 nodes:
   vr1:
