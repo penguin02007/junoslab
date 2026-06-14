@@ -1,0 +1,105 @@
+provider: clab
+defaults.device: vmx
+defaults.devices.vmx.mgmt.ifname: fxp0
+isis.type: level-1
+
+vrfs:
+  red:
+  green:
+  blue:
+  yellow:
+  
+mpls.ldp: True
+mpls.vpn: True
+
+nodes:
+  vr1:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr2:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr3:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr4:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr5:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr6:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr7:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vr8:
+    module: [ isis,bgp ]
+    bgp.as: 65001
+  vr9:
+    module: [ isis,bgp ]
+    bgp.as: 65001
+  vrr1:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vrr2:
+    module: [ isis,bgp ]
+    bgp.as: 65000
+  vce1:
+  vce2:
+  vce3:
+  vce4:
+  vce5:
+  vce6:
+  vce7:
+  vce8:
+  vce9:
+  vcgnat:
+  vix1:
+  vix2:
+  vtransit:
+
+links:
+- vr1: { vrf: green }
+  vce2:
+- vr1:
+  vce1:
+- vr1-vr2
+- vr1-vr3
+- vr1-vrr1
+- vr2: { vrf: red }
+  vce4:
+- vr2:  { vrf: yellow }
+  vce5:
+- vr2-vr3
+- vr2-vr4
+- vr3-vr4
+- vr3-vr5
+- vr4-vr6
+- vr6-vr7
+- vr6: { vrf: red }
+  vce6:
+- vr6:
+  vce7:
+- vr6: { vrf: blue }
+  vr8:
+- vr6-vcgnat
+- vr1-vrr2
+- vr7-vr4
+- vr7: { vrf: blue }
+  vr9:
+- vr8-vr9
+- vr8-vtransit
+- vr8: { vrf: blue }
+  vce9:
+- vr9-vix1
+- vr9-vix2
+
+addressing:
+  loopback:
+    ipv4: 10.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 10.16.1.0/24
+    prefix: 31
