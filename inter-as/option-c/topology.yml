@@ -11,10 +11,11 @@ vrfs:
 mpls.ldp: True
 mpls.vpn: [ ibgp ] 
 bgp:
+  rr_mesh: False
   as_list:
     65000:
-      members: [ vrr1, vrr2, vr1, vr2, vr3, vr4, vr5, vr6, vr7 ]    
-      rr: [ vrr1, vrr2 ]
+      members: [ vrr1, vrr2, vr* ]    
+      rr: [ vrr* ]
     65001:
       members: [ vr8,vr9 ]
 nodes:
@@ -52,6 +53,8 @@ nodes:
   vce7:
   vce8:
   vce9:
+  vce10:
+  vce11:
   vcgnat:
   vix1:
   vix2:
@@ -72,19 +75,29 @@ links:
 - vr2-vr4
 - vr3-vr4
 - vr3-vr5
+- vr3:  { vrf: blue }
+  vce11:
+- vr3:  { vrf: red }
+  vce3:
+- vr3:
+  vce7:
 - vr4-vr6
 - vr6-vr7
 - vr6: { vrf: red }
   vce6:
 - vr6:
   vce7:
+- vr6:
+  vce8:
 - vr6: { vrf: blue }
-  vr8:
+  vr8: { vrf: blue }
 - vr6-vcgnat
 - vr6-vrr2
 - vr7-vr4
+- vr7:
+  vce7:
 - vr7: { vrf: blue }
-  vr9:
+  vr9: { vrf: blue }
 - vr8-vr9
 - vr8-vtransit
 - vr8: { vrf: blue }
