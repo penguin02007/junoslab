@@ -18,6 +18,7 @@ bgp:
       members: [ vrr1, vrr2, vr1, vr2, vr3, vr4, vr5, vr6, vr7 ]
     65001:
       members: [ vr8,vr9 ]
+
 nodes:
   vr1:
     module: [ isis, bgp, vrf, mpls ]
@@ -26,9 +27,9 @@ nodes:
   vr3:
     module: [ ospf, isis, bgp, vrf, mpls ]
   vr4:
-    module: [ isis, bgp, vrf, mpls ]
+    module: [ isis, bgp, mpls ]
   vr5:
-    module: [ isis, bgp, vrf, mpls ]
+    module: [ isis, bgp, mpls ]
   vr6:
     module: [ isis, bgp, vrf, mpls ]
   vr7:
@@ -38,10 +39,10 @@ nodes:
   vr9:
     module: [ isis, bgp, vrf, mpls ]
   vrr1:
-    module: [ isis, bgp, vrf ]
+    module: [ isis, bgp ]
     bgp.rr: True
   vrr2:
-    module: [ isis, bgp, vrf ]
+    module: [ isis, bgp ]
     bgp.rr: True
   vce1:
   vce2:
@@ -59,6 +60,7 @@ nodes:
   vix1:
   vix2:
   vtransit:
+
 links:
 - vr1: { vrf: green }
   vce2:
