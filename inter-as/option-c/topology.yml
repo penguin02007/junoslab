@@ -14,37 +14,37 @@ mpls.vpn: True
 
 nodes:
   vr1:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr2:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr3:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr4:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr5:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr6:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr7:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vr8:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65001
   vr9:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65001
   vrr1:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vrr2:
-    module: [ isis,bgp ]
+    module: [ isis,bgp,vrf ]
     bgp.as: 65000
   vce1:
   vce2:
