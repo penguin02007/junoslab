@@ -11,7 +11,7 @@ vrfs:
 mpls.ldp: True
 mpls.vpn: [ ibgp ] 
 bgp:
-  rr_mesh: False
+#  rr_mesh: False
   rr_list: [ vrr* ]
   as_list:
     65000:
