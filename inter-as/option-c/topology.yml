@@ -9,7 +9,7 @@ vrfs:
   blue:
   yellow:
 mpls.ldp: True
-mpls.vpn: ibgp
+mpls.vpn: [ ibgp ] 
 bgp:
   as_list:
     65000:
