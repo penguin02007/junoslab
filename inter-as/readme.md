@@ -3,7 +3,7 @@
 
 # Tasks
 
-1. Configure  Route Reflector to participate in  exchange of Layer 3 VPN routing information. Do not enable MPLS signaling protocols.
+1. Configure route reflector to participate in  exchange of Layer 3 VPN routing information. Do not enable MPLS.
 2. Implement TCP Authentication Option to secure the active BGP peering session established between vrr1 and vr3 with algorithm aes-sha-1-96.
 3. Configure kompella L2VPN in vr1,vr2 and vr7. 
 
