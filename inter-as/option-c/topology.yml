@@ -15,7 +15,7 @@ bgp:
   as_list:
     65000:
       members: [ vrr1, vrr2, vr1, vr2, vr3, vr4, vr5, vr6, vr7 ]    
-      rr: [ vrr* ]
+  rr_list: [ vrr* ]
     65001:
       members: [ vr8,vr9 ]
 nodes:
