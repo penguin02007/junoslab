@@ -26,8 +26,8 @@ set routing-instances yellow protocols vpls no-tunnel-services
 set protocols bgp bgp group ibgp family l2vpn signaling
 ```
 
-[!WARNING]
-The no-tunnel-services option enables a virtual labeled switched interface (LSI) for additional lookup. In the case with VPLS, this lookup is in the MAC table. A unique LSI interface is created for each remote site. On MX devices, this command must be configured for VPLS!
+> [!IMPORTANT]
+> The no-tunnel-services option enables a virtual labeled switched interface (LSI) for additional lookup. In the case with VPLS, this lookup is in the MAC table. A unique LSI interface is created for each remote site. On MX devices, this command must be configured for VPLS!
 
 ## Verification
 ```
