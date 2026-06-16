@@ -7,3 +7,4 @@ netlab.*
 group_vars/
 host_vars/
 ansible.cfg
+node_files/
