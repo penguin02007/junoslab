@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ml="$1"
 state="$2"
 
@@ -17,7 +16,7 @@ else
         echo "Downloading configuration for vMX $vmx..."
         
         # Using sshpass to pull the configuration
-        sshpass -p 'admin@123' scp "admin@clab-ml_$ml-vr$vmx:/config/juniper.conf.gz" "vr$vmx.xml.conf.gz"
+        sshpass -p 'admin@123' scp "admin@clab-ml-$ml-vr$vmx:/config/juniper.conf.gz" "vr$vmx.xml.conf.gz"
         
         # Decompressing and clean up
         gunzip -c "vr$vmx.xml.conf.gz" > "vr$vmx-$state.conf"
@@ -28,7 +27,7 @@ else
         echo "Downloading configuration for $vmx..."
         
         # Using sshpass to pull the configuration
-        sshpass -p 'admin@123' scp "admin@clab-ml_$ml-$vmx:/config/juniper.conf.gz" "$vmx.xml.conf.gz"
+        sshpass -p 'admin@123' scp "admin@clab-ml-$ml-$vmx:/config/juniper.conf.gz" "$vmx.xml.conf.gz"
         
         # Decompressing and clean up
         gunzip -c "$vmx.xml.conf.gz" > "$vmx-$state.conf"
