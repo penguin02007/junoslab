@@ -30,7 +30,7 @@ else
         
         # pull config and clean up
         gunzip -c "$vmx.xml.conf.gz" > "$vmx-$state.conf"
-        sed -i '/Last changed/d' "$vmx-$state.conf"
+        sed -i 's/^##\sLast changed.*$//' "$vmx-$state.conf"
         rm "$vmx.xml.conf.gz"
     done
 fi
