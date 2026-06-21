@@ -12,7 +12,7 @@ sanitize_config () {
         get_help
     else
         echo "Delete Interfaces for LACP: clab multi-lab $1"
-        for i in 1 2 5 6; do sshpass -padmin@123 ssh clab-ml-$1-vr$i "\
+        for i in 1 2 4 5 6; do sshpass -padmin@123 ssh clab-ml-$1-vr$i "\
         edit;\
         delete interfaces ge-0/0/0; \
         delete interfaces ge-0/0/1; \
