@@ -19,7 +19,7 @@ else
 
         # pull config and clean up
         gunzip -c "vr$vmx.xml.conf.gz" > "vr$vmx-$state.conf"
-        sed -i '/Last changed/d' "$vmx-$state.conf"
+        sed -i 's/^##\sLast changed.*$/## Junos Lab ##/' "vr$vmx-$state.conf"
         rm "vr$vmx.xml.conf.gz"
     done
 
