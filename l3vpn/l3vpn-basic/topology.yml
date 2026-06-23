@@ -191,7 +191,9 @@ nodes:
   vix1:
     id: 21
     mgmt.ifname: fxp0
-    module: [ vlan ]
+    module: [ vlan,bgp ]
+    bgp:
+      as: 1620
     vlans:
       vix1_to_vr1:
         ipv4: 192.168.1.11/24
@@ -200,7 +202,9 @@ nodes:
   vix2:
     id: 22
     mgmt.ifname: fxp0
-    module: [ vlan ]
+    module: [ vlan,bgp ]
+    bgp:
+      as: 1620
     vlans:
       vix2_to_vr1:
         ipv4: 192.168.1.12/24
@@ -502,19 +506,19 @@ links:
       name: vR8->vR7
       vlan.trunk: [ vr7_to_vr8 ]
   - vr1:
-      ifindex: 8
+      ifindex: 6
       name: vR1->vR10
       vlan.trunk: [ vr10_to_vr1 ]
     vr10:
-      ifindex: 8
+      ifindex: 6
       name: vR10->vR1
       vlan.trunk: [ vr10_to_vr1 ]
   - vr2:
-      ifindex: 9
+      ifindex: 7
       name: vR2->vR10
       vlan.trunk: [ vr10_to_vr2 ]
     vr10:
-      ifindex: 9
+      ifindex: 7
       name: vR10->vR2
       vlan.trunk: [ vr10_to_vr2 ]
   - vr1:
