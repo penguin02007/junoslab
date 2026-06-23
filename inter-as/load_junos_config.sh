@@ -16,6 +16,7 @@ sanitize_config () {
         edit;\
         delete interfaces ge-0/0/0; \
         delete interfaces ge-0/0/1; \
+        delete interfaces ge-0/0/6; \
         commit and-quit"; \
         done
         echo "Clean Up Unit 0 in Interfaces: clab multi-lab $1"
