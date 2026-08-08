@@ -1,14 +1,10 @@
 message: |
-  This lab consists two devices and Linux servers for sampling and gRPC.
+  This lab consists two devices and a Linux server for sampling.
 
 provider: clab
 defaults.device: vjunos-router
 nodes:
   srv1:
-    clab:
-      env:
-        CLAB_MGMT_PASSTHROUGH: "true"
-  srv2:
     clab:
       env:
         CLAB_MGMT_PASSTHROUGH: "true"
@@ -22,7 +18,7 @@ nodes:
         CLAB_MGMT_PASSTHROUGH: "true"
 groups:
   srv:
-    members: [ srv1, srv2 ]
+    members: [ srv1 ]
     device: linux
     clab:
       exec:
@@ -34,7 +30,7 @@ links:
   - vpe1:
     vpe2:
   - vpe1-srv1
-  - vpe2-srv2
+  - vpe2-srv1
 addressing:
   p2p:
     ipv4: 172.20.0.0/24
