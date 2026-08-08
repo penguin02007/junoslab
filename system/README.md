@@ -28,7 +28,26 @@ Configure bidirectional IPv6 traffic sampling on interface ge-0/0/0.x using inli
 Check inline-jflow using `show services accounting`
 
 ```
-ping 2001:db8:1000::1
+ping 2001:db8:1000::1 rapid 
+admin@vpe1> show services accounting flow inline-jflow fpc-slot 0    
+  Flow information
+    FPC Slot: 0
+    Flow Packets: 0, Flow Bytes: 0
+    Active Flows: 0, Total Flows: 0
+    Flows Exported: 0, Flow Packets Exported: 0
+    Flows Inactive Timed Out: 0, Flows Active Timed Out: 0
+    Total Flow Insert Count: 0
+
+    IPv6 Flows:
+    IPv6 Flow Packets: 0, IPv6 Flow Bytes: 0
+    IPv6 Active Flows: 0, IPv6 Total Flows: 0
+    IPv6 Flows Exported: 0, IPv6 Flow Packets Exported: 0
+    IPv6 Flows Inactive Timed Out: 0, IPv6 Flows Active Timed Out: 0
+    IPv6 Flow Insert Count: 0
+```
+
+```
+ping 2001:db8:1000::1 rapid count 2000 
 show services accounting flow inline-jflow fpc-slot 0    
   Flow information
     FPC Slot: 0
@@ -44,6 +63,6 @@ show services accounting flow inline-jflow fpc-slot 0
     IPv6 Flows Exported: 2, IPv6 Flow Packets Exported: 1
     IPv6 Flows Inactive Timed Out: 0, IPv6 Flows Active Timed Out: 2
     IPv6 Flow Insert Count: 2
-ping 2001:db8:1000::1 rapid count 2000  
+
 ```
 > **Note:** Output might show no traffic because 1 out of 1000 packets are sampled.
