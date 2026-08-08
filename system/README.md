@@ -66,3 +66,30 @@ show services accounting flow inline-jflow fpc-slot 0
 
 ```
 > **Note:** Output might show no traffic because 1 out of 1000 packets are sampled.
+
+
+## Secure Streaming Telemetry
+1. Ensure vpe1 can serve secure streaming telemetry data using gRPC on port 43123.
+2. Use a local certificate named jncie_cert, allow up to 15 maximum connections, and allow access only from a host with IP address 10.10.1.1
+
+### Verification
+
+```
+show security pki local-certificate
+```
+
+### Answers
+1. Generate crypto key pair and assign key pair to certificate.
+```
+request security pki generate-key-pair type rsa size 2048 certificate-id jncie
+request security pki local-certificate generate-self-signed subject DC=jncie.net domain-name jncie.net certificate-id jncie 
+```
+
+2. Tie SSL to gRPC, set max-connection and whitelisting.
+```
+set system services extension-service request-response grpc ssl port 43123
+set system services extension-service request-response grpc ssl local-certificate jncie
+set system services extension-service request-response grpc ssl use-pki
+set system services extension-service request-response grpc max-connections 15
+set system services extension-service notification allow-clients address 10.10.1.1
+```
