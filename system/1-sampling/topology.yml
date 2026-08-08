@@ -25,8 +25,9 @@ groups:
     members: [ srv1, srv2 ]
     device: linux
     config:
-       - apt-get update && apt-get install net-tools vim pmacct -y
-       - printf "nfacctd_port: 2055\nnfacctd_ip: 0.0.0.0\n" >> /etc/pmacct/nfacctd.conf
+      - apt-get update && apt-get install net-tools vim pmacct -y
+      - 'echo "nfacctd_port: 2055" >> /etc/pmacct/nfacctd.conf'
+      - 'echo "nfacctd_ip: 0.0.0.0" >> /etc/pmacct/nfacctd.conf'
   pe:
     members: [ vpe1, vpe2 ]
 links:
