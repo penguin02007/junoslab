@@ -23,11 +23,11 @@ groups:
     clab:
       exec:
         - |
-          bash -c 'apt-get update && 
-          apt-get install iproute2 net-tools vim pmacct -y &&
-          echo 'nfacctd_port: 2055' >> /etc/pmacct/nfacctd.conf &&
-          echo 'nfacctd_ip: 0.0.0.0' >> /etc/pmacct/nfacctd.conf &&
-          nfacct -f /etc/pmacct/nfacctd.conf
+          bash -c 'apt-get update && \
+          apt-get install iproute2 net-tools vim pmacct -y && \
+          echo "nfacctd_port: 2055" >> /etc/pmacct/nfacctd.conf && \
+          echo "nfacctd_ip: 0.0.0.0" >> /etc/pmacct/nfacctd.conf && \
+          nfacctd -f /etc/pmacct/nfacctd.conf'
   pe:
     members: [ vpe1, vpe2 ]
 links:
