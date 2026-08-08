@@ -24,13 +24,9 @@ groups:
   srv:
     members: [ srv1, srv2 ]
     device: linux
-      config:
+    config:
        - apt-get update && apt-get install net-tools vim pmacct -y
-#         - cat <<EOF >> /etc/pmacct/nfacctd.conf
-#           nfacctd_port: 2055
-#           nfacctd_ip: 0.0.0.0
-#         EOF
-#         #
+       - printf "nfacctd_port: 2055\nnfacctd_ip: 0.0.0.0\n" >> /etc/pmacct/nfacctd.conf
   pe:
     members: [ vpe1, vpe2 ]
 links:
@@ -38,7 +34,6 @@ links:
     vpe2:
   - vpe1-srv1
   - vpe2-srv2
-
 addressing:
   p2p:
     ipv4: true
