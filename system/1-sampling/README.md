@@ -77,4 +77,6 @@ show services accounting flow inline-jflow fpc-slot 0
 
 ```
 show security pki local-certificate
+start shell
+netstat -ant | grep 43123
 ```
