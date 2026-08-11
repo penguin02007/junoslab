@@ -1,10 +1,10 @@
-# Lab: Traffic Sampling & Flow Collection
+# Traffic Sampling & Flow Collection
 
 ## Traffic Sampling and Flow Collection
 
-![alt text](image.png)
+<img src="image.png" alt="1-sampling" style="width: 30%; height: auto;" />
 
-### IPv4
+### 1. IPv4
 1. Configure IPv4 traffic sampling at a rate of **1 out of every 50 packets**.
 2. Apply IPv4 traffic sampling to interface `ge-0/0/0.0` such that both **ingress and egress** traffic on this interface are sampled.
 3. **Collector Configuration:**
@@ -17,7 +17,7 @@
 #### Verification
 `show interface xyz extensive`
 
-### IPv6
+### 2. IPv6
 
 Configure bidirectional IPv6 traffic sampling on interface ge-0/0/0.x using inline sampling.
 
@@ -69,7 +69,7 @@ show services accounting flow inline-jflow fpc-slot 0
 > **Note:** Output might show no traffic because 1 out of 1000 packets are sampled.
 
 
-### Secure Streaming Telemetry
+### 3. Secure Streaming Telemetry
 1. Ensure vpe1 can serve secure streaming telemetry data using gRPC on port 43123.
 2. Use a local certificate named jncie_cert, allow up to 15 maximum connections, and allow access only from a host with IP address 10.10.1.1
 
