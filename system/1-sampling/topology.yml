@@ -8,12 +8,10 @@ nodes:
       env:
         CLAB_MGMT_PASSTHROUGH: "true"
   vpe2:
-    mgmt.ifname: fxp0
     clab:
       env:
         CLAB_MGMT_PASSTHROUGH: "true"
   vpe1:
-    mgmt.ifname: fxp0
     clab:
       env:
         CLAB_MGMT_PASSTHROUGH: "true"
@@ -33,12 +31,9 @@ groups:
 links:
   - vpe1:
     vpe2:
-  - vpe1-srv1
-  - vpe2
+  - vpe1:
+    srv1:
 addressing:
   p2p:
     ipv4: 172.20.0.0/24
     ipv6: 2001:db8:1000::/48
-  loopback:
-    ipv4: 172.16.0.0/24
-    prefix: 32
