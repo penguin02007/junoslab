@@ -1,8 +1,7 @@
 message: |
-  This lab consists two devices and a Linux server for sampling.
+  This lab consists two devices and a Linux server for packet sampling.
 
 provider: clab
-defaults.device: vjunos-router
 nodes:
   srv1:
     clab:
@@ -28,11 +27,12 @@ groups:
 #          nfacctd -f /etc/pmacct/nfacctd.conf
   pe:
     members: [ vpe1, vpe2 ]
+    device: vjunos-router
 links:
   - vpe1:
     vpe2:
   - vpe1-srv1
-  - vpe2-srv1
+  - vpe2
 addressing:
   p2p:
     ipv4: 172.20.0.0/24
