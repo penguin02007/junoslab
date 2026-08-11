@@ -1,0 +1,38 @@
+message: |
+  This lab consists two devices and two linux containers to for sampling.
+
+provider: clab
+defaults.device: vjunos-router
+nodes:
+  srv1:
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+  srv2:
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+  vpe2:
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+  vpe1:
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+groups:
+  srv:
+    members: [ srv1, srv2 ]
+    device: linux
+  pe:
+    members: [ vpe1, vpe2 ]
+links:
+  - vpe1:
+    vpe2:
+  - vpe1-srv1
+  - vpe2-srv2
+
+addressing:
+  p2p:
+    ipv4: true
+    ipv6: 2001:db8:1000::/48

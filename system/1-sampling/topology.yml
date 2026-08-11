@@ -1,0 +1,44 @@
+message: |
+  This lab consists two devices and a Linux server for packet sampling.
+
+provider: clab
+nodes:
+  srv1:
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+  vpe2:
+    mgmt.ifname: fxp0
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+  vpe1:
+    mgmt.ifname: fxp0
+    clab:
+      env:
+        CLAB_MGMT_PASSTHROUGH: "true"
+groups:
+  srv:
+    members: [ srv1 ]
+    device: linux
+    clab:
+      exec:
+        - bash -c 'apt-get update && apt-get install iproute2 net-tools vim pmacct -y'
+#          echo 'nfacctd_port: 2055' >> /etc/pmacct/nfacctd.conf
+#          echo 'nfacctd_ip: 0.0.0.0' >> /etc/pmacct/nfacctd.conf
+#          nfacctd -f /etc/pmacct/nfacctd.conf
+  pe:
+    members: [ vpe1, vpe2 ]
+    device: vjunos-router
+links:
+  - vpe1:
+    vpe2:
+  - vpe1-srv1
+  - vpe2
+addressing:
+  p2p:
+    ipv4: 172.20.0.0/24
+    ipv6: 2001:db8:1000::/48
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
