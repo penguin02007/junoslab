@@ -43,11 +43,12 @@
 
 # Verification:
 1. Green vrf:
-
-  | Device | Interface | site  |
-  | :--- | :--- | :--- |
-  | CE2-1 | 10.10.10.1 | hub   |
-  | CE2-2 | 10.10.10.2 | hub   |
-  | CE2-3 | 10.10.10.3 | spoke |
-  | CE2-4 | 10.10.10.4 | spoke |
-  | CE2-5 | 10.10.10.5 | spoke |
+   - ce2-3 to ce2-5
+   - ce2-3 to ce2-4
+  | CE Name | CE Loopback | Edge | site  |
+  | :--- | :--- | :--- | :--- |
+  | CE2-1 | 10.10.10.1 | vr1 | hub   |
+  | CE2-2 | 10.10.10.2 | vr2 | hub   |
+  | CE2-3 | 10.10.10.3 | vr4 | spoke |
+  | CE2-4 | 10.10.10.4 | vr5 | spoke |
+  | CE2-5 | 10.10.10.5 | vr7 | spoke |
