@@ -25,6 +25,14 @@
   - Configure customer C2 to operate in a centralized hub-and-spoke transit model, enforcing site S1 as the obligatory focal point for all inter-site traffic exchanges.
   - Implement strict loop-prevention and split-horizon controls to ensure that prefixes originated within customer C2 sites S1 or S2 are never reflected or advertised back to their source origin.
   - Ensure full reachability of all local PE-CE link subnets across remote sites within the customer C2 VPN topology.
+  | Device | Interface | IP | Routing Instance |
+  | :--- | :--- | :--- | :--- |
+  | R1 | lo0.1 | .19 | hub   |
+  | R1 | lo0.2 | .20 | spoke |
+  | R2 | lo0.1 | .21 | hub   |
+  | R2 | lo0.2 | .22 | spoke |
+  | R4 | lo0.2 | .24 | spoke |
+  | R4 | lo0.2 | .25 | spoke |
 9. Route Target:
   - Restrict BGP VPN routing updates such that individual PE devices import only those prefix targets matching their specific localization requirements.
   - Establish local VRF route leakage on router R4 to allow direct local communication between customer C1 site S2 and customer C2 site S2. Guarantee that these locally leaked prefixes are strictly isolated and constrained, preventing leakage toward any remote PE nodes.
