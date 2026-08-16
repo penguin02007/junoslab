@@ -42,9 +42,10 @@
   - Provide customer C1 site S2 with multi-homed Internet connectivity via a single customer-facing interface attachment. The routing design must ensure high availability, ensuring that the control or forwarding plane failure of either R3 or R4 does not disrupt Internet reachability for customer C1 site S2.
 
 # Verification:
-1. Green vrf:
+1. Confirm CE can ping each other.
    - ce2-3 to ce2-5
    - ce2-3 to ce2-4
+
   | CE Name | CE Loopback | Edge | site  |
   | :--- | :--- | :--- | :--- |
   | CE2-1 | 10.10.10.1 | vr1 | hub   |
