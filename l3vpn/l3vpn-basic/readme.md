@@ -33,8 +33,21 @@
   | R2 | lo0.2 | .22 | spoke |
   | R4 | lo0.2 | .24 | spoke |
   | R4 | lo0.2 | .25 | spoke |
+  | R7 | lo0.1 | .33 | spoke |
+
 9. Route Target:
   - Restrict BGP VPN routing updates such that individual PE devices import only those prefix targets matching their specific localization requirements.
   - Establish local VRF route leakage on router R4 to allow direct local communication between customer C1 site S2 and customer C2 site S2. Guarantee that these locally leaked prefixes are strictly isolated and constrained, preventing leakage toward any remote PE nodes.
 10. Internet:
   - Provide customer C1 site S2 with multi-homed Internet connectivity via a single customer-facing interface attachment. The routing design must ensure high availability, ensuring that the control or forwarding plane failure of either R3 or R4 does not disrupt Internet reachability for customer C1 site S2.
+
+# Verification:
+1. Green vrf:
+
+  | Device | Interface | site  |
+  | :--- | :--- | :--- |
+  | CE2-1 | 10.10.10.1 | hub   |
+  | CE2-2 | 10.10.10.2 | hub   |
+  | CE2-3 | 10.10.10.3 | spoke |
+  | CE2-4 | 10.10.10.4 | spoke |
+  | CE2-5 | 10.10.10.5 | spoke |
