@@ -30,4 +30,3 @@
   - Establish local VRF route leakage on router R4 to allow direct local communication between customer C1 site S2 and customer C2 site S2. Guarantee that these locally leaked prefixes are strictly isolated and constrained, preventing leakage toward any remote PE nodes.
 10. Internet:
   - Provide customer C1 site S2 with multi-homed Internet connectivity via a single customer-facing interface attachment. The routing design must ensure high availability, ensuring that the control or forwarding plane failure of either R3 or R4 does not disrupt Internet reachability for customer C1 site S2.
->>>>>>> d6ab940 (update challenges)
