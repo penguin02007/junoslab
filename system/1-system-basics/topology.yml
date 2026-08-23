@@ -5,8 +5,6 @@ message: |
   2. NTP
   3. Firewall Filters
 
-chronyc tracking
-
 provider: clab
 nodes:
   srv1:
