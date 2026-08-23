@@ -42,7 +42,7 @@ pull_vce_config() {
     echo "Downloading configuration for $vce..."
 
     sshpass -p 'admin@123' scp \
-        "admin@clab-$ml-$vce:/config/juniper.conf.gz" \
+        "admin@clab-ml-$ml-$vce:/config/juniper.conf.gz" \
         "$vce.xml.conf.gz"
 
     if [ $? -ne 0 ]; then
