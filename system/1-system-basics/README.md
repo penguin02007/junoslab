@@ -4,11 +4,17 @@
 
 <img src="image.png" alt="1-sampling" style="width: 30%; height: auto;" />
 
+## Begin
+
+```
+netlab up --plugin multilab -s defaults.multilab.id=99
+```
+
 ### 1. IPv4
 1. Configure IPv4 traffic sampling at a rate of **1 out of every 50 packets**.
 2. Apply IPv4 traffic sampling to interface `ge-0/0/0.0` such that both **ingress and egress** traffic on this interface are sampled.
 3. **Collector Configuration:**
-   * Export sampled flows to the external Flow Collector at IP address `192.168.XX.101` using UDP port `2055`.
+   * Export sampled flows to the external Flow Collector at IP address `192.168.99.101` using UDP port `2055`.
    * Format the exported traffic using **cflowd version 5**.
    * Ensure flow export packets originate from the device's loopback interface.
 
@@ -21,7 +27,7 @@
 
 Configure bidirectional IPv6 traffic sampling on interface ge-0/0/0.x using inline sampling.
 
-1. Export the sampled flows to the Flow Collector at `192.168.XX.101` on port 2055.
+1. Export the sampled flows to the Flow Collector at `192.168.99.101` on port 2055.
 2. Configure a flow template named jncie_ipfix. Ensure that the active flow export interval is set to 30 seconds and that flows are marked inactive after 180 seconds of inactivity.
 3. Use  lo0 interface as  source address and configure the sampling rate to 1 packet out of every 1000 packets.
 
