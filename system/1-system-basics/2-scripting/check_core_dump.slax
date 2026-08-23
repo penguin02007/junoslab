@@ -2,7 +2,7 @@ version 1.2;
 
 /* 
  * SLAX script to check for core dump files in /var/crash 
- * and issue a syslog warning if any exist.
+ * and trace outputs directly to traceoptions file.
  */
 
 ns junos = "http://xml.juniper.net/junos/*/junos";
@@ -27,9 +27,18 @@ main {
         /* Log warning message to syslog */
         expr jcs:syslog("external.warning", $msg);
         
+        /* Write message to traceoptions file */
+        expr jcs:trace($msg);
+        
         /* Output message to CLI stdout if executed manually */
         expr jcs:output($msg);
     } else {
-        expr jcs:output("No core dump files detected in /var/crash.");
+        var $no-core-msg = "No core dump files detected in /var/crash.";
+        
+        /* Write message to traceoptions file */
+        expr jcs:trace($no-core-msg);
+        
+        /* Output message to CLI stdout if executed manually */
+        expr jcs:output($no-core-msg);
     }
 }
