@@ -1,0 +1,35 @@
+version 1.2;
+
+/* 
+ * SLAX script to check for core dump files in /var/crash 
+ * and issue a syslog warning if any exist.
+ */
+
+ns junos = "http://xml.juniper.net/junos/*/junos";
+ns xnm = "http://xml.juniper.net/xnm/1/1";
+ns jcs = "http://xml.juniper.net/junos/commit-scripts/1.0";
+
+import "../import/junos.xsl";
+
+main {
+    /* Execute RPC to list files in /var/crash */
+    var $ls-rpc = <file-list> {
+        <path> "/var/crash";
+    };
+    var $ls-result = jcs:invoke($ls-rpc);
+
+    /* Filter for core files or crash dump artifacts */
+    var $core-files = $ls-result//file-information[contains(name, "core") or contains(name, "vmcore")];
+
+    if ($core-files) {
+        var $msg = "WARNING: System has core dump files present in /var/crash!";
+        
+        /* Log warning message to syslog */
+        expr jcs:syslog("external.warning", $msg);
+        
+        /* Output message to CLI stdout if executed manually */
+        expr jcs:output($msg);
+    } else {
+        expr jcs:output("No core dump files detected in /var/crash.");
+    }
+}
