@@ -62,7 +62,7 @@ load_device_config() {
 
     sshpass -padmin@123 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
         "admin@clab-ml-${ml}-${dev}" \
-        "edit; delete firewall; delete routing-options; delete policy-options; delete protocols; load merge /var/tmp/${conf_file}; commit and-quit"
+        "edit; protect interfaces fxp0; protect routing-instances mgmt_junos; delete interfaces; delete routing-instances; delete firewall; delete routing-options; delete policy-options; delete protocols; load merge /var/tmp/${conf_file}; commit and-quit"
 }
 
 for dev in "${DEVICES[@]}"; do

@@ -77,7 +77,7 @@ if [ -n "$device" ]; then
         exit $?
 
     # vce2-X argument = CE device.
-    elif [[ "$device" =~ ^vce2-[0-9]+$ ]]; then
+    elif [[ "$device" =~ ^vce[12]-[0-9]+$ ]]; then
         pull_vce_config "$device"
         exit $?
 
@@ -95,6 +95,6 @@ for vmx in {1..8} 10; do
 done
 
 # Pull all vCE devices.
-for vce in vce2-1 vce2-2 vce2-3 vce2-4 vce2-5; do
+for vce in vce1-1 vce1-2 vce1-3 vce1-4 vce2-1 vce2-2 vce2-3 vce2-4 vce2-5; do
     pull_vce_config "$vce"
 done
