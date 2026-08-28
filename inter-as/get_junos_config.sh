@@ -76,8 +76,8 @@ if [ -n "$device" ]; then
         pull_vmx_config "$device"
         exit $?
 
-    # vce2-X argument = CE device.
-    elif [[ "$device" =~ ^vce[12]-[0-9]+$ ]]; then
+    # single argument 
+	elif [[ "$device" =~ ^v(dc|ce) ]]; then
         pull_vce_config "$device"
         exit $?
 
