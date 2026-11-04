@@ -1,54 +1,70 @@
-# /bin/bash
+#!/bin/bash
 
 ml="$1"
 state="$2"
+target_device="$3"
 
 get_help() {
-    echo "Usage: $0 [multi-lab number]"
-    echo "Example: $0 21"
+    echo "Usage:"
+    echo "  $0 [multi-lab number] [start|end] [device]"
+    echo
+    echo "Examples:"
+    echo "  $0 21 start          # load all vMX and vCE start configs"
+    echo "  $0 21 start 3        # load only vMX 3 (vr3)"
+    echo "  $0 21 end vce2-3   # load vCE2-3 end config (solutions)"
 }
-sanitize_config () {
-    if [ -z "$1" ]; then
-        get_help
-    else
-        echo "Delete Interfaces for LACP: clab multi-lab $1"
-        for i in vr1 vr2 vr4 vr5 vr6; do sshpass -padmin@123 ssh clab-ml-$1-$i "\
-        edit;\
-        delete interfaces ge-0/0/0; \
-        delete interfaces ge-0/0/1; \
-        delete interfaces ge-0/0/6; \
-        commit and-quit"; \
-        done
-        for i in vdc2; do sshpass -padmin@123 ssh clab-ml-$1-$i "\
-        edit;\
-        delete interfaces ge-0/0/1; \
-        delete interfaces ge-0/0/2; \
-        commit and-quit"; \
-        done
-        echo "Clean Up Unit 0 in Interfaces: clab multi-lab $1"
-        for i in {1..8} 10; do sshpass -padmin@123 ssh clab-ml-$1-vr$i "\
-        edit;\
-        delete protocols isis; \
-        delete interfaces ge-0/0/2.0; \
-        delete interfaces ge-0/0/3.0; \
-        delete interfaces ge-0/0/4.0; \
-        commit and-quit"; \
-        done
+
+# Validate required positional arguments
+if [ -z "$ml" ] || [ -z "$state" ]; then
+    get_help
+    exit 1
+fi
+
+if [ "$state" != "start" ] && [ "$state" != "end" ]; then
+    echo "Error: State must be 'start' or 'end'."
+    echo
+    get_help
+    exit 1
+fi
+
+# Full topology device inventory
+ALL_DEVICES=(
+    vr1 vr2 vr3 vr4 vr5 vr6 vr7 vr8 vr9 vr10
+    vce1-1 vce1-2 vce1-3 vce1-4
+    vce2-1 vce2-2 vce2-3 vce2-4 vce2-5
+    vix1 vix2
+)
+
+# Resolve target list (all vs. single device)
+if [ -n "$target_device" ]; then
+    # Normalize numeric input (e.g., '3' -> 'vr3')
+    if [[ "$target_device" =~ ^[0-9]+$ ]]; then
+        target_device="vr${target_device}"
     fi
-}
-main() {
-    if [ -z "$1" ]; then
-        get_help
-    else
-        for i in {1..8} 10; do sshpass -padmin@123 scp -o "StrictHostKeyChecking=no" vr$i-start.conf admin@clab-ml-$1-vr$i:/var/tmp/;done
-        for i in {1..8} 10; do sshpass -padmin@123 ssh admin@clab-ml-$1-vr$i "edit;load merge /var/tmp/vr$i-start.conf;commit and-quit";done
-        for i in vdc2 vce1-1 vce1-2 vce1-3 vce1-4 vce2-1 vce2-2 vce2-3 vce2-4 vce2-5 vce3-1 vce3-2; do sshpass -padmin@123 scp -o "StrictHostKeyChecking=no" $i-$state.conf admin@clab-ml-$1-$i:/var/tmp/;done
-        for i in vdc2 vce1-1 vce1-2 vce1-3 vce1-4 vce2-1 vce2-2 vce2-3 vce2-4 vce2-5 vce3-1 vce3-2; do sshpass -padmin@123 ssh admin@clab-ml-$1-$i "edit;load merge /var/tmp/$i-$state.conf;commit and-quit";done
+    DEVICES=("$target_device")
+else
+    DEVICES=("${ALL_DEVICES[@]}")
+fi
+
+load_device_config() {
+    local dev="$1"
+    local conf_file="${dev}-${state}.conf"
+
+    if [ ! -f "$conf_file" ]; then
+        echo "[-] Skipping ${dev}: Configuration file '${conf_file}' not found."
+        return 1
     fi
+
+    echo "[+] Deploying ${conf_file} to clab-ml-${ml}-${dev}..."
+
+    sshpass -padmin@123 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+        "${conf_file}" "admin@clab-ml-${ml}-${dev}:/var/tmp/" || return 1
+
+    sshpass -padmin@123 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+        "admin@clab-ml-${ml}-${dev}" \
+        "edit; protect interfaces fxp0; protect routing-instances mgmt_junos; delete interfaces; delete routing-instances; delete firewall; delete routing-options; delete policy-options; delete protocols; load merge /var/tmp/${conf_file}; commit and-quit"
 }
-get_help() {
-    echo "Usage: $0 [multi-lab number]"
-    echo "Example: $0 21"
-}
-sanitize_config "$1"
-main "$1"
+
+for dev in "${DEVICES[@]}"; do
+    load_device_config "$dev"
+done
