@@ -26,12 +26,11 @@ netlab up --plugin multilab -s defaults.multilab.id=12
 
 1. Secure vRR <-> vR1/vR2 sessions with TCP MD5 (`authentication-key`).
 
-2. Migrate sessions from MD5 to TCP Authentication Option (RFC 5925) using key chain.
+2. Migrate vRR <-> vR1 sessions from MD5 to TCP Authentication Option (RFC 5925) using key chain.
 
+3. Add a key (`send-id 2` / `recv-id 2`) with `start-time` a few minutes in the future. Confirm key rolls over hitlessly: the BGP session stays up and the flap count does not increase.
 
-4. Add a key (`send-id 2` / `recv-id 2`) with `start-time` a few minutes in the future. Confirm key rolls over hitlessly: the BGP session stays up and the flap count does not increase.
-
-5. Shut down vR1 `ge-0/0/8` and confirm that the authenticated session to vRR stays up over vR2.
+4. Shut down vR1 `ge-0/0/8` and confirm that the authenticated session to vRR stays up over vR2.
 
 > [!Verification]
 ```
@@ -40,14 +39,11 @@ show bgp neighbor 172.16.0.1 | match "Authentication|State|Flap"
 show security keychain detail
 show system statistics tcp | match auth
 ```
-> [!Tips]
+> [!Answer]
+Replace 12 with the actual multilab number.
+
 ```
-set security authentication-key-chains key-chain BGP-AO key 0 secret <secret>
-set security authentication-key-chains key-chain BGP-AO key 0 start-time "2026-1-1.00:00:00 +0000"
-set security authentication-key-chains key-chain BGP-AO key 0 algorithm ao
-set security authentication-key-chains key-chain BGP-AO key 0 ao-attribute send-id 1 recv-id 1
-set security authentication-key-chains key-chain BGP-AO key 0 ao-attribute tcp-ao-option enabled
-set security authentication-key-chains key-chain BGP-AO key 0 ao-attribute cryptographic-algorithm aes-128-cmac-96
-set protocols bgp group <group> authentication-algorithm ao
-set protocols bgp group <group> authentication-key-chain BGP-AO
+bash ../scripts/get_junos_config.sh 12 end vrr
+bash ../scripts/get_junos_config.sh 12 end 1
+bash ../scripts/get_junos_config.sh 12 end 2
 ```
