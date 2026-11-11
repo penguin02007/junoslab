@@ -2,7 +2,7 @@
 # BGP authentication lab (MD5 -> TCP-AO)
 provider: clab
 defaults.device: vmx
-module: [ vlan, bgp ]
+module: [ vlan, bgp, isis ]
 bgp.as: 65000
 
 nodes:
