@@ -77,7 +77,7 @@ if [ -n "$device" ]; then
         exit $?
 
     # single argument 
-	elif [[ "$device" =~ ^v(dc|ce) ]]; then
+	elif [[ "$device" =~ ^v(dc|ce|rr) ]]; then
         pull_vce_config "$device"
         exit $?
 
