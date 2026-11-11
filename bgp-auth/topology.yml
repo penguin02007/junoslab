@@ -1,0 +1,79 @@
+---
+# BGP authentication lab (MD5 -> TCP-AO)
+provider: clab
+defaults.device: vmx
+module: [ vlan, bgp ]
+bgp.as: 65000
+
+nodes:
+  vrr:
+    id: 10
+    mgmt.ifname: fxp0
+    bgp.rr: true
+    vlans:
+      vr10_to_vr1:
+        ipv4: 172.20.0.65/31
+      vr10_to_vr2:
+        ipv4: 172.20.0.67/31
+    loopback:
+      ipv4: 172.16.0.10/32
+  vr1:
+    id: 1
+    mgmt.ifname: fxp0
+    vlans:
+      vr10_to_vr1:
+        ipv4: 172.20.0.64/31
+    loopback:
+      ipv4: 172.16.0.1/32
+  vr2:
+    id: 2
+    mgmt.ifname: fxp0
+    vlans:
+      vr10_to_vr2:
+        ipv4: 172.20.0.66/31
+    loopback:
+      ipv4: 172.16.0.2/32
+
+vlans:
+  vr10_to_vr1:
+    id: 206
+    mode: route
+  vr10_to_vr2:
+    id: 207
+    mode: route
+
+links:
+  # vr1 <-> vr2 PTP link: lets RR sessions survive single link failure
+  - vr1:
+      ifindex: 0
+      name: vR1->vR2
+      ipv4: 172.20.0.0/31
+    vr2:
+      ifindex: 0
+      name: vR2->vR1
+      ipv4: 172.20.0.1/31
+    type: p2p
+  - vr1:
+      ifindex: 8
+      name: vR1->vR10
+      vlan.trunk: [ vr10_to_vr1 ]
+    vrr:
+      ifindex: 8
+      name: vR10->vR1
+      vlan.trunk: [ vr10_to_vr1 ]
+  - vr2:
+      ifindex: 9
+      name: vR2->vR10
+      vlan.trunk: [ vr10_to_vr2 ]
+    vrr:
+      ifindex: 9
+      name: vR10->vR2
+      vlan.trunk: [ vr10_to_vr2 ]
+
+addressing:
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 172.20.0.0/24
+    prefix: 31

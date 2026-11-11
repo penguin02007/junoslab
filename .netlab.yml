@@ -1,2 +1,4 @@
 devices.vmx.clab.image: vrnetlab/juniper_vmx:23.2R2.21
-netlab_license_file: ~/netlab/vmx_license.txt
+devices.vmx.group_vars.netlab_check_retries: 50
+devices.vmx.group_vars.netlab_check_delay: 10
+devices.vmx.group_vars.netlab_license_file: ~/netlab/vmx_license.txt
