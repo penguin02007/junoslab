@@ -1,0 +1,188 @@
+---
+# LDP-signaled VPLS lab (RFC 4762), derived from inter-as/topology.yml
+# Core: IS-IS + LDP + iBGP (vrr = RR). PEs: vr1, vr2, vr7, vr8.
+# CEs run no modules; PE-side attachment circuits are left unaddressed for VPLS.
+provider: clab
+defaults.device: vjunos-router
+bgp.as: 65000
+
+nodes:
+  vrr:
+    id: 10
+    mgmt.ifname: fxp0
+    module: [ vlan, isis, mpls, bgp ]
+    bgp.rr: true
+    vlans:
+      vr10_to_vr1:
+        ipv4: 172.20.0.65/31
+      vr10_to_vr2:
+        ipv4: 172.20.0.67/31
+    loopback:
+      ipv4: 172.16.0.10/32
+  vr1:
+    id: 1
+    mgmt.ifname: fxp0
+    module: [ vlan, isis, mpls, bgp ]
+    vlans:
+      vr10_to_vr1:
+        ipv4: 172.20.0.64/31
+      vr8_to_vr1:
+        ipv4: 172.20.0.16/31
+    loopback:
+      ipv4: 172.16.0.1/32
+  vr2:
+    id: 2
+    mgmt.ifname: fxp0
+    module: [ vlan, isis, mpls, bgp ]
+    vlans:
+      vr10_to_vr2:
+        ipv4: 172.20.0.66/31
+      vr2_to_vr7:
+        ipv4: 172.20.0.4/31
+    loopback:
+      ipv4: 172.16.0.2/32
+  vr7:
+    id: 7
+    mgmt.ifname: fxp0
+    module: [ vlan, isis, mpls, bgp ]
+    vlans:
+      vr2_to_vr7:
+        ipv4: 172.20.0.5/31
+      vr7_to_vr8:
+        ipv4: 172.20.0.37/31
+    loopback:
+      ipv4: 172.16.0.7/32
+  vr8:
+    id: 8
+    mgmt.ifname: fxp0
+    module: [ vlan, isis, mpls, bgp ]
+    vlans:
+      vr8_to_vr1:
+        ipv4: 172.20.0.17/31
+      vr7_to_vr8:
+        ipv4: 172.20.0.36/31
+    loopback:
+      ipv4: 172.16.0.8/32
+  vce2-1:
+    id: 121
+    mgmt.ifname: fxp0
+  vce2-2:
+    id: 122
+    mgmt.ifname: fxp0
+  vce2-5:
+    id: 125
+    mgmt.ifname: fxp0
+  vce3-1:
+    id: 131
+    mgmt.ifname: fxp0
+
+# Core links
+vlans:
+  vr8_to_vr1:
+    id: 118
+    mode: route
+  vr2_to_vr7:
+    id: 127
+    mode: route
+  vr7_to_vr8:
+    id: 178
+    mode: route
+  vr10_to_vr1:
+    id: 206
+    mode: route
+  vr10_to_vr2:
+    id: 207
+    mode: route
+
+links:
+  # vr1 <-> vr2 PTP link
+  - vr1:
+      ifindex: 0
+      name: vR1->vR2
+      ipv4: 172.20.0.0/31
+    vr2:
+      ifindex: 0
+      name: vR2->vR1
+      ipv4: 172.20.0.1/31
+    type: p2p
+  - vr1:
+      ifindex: 3
+      name: vR1->vR8
+      vlan.trunk: [ vr8_to_vr1 ]
+    vr8:
+      ifindex: 3
+      name: vR8->vR1
+      vlan.trunk: [ vr8_to_vr1 ]
+  - vr2:
+      ifindex: 4
+      name: vR2->vR7
+      vlan.trunk: [ vr2_to_vr7 ]
+    vr7:
+      ifindex: 4
+      name: vR7->vR2
+      vlan.trunk: [ vr2_to_vr7 ]
+  - vr7:
+      ifindex: 2
+      name: vR7->vR8
+      vlan.trunk: [ vr7_to_vr8 ]
+    vr8:
+      ifindex: 2
+      name: vR8->vR7
+      vlan.trunk: [ vr7_to_vr8 ]
+  - vr1:
+      ifindex: 8
+      name: vR1->vR10
+      vlan.trunk: [ vr10_to_vr1 ]
+    vrr:
+      ifindex: 8
+      name: vR10->vR1
+      vlan.trunk: [ vr10_to_vr1 ]
+  - vr2:
+      ifindex: 9
+      name: vR2->vR10
+      vlan.trunk: [ vr10_to_vr2 ]
+    vrr:
+      ifindex: 9
+      name: vR10->vR2
+      vlan.trunk: [ vr10_to_vr2 ]
+  # PE-CE attachment circuits: untagged, CE addressed in 10.10.10.0/24, PE side L2 only
+  - vr1:
+      ifindex: 5
+      name: vr1->vce2-1
+      ipv4: False
+    vce2-1:
+      ifindex: 5
+      name: vce2-1->vr1
+      ipv4: 10.10.10.21/24
+  - vr2:
+      ifindex: 5
+      name: vr2->vce2-2
+      ipv4: False
+    vce2-2:
+      ifindex: 5
+      name: vce2-2->vr2
+      ipv4: 10.10.10.22/24
+  - vr7:
+      ifindex: 5
+      name: vr7->vce2-5
+      ipv4: False
+    vce2-5:
+      ifindex: 5
+      name: vce2-5->vr7
+      ipv4: 10.10.10.25/24
+  - vr8:
+      ifindex: 6
+      name: vr8->vce3-1
+      ipv4: False
+    vce3-1:
+      ifindex: 6
+      name: vce3-1->vr8
+      ipv4: 10.10.10.31/24
+
+addressing:
+  loopback:
+    ipv4: 172.16.0.0/24
+    prefix: 32
+  p2p:
+    ipv4: 172.20.0.0/24
+    prefix: 31
