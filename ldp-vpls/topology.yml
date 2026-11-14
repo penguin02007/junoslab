@@ -5,7 +5,9 @@
 provider: clab
 defaults.device: vjunos-router
 bgp.as: 65000
-
+isis:
+  area: 49.0001
+  type: level-2
 nodes:
   vrr:
     id: 10
