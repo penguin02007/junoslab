@@ -5,8 +5,8 @@
 ```
   +---------------------------------------------------------------------------------------------------+
   |                                                                                                   |
-  |  MPLS core: BGP AS 65000 (iBGP, vRR = route reflector)                                            |
-  |             IS-IS area 49.0001, level-2 only | LDP                                                |
+  |  MPLS core: BGP AS 65000 over Route Reflector                                                     |
+  |             IS-IS area 49.0001, level-1 only | LDP                                                |
   |  VPLS:      10.10.10.0/24, untagged CE ports                                                      |
   |                                                                                                   |
   |                           vRR (vr10, 172.16.0.10)                                                 |
